@@ -11,8 +11,3 @@ secret = hash.md5((sal + input("Password >:")).encode())   #placeholder
 
 print(username + '\n' + sal + '\n' + secret.hexdigest())
 
-
-#need to generate a session key here
-
-
-#vertify with server
