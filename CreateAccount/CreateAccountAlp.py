@@ -61,7 +61,6 @@ ip = geocoder.ip("me")
 city = ip.city
 realip = socket.gethostbyname(socket.gethostname())
 time = str(datetime.datetime.now())[:-7]
-print(time)
 if passq == True:
     insertQuery("""insert into auth (email, phash, sal, logintime, location, ip)
     values ('""" + username + "', '" +hashbrown + "', '" + 
