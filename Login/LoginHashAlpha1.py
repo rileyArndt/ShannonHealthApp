@@ -6,6 +6,8 @@ import geocoder
 import socket
 import datetime
 
+
+
 connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
 user = "admin",
 passwd =  input("Database password>:"))
@@ -42,6 +44,7 @@ while good == False:
         username = input("Email Address>:") #accepts users email upon failure
     secret = input("Password >:")
 
+
     sal = grabQuery(""" 
     select sal from auth 
     where email = '""" + username +"';")
@@ -61,7 +64,3 @@ while good == False:
             print("Could not authenticate user, please re-enter your credentials.")
     else:
         print("Could not authenticate user, please re-enter your credentials.")
-
-
-print(username + '\n' + sal + '\n' + secret)
-
