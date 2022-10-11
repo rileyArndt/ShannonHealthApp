@@ -20,7 +20,7 @@ class MainApp(MDApp):
 
         connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
         user = "admin",
-        passwd =  "mOBSCENE")
+        passwd =  "-")
         print("Connection initialized")
         cursor = connection.cursor()
         cursor.execute("use shannon;")
