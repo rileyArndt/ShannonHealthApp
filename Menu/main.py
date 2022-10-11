@@ -69,7 +69,23 @@ ScreenManager:
          # do_scroll_x: False  
          MDBoxLayout:
             size_hint_y: None
-            height: 2000
+            height: 2000            # can increase if necessary
+            
+   MDRectangleFlatButton:
+      text: "Button1"
+      theme_text_color: "Custom"
+      text_color: "black"
+      pos_hint: {"center_x": 0.5, "center_y": 0.1}
+   MDRectangleFlatButton:
+      text: "Button2"
+      theme_text_color: "Custom"
+      text_color: "black"
+      pos_hint: {"center_x": 0.8, "center_y": 0.1}
+   MDRectangleFlatButton:
+      text: "Button3"
+      theme_text_color: "Custom"
+      text_color: "black"
+      pos_hint: {"center_x": 0.2, "center_y": 0.1}
 """
 
 # Add all your created screens
