@@ -78,10 +78,12 @@ global sm
 sm = ScreenManager()
 sm.add_widget(MainScreen(name='main'))
 
+# Builds the application.
 class MainApp(MDApp):
    def build(self):
       screen = Builder.load_string(str)
       return screen  
    
+# Runs the application.
 if __name__ == '__main__':
    MainApp().run()
