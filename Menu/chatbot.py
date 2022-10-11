@@ -1,3 +1,7 @@
+# Mitchell Martin
+# 10/11/2022
+
+# Splitting the string
 import re
 
 # message_probability: checks the keywords for the most accurate response
