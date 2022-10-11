@@ -13,6 +13,9 @@ from mods import *
 class MainScreen(Screen):
    pass
 
+class ChatScreen(Screen):
+   pass
+
   
   
 str = """
