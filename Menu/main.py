@@ -28,7 +28,7 @@ class ChatScreen(Screen):
       self.titlelout.pos_hint={"center_y": .95}
       self.titlelout.md_bg_color=[ 12/255, 110/255, 90/255, 1 ]
    
-
+      # Label for Title Layout
       self.cb_label=MDLabel()
       self.cb_label.text='CHAT BOT AI'
       self.cb_label.pos_hint={"center_y": .5}
@@ -96,7 +96,6 @@ class ChatScreen(Screen):
       
       self.olout.add_widget(self.cbtn)
       self.toolbar.add_widget(self.txtinpt)
-      
       self.toolbar.add_widget(self.olout)
       
       self.fulllout.add_widget(self.titlelout)
