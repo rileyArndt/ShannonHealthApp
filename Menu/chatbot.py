@@ -1,6 +1,13 @@
 # Mitchell Martin
 # 10/11/2022
 
+""""
+Input your responses here then add the specified 
+index to the check_messages function.
+"""
+possible_answers=['Hello']
+
+
 # Splitting the string
 import re
 
@@ -48,9 +55,7 @@ def check_messages(message):
    # @ First Arg. - Robot Response
    # @ Second Arg. - List of matched words
    # @ Third Arg. - List of required words
-   response('Hi!', ['hello', 'hey', 'heyy', 'hola'], single_response=True)
-   
-   
+   response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
    
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
