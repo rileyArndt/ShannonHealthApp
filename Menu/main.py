@@ -274,7 +274,7 @@ ScreenManager:
       text_color: "black"
       pos_hint: {"center_x": 0.5, "center_y": 0.1}
       on_press:
-         root.manager.transition.direction = 'right'
+         root.manager.transition.direction = 'left'
          root.manager.current = 'chats'
    MDRectangleFlatButton:
       text: "Button2"
