@@ -22,23 +22,23 @@ class ChatScreen(Screen):
       
    def on_enter(self, *args):
       # Backdrop Layout
-      self.fulllout = MDFloatLayout()
+      self.full_lout = MDFloatLayout()
       
       # Title Layout
-      self.titlelout = MDFloatLayout()
-      self.titlelout.size_hint_y=.11
-      self.titlelout.pos_hint={"center_y": .95}
-      self.titlelout.md_bg_color=[ 12/255, 110/255, 90/255, 1 ]
+      self.title_lout = MDFloatLayout()
+      self.title_lout.size_hint_y=.11
+      self.title_lout.pos_hint={"center_y": .95}
+      self.title_lout.md_bg_color=[ 12/255, 110/255, 90/255, 1 ]
    
       # Label for Title Layout
-      self.cb_label=MDLabel()
-      self.cb_label.text='CHAT BOT AI'
-      self.cb_label.pos_hint={"center_y": .5}
-      self.cb_label.halign="center"
-      self.cb_label.font_size="25sp"
-      self.cb_label.theme_text_color="Custom"
-      self.cb_label.text_color=[ 1, 1, 1, 1 ]
-      self.titlelout.add_widget(self.cb_label)
+      self.title_label=MDLabel()
+      self.title_label.text='CHAT BOT AI'
+      self.title_label.pos_hint={"center_y": .5}
+      self.title_label.halign="center"
+      self.title_label.font_size="25sp"
+      self.title_label.theme_text_color="Custom"
+      self.title_label.text_color=[ 1, 1, 1, 1 ]
+      self.title_lout.add_widget(self.title_label)
       
       # Allows the user to scroll down through messages.
       self.view=ScrollView()
@@ -50,25 +50,25 @@ class ChatScreen(Screen):
       
       # Layout within "self.view"
       # This layout displays each text.
-      self.chatlout=BoxLayout()
-      self.chatlout.orientation='vertical'
-      self.chatlout.size=(self.fulllout.width, self.fulllout.height)
-      self.chatlout.height=300
-      self.chatlout.width=self.width-100
-      self.chatlout.size_hint=[ None, None ]
-      self.chatlout.pos_hint={'top': 10}
-      self.chatlout.cols=1
-      self.chatlout.spacing=3
+      self.chat_lout=BoxLayout()
+      self.chat_lout.orientation='vertical'
+      self.chat_lout.size=(self.full_lout.width, self.full_lout.height)
+      self.chat_lout.height=300
+      self.chat_lout.width=self.width-100
+      self.chat_lout.size_hint=[ None, None ]
+      self.chat_lout.pos_hint={'top': 10}
+      self.chat_lout.cols=1
+      self.chat_lout.spacing=3
       
       # Tool Layout
       self.toolbar=MDFloatLayout()
       self.toolbar.md_bg_color=[ 240/255, 240/255, 240/255, 1 ]
       self.toolbar.size_hint_y=.11
       
-      self.olout=MDFloatLayout()
-      self.olout.size_hint=[ .01, .01 ] #
-      self.olout.pos_hint={"center_x": .43, "center_y": .1} #
-      with self.olout.canvas:
+      self.txt_lout=MDFloatLayout()
+      self.txt_lout.size_hint=[ .01, .01 ] #
+      self.txt_lout.pos_hint={"center_x": .43, "center_y": .1} #
+      with self.txt_lout.canvas:
          clr=Color()
          clr.rgb=[ 240/255, 240/255, 240/255, 1 ]
          rct=RoundedRectangle()
@@ -101,20 +101,20 @@ class ChatScreen(Screen):
       self.cbtn.bind(on_press=self.send)  
       
       self.toolbar.add_widget(self.txtinpt)
-      self.toolbar.add_widget(self.olout)
+      self.toolbar.add_widget(self.txt_lout)
       
-      self.fulllout.add_widget(self.titlelout)
-      self.view.add_widget(self.chatlout)
-      self.fulllout.add_widget(self.view)
-      self.fulllout.add_widget(self.toolbar)
-      self.fulllout.add_widget(self.cbtn)
-      self.add_widget(self.fulllout)
+      self.full_lout.add_widget(self.title_lout)
+      self.view.add_widget(self.chat_lout)
+      self.full_lout.add_widget(self.view)
+      self.full_lout.add_widget(self.toolbar)
+      self.full_lout.add_widget(self.cbtn)
+      self.add_widget(self.full_lout)
    
       # Bot Greeting
       val = "Hi there! Welcome to Shannon. Can I help answer something for you?"
-      self.chatlout.add_widget(Response(text=val, size_hint_x=.34, halign="center"))    
+      self.chat_lout.add_widget(Response(text=val, size_hint_x=.34, halign="center"))    
       
-      return self.fulllout
+      return self.full_lout
    
    def send(self, obj):
       if self.txtinpt != "":
@@ -134,11 +134,11 @@ class ChatScreen(Screen):
          else:
             self.fsize = .40
             self.halign = "center"
-         self.chatlout.add_widget(Command(text=self.value, size_hint_x=self.fsize, halign=self.halign))
+         self.chat_lout.add_widget(Command(text=self.value, size_hint_x=self.fsize, halign=self.halign))
          Clock.schedule_once(self.bot_answer, 0.1)
          self.txtinpt.text = ""  
          self.view.do_scroll_y=True
-         self.chatlout.height+=100   
+         self.chat_lout.height+=100   
    
    def bot_answer(self, obj):   
       if len(matchedresponse(self.value)) < 6:
@@ -156,10 +156,10 @@ class ChatScreen(Screen):
       else:
          self.ffsize = .45
          self.halign = "center"
-      self.chatlout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
+      self.chat_lout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
       self.txtinpt.text = ""  
       self.view.do_scroll_y=True
-      self.chatlout.height+=100
+      self.chat_lout.height+=100
 
    def on_leave(self, *args):
       self.clear_widgets()
@@ -223,6 +223,7 @@ ScreenManager:
    name: 'main'
    FloatLayout:
       MDTopAppBar:
+         id: 'topbar'
          pos_hint: {"top": 1}
          title: "Test"
          md_bg_color: [ 0, .8, .4, 1 ]
@@ -269,6 +270,7 @@ ScreenManager:
             height: 2000            # can increase if necessary
             
    MDRectangleFlatButton:
+      id : 'chatbot'
       text: "Chatbot"
       theme_text_color: "Custom"
       text_color: "black"
@@ -277,12 +279,12 @@ ScreenManager:
          root.manager.transition.direction = 'left'
          root.manager.current = 'chats'
    MDRectangleFlatButton:
-      text: "Button2"
+      text: "Home"
       theme_text_color: "Custom"
       text_color: "black"
       pos_hint: {"center_x": 0.8, "center_y": 0.1}
    MDRectangleFlatButton:
-      text: "Button3"
+      text: "Data"
       theme_text_color: "Custom"
       text_color: "black"
       pos_hint: {"center_x": 0.2, "center_y": 0.1}
