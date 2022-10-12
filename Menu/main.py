@@ -54,7 +54,7 @@ class ChatScreen(Screen):
       self.chat_lout.orientation='vertical'
       self.chat_lout.size=(self.full_lout.width, self.full_lout.height)
       self.chat_lout.height=300
-      self.chat_lout.width=self.width-100
+      self.chat_lout.width=self.width
       self.chat_lout.size_hint=[ None, None ]
       self.chat_lout.pos_hint={'top': 10}
       self.chat_lout.cols=1
