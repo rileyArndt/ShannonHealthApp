@@ -5,6 +5,7 @@
 # Adding all the modules
 from typing import Text
 from mods import *
+from chatbot import *
 
 
 # The MainScreen class's functionality is on kivy. 
@@ -14,6 +15,7 @@ from mods import *
 class MainScreen(Screen):
    pass
 
+# The chatbot screen.
 class ChatScreen(Screen):
    def __init__(self, **kw):
       super().__init__(**kw)
@@ -51,6 +53,8 @@ class ChatScreen(Screen):
       self.chatlout=BoxLayout()
       self.chatlout.orientation='vertical'
       self.chatlout.size=(self.fulllout.width, self.fulllout.height)
+      self.chatlout.height=300
+      self.chatlout.width=self.width-100
       self.chatlout.size_hint=[ None, None ]
       self.chatlout.pos_hint={'top': 10}
       self.chatlout.cols=1
@@ -61,8 +65,8 @@ class ChatScreen(Screen):
       self.toolbar.md_bg_color=[ 240/255, 240/255, 240/255, 1 ]
       self.toolbar.size_hint_y=.11
       
-      self.olout=MDFlatButton()
-      self.olout.size_hint=[ .8, .75 ] #
+      self.olout=MDFloatLayout()
+      self.olout.size_hint=[ .01, .01 ] #
       self.olout.pos_hint={"center_x": .43, "center_y": .1} #
       with self.olout.canvas:
          clr=Color()
@@ -88,13 +92,14 @@ class ChatScreen(Screen):
       # Button
       self.cbtn=MDIconButton()
       self.cbtn.icon="send"
-      self.cbtn.pos_hint={"center_x": .91, "center_y": .5}
+      self.cbtn.pos_hint={"center_x": .9, "center_y": .055}
       self.cbtn.user_font_size="18sp"
       self.cbtn.theme_text_color="Custom"
       self.cbtn.text_color=[ 1, 1, 1, 1 ]
-      self.cbtn.md_bg_color=[ 0, 178/255, 124/255, 1 ]    
+      self.cbtn.md_bg_color=[ 0, 178/255, 124/255, 1 ]  
       
-      self.olout.add_widget(self.cbtn)
+      self.cbtn.bind(on_press=self.send)  
+      
       self.toolbar.add_widget(self.txtinpt)
       self.toolbar.add_widget(self.olout)
       
@@ -102,31 +107,114 @@ class ChatScreen(Screen):
       self.view.add_widget(self.chatlout)
       self.fulllout.add_widget(self.view)
       self.fulllout.add_widget(self.toolbar)
+      self.fulllout.add_widget(self.cbtn)
       self.add_widget(self.fulllout)
+   
+      # Bot Greeting
+      val = "Hi there! Welcome to Shannon. Can I help answer something for you?"
+      self.chatlout.add_widget(Response(text=val, size_hint_x=.34, halign="center"))    
       
       return self.fulllout
-      
+   
+   def send(self, obj):
+      if self.txtinpt != "":
+         self.value = self.txtinpt.text
+         if len(self.value) < 6:
+            self.fsize = .17
+            self.halign = "center"
+         elif len(self.value) < 11:
+            self.fsize = .22
+            self.halign = "center"
+         elif len(self.value) < 16:
+            self.fsize = .24
+            self.halign = "center"
+         elif len(self.value) < 22:
+            self.fsize = .38
+            self.halign = "center"
+         else:
+            self.fsize = .40
+            self.halign = "center"
+         self.chatlout.add_widget(Command(text=self.value, size_hint_x=self.fsize, halign=self.halign))
+         Clock.schedule_once(self.bot_answer, 0.1)
+         self.txtinpt.text = ""  
+         self.view.do_scroll_y=True
+         self.chatlout.height+=100   
+   
+   def bot_answer(self, obj):   
+      if len(matchedresponse(self.value)) < 6:
+         self.ffsize = .17
+         self.halign = "center"
+      elif len(matchedresponse(self.value)) < 11:
+         self.ffsize = .22
+         self.halign = "center"
+      elif len(matchedresponse(self.value)) < 16:
+         self.ffsize = .24
+         self.halign = "center"
+      elif len(matchedresponse(self.value)) < 22:
+         self.ffsize = .32
+         self.halign = "center"
+      else:
+         self.ffsize = .45
+         self.halign = "center"
+      self.chatlout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
+      self.txtinpt.text = ""  
+      self.view.do_scroll_y=True
+      self.chatlout.height+=100
+
+   def on_leave(self, *args):
+      self.clear_widgets()
 
 
-      
-      
-   
-      
-      
-      
-      
-      
-      
-   
-   
 
-  
-  
+class Command(MDLabel):
+   text = StringProperty()
+   size_hint_x = NumericProperty()
+   halign = StringProperty()
+   font_size = 17
+
+class Response(MDLabel):
+   text = StringProperty()
+   size_hint_x = NumericProperty()
+   halign = StringProperty()
+   font_size = 17      
+
+
+
 str = """
 # Add your functional screens here
 ScreenManager:
    MainScreen:
    ChatScreen:
+
+<Command>
+   size_hint_y: None
+   pos_hint: {"right": .78}
+   height: self.texture_size[1]
+   padding: 12, 10
+   theme_text_color: "Custom"
+   text_color: 0, 0, 0, 1
+   canvas.before:
+      Color:
+         rgb: (0, 178/255, 138/255, 1)
+      RoundedRectangle:
+         size: self.size
+         pos: self.pos
+         radius: [23, 23, 23, 0]
+<Response>
+   size_hint_y: None
+   pos_hint: {"x": .02}
+   height: self.texture_size[1]
+   padding: 12, 10
+   theme_text_color: "Custom"
+   text_color: 0, 0, 0, 1
+   canvas.before:
+      Color:
+         rgb: (12/255, 110/255, 90/255, 1)
+      RoundedRectangle:
+         size: self.size
+         pos: self.pos
+         radius: [23, 23, 23, 0]
+
 
 <ChatScreen>:
    name: 'chats'
