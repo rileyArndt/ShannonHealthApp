@@ -33,6 +33,11 @@ def message_probability(user_message, recognised_words, single_response=False, r
    else:
       return 0
 
+
+# Used if an unknown message is sent.
+def unknown_message():
+   return 'I don\'t understand'
+
 def check_messages(message):
    highest_prob_list = {}
    
@@ -52,7 +57,7 @@ def check_messages(message):
 
    return long.unknown() if highest_prob_list[best_match] < 1 else best_match
 
-def get_response(usr_input):
+def matchedresponse(usr_input):
    # Makes sure all letters are lower-case and the punctuation is removed
    # converted to an array
    split_message = re.split(r'\s+|[,;?!.-]\s*', usr_input.lower())
