@@ -5,7 +5,14 @@
 Input your responses here then add the specified 
 index to the check_messages function.
 """
-possible_answers=['Hello']
+
+B_TELEMED = 'Redirecting you to the telemedicene page...'
+B_WEBSITE = "I'm redirecting you to the shannon webpage"
+B_MYCHARTLINK = "I'm redirecting you to the mychart page"
+B_BILL = "I'm redirecting you to the payment page"
+
+
+possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK, B_BILL]
 
 
 # Splitting the string
@@ -56,7 +63,11 @@ def check_messages(message):
    # @ Second Arg. - List of matched words
    # @ Third Arg. - List of required words
    response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
-   
+   response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone'], single_response=False)
+   response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
+   response(possible_answers[3], ['mychart', 'chart', 'my chart'])
+   response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
+
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
 

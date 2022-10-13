@@ -159,6 +159,21 @@ class ChatScreen(Screen):
          self.ffsize = .45
          self.halign = "center"
       self.chat_lout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
+      
+      if matchedresponse(self.value) == B_TELEMED:
+         webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
+      elif matchedresponse(self.value) == B_WEBSITE:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/')
+      elif matchedresponse(self.value) == B_HOME:
+         self.manager.current = 'next'
+         self.manager.transition.direction = 'right'
+      elif matchedresponse(self.value) == B_MYCHARTLINK:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/patient-portal-mychart/')
+      elif matchedresponse(self.value) == B_BILL:
+         webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
+      elif matchedresponse(self.value) == B_WEBSITE:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/')     
+          
       self.txtinpt.text = ""  
       self.view.do_scroll_y=True
       self.chat_lout.height+=100
@@ -243,6 +258,9 @@ ScreenManager:
             size_hint_y: None
             height: 2000            # can increase if necessary
             
+            MDLabel:
+               text: 'COVID-Updates'
+               pos_hint_y: {"center_y": 0.36}
             MDBoxLayout:
                pos_hint_y: {"center_y": 0.35}        
                MDList:            
