@@ -130,10 +130,10 @@ class ChatScreen(Screen):
             self.fsize = .24
             self.halign = "center"
          elif len(self.value) < 22:
-            self.fsize = .38
+            self.fsize = .28
             self.halign = "center"
          else:
-            self.fsize = .40
+            self.fsize = .30
             self.halign = "center"
          self.chat_lout.add_widget(Command(text=self.value, size_hint_x=self.fsize, halign=self.halign))
          Clock.schedule_once(self.bot_answer, 0.1)
@@ -160,12 +160,13 @@ class ChatScreen(Screen):
          self.halign = "center"
       self.chat_lout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
       
+      # Key : keywords
       if matchedresponse(self.value) == B_TELEMED:
          webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
       elif matchedresponse(self.value) == B_WEBSITE:
          webbrowser.open_new_tab('https://www.shannonhealth.com/')
       elif matchedresponse(self.value) == B_HOME:
-         self.manager.current = 'next'
+         self.manager.current = 'main'
          self.manager.transition.direction = 'right'
       elif matchedresponse(self.value) == B_MYCHARTLINK:
          webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/patient-portal-mychart/')

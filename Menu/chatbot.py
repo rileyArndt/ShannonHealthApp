@@ -7,12 +7,13 @@ index to the check_messages function.
 """
 
 B_TELEMED = 'Redirecting you to the telemedicene page...'
+B_HOME = 'Taking you home'
 B_WEBSITE = "I'm redirecting you to the shannon webpage"
 B_MYCHARTLINK = "I'm redirecting you to the mychart page"
 B_BILL = "I'm redirecting you to the payment page"
 
 
-possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK, B_BILL]
+possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK, B_BILL, B_HOME]
 
 
 # Splitting the string
@@ -67,6 +68,7 @@ def check_messages(message):
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
    response(possible_answers[3], ['mychart', 'chart', 'my chart'])
    response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
+   response(possible_answers[5], ['back', 'home'])
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
