@@ -244,28 +244,25 @@ ScreenManager:
             height: 2000            # can increase if necessary
             
             MDBoxLayout:
-               ScrollView:
-                  scroll_y: 0.5
-                  do_scroll_y: True
-                  do_scroll_x: False            
-            #       MDList:            
-            #          # e.g.
-            #          TwoLineListItem:
-            #             id: covid_updates
-            #             text: 'Test'
-            #             secondary_text: "10/13/2022"
-            #          TwoLineListItem:
-            #             id: covid_updates
-            #             text: 'Test'
-            #             secondary_text: "10/13/2022"
-            #          TwoLineListItem:
-            #             id: covid_updates
-            #             text: 'Test'
-            #             secondary_text: "10/13/2022"
-            #          TwoLineListItem:
-            #             id: covid_updates
-            #             text: 'Test'
-            #             secondary_text: "10/13/2022"
+               pos_hint_y: {"center_y": 0.35}        
+               MDList:            
+                  # e.g.
+                  TwoLineListItem:
+                     id: covid_updates
+                     text: 'Test'
+                     secondary_text: "10/13/2022"
+                  TwoLineListItem:
+                     id: covid_updates
+                     text: 'Test'
+                     secondary_text: "10/13/2022"
+                  TwoLineListItem:
+                     id: covid_updates
+                     text: 'Test'
+                     secondary_text: "10/13/2022"
+                  TwoLineListItem:
+                     id: covid_updates
+                     text: 'Test'
+                     secondary_text: "10/13/2022"
             
    Button:
       id : 'chatbot'
