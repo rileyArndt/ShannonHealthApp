@@ -229,6 +229,67 @@ ScreenManager:
          md_bg_color: [ 0, .8, .4, 1 ]
          elevation: 8
          left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+   MDBoxLayout:
+      pos_hint_y: {"top": 0.23}
+      size_hint: [ 1.0, 0.9 ]
+      ScrollView:
+         do_scroll_y: True
+         do_scroll_x: False  
+         MDBoxLayout:
+            size_hint_y: None
+            height: 2000            # can increase if necessary
+            
+            MDBoxLayout:
+               ScrollView:
+                  scroll_y: 0.5
+                  do_scroll_y: True
+                  do_scroll_x: False            
+            #       MDList:            
+            #          # e.g.
+            #          TwoLineListItem:
+            #             id: covid_updates
+            #             text: 'Test'
+            #             secondary_text: "10/13/2022"
+            #          TwoLineListItem:
+            #             id: covid_updates
+            #             text: 'Test'
+            #             secondary_text: "10/13/2022"
+            #          TwoLineListItem:
+            #             id: covid_updates
+            #             text: 'Test'
+            #             secondary_text: "10/13/2022"
+            #          TwoLineListItem:
+            #             id: covid_updates
+            #             text: 'Test'
+            #             secondary_text: "10/13/2022"
+            
+   Button:
+      id : 'chatbot'
+      background_color: 0, 0, 0, 0
+      size_hint: [ 0.1, 0.1]
+      pos_hint: {"center_x": 0.5, "center_y": 0.1}
+      on_press:
+         root.manager.transition.direction = 'left'
+         root.manager.current = 'chats'
+      Image:
+         # Just a test feel free to change the image.
+         source: 'msg.png'
+         size: [40, 40]
+         center_x: self.parent.center_x
+         center_y: self.parent.center_y
+         
+   MDRectangleFlatButton:
+      text: "Home"
+      theme_text_color: "Custom"
+      text_color: "black"
+      pos_hint: {"center_x": 0.8, "center_y": 0.1}
+   MDRectangleFlatButton:
+      text: "Data"
+      theme_text_color: "Custom"
+      text_color: "black"
+      pos_hint: {"center_x": 0.2, "center_y": 0.1}
+
    MDNavigationDrawer:
       id: nav_drawer
       
@@ -258,36 +319,6 @@ ScreenManager:
                   text: 'Settings'
                OneLineListItem:
                   text: 'Logout'
-
-   MDBoxLayout:
-      pos_hint_y: {"top": 0.23}
-      size_hint: [ 1.0, 0.9 ]
-      ScrollView:
-         # do_scroll_y: True
-         # do_scroll_x: False  
-         MDBoxLayout:
-            size_hint_y: None
-            height: 2000            # can increase if necessary
-            
-   MDRectangleFlatButton:
-      id : 'chatbot'
-      text: "Chatbot"
-      theme_text_color: "Custom"
-      text_color: "black"
-      pos_hint: {"center_x": 0.5, "center_y": 0.1}
-      on_press:
-         root.manager.transition.direction = 'left'
-         root.manager.current = 'chats'
-   MDRectangleFlatButton:
-      text: "Home"
-      theme_text_color: "Custom"
-      text_color: "black"
-      pos_hint: {"center_x": 0.8, "center_y": 0.1}
-   MDRectangleFlatButton:
-      text: "Data"
-      theme_text_color: "Custom"
-      text_color: "black"
-      pos_hint: {"center_x": 0.2, "center_y": 0.1}
 """
 
 # Add all your created screens
