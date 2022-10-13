@@ -116,6 +116,7 @@ class ChatScreen(Screen):
       
       return self.full_lout
    
+   # User's command
    def send(self, obj):
       if self.txtinpt != "":
          self.value = self.txtinpt.text
@@ -140,6 +141,7 @@ class ChatScreen(Screen):
          self.view.do_scroll_y=True
          self.chat_lout.height+=100   
    
+   # Bot's answer
    def bot_answer(self, obj):   
       if len(matchedresponse(self.value)) < 6:
          self.ffsize = .17
@@ -165,13 +167,14 @@ class ChatScreen(Screen):
       self.clear_widgets()
 
 
-
+# User's command
 class Command(MDLabel):
    text = StringProperty()
    size_hint_x = NumericProperty()
    halign = StringProperty()
    font_size = 17
 
+# Chatbot Response
 class Response(MDLabel):
    text = StringProperty()
    size_hint_x = NumericProperty()
@@ -273,7 +276,7 @@ ScreenManager:
          root.manager.transition.direction = 'left'
          root.manager.current = 'chats'
       Image:
-         # Just a test feel free to change the image.
+         # Just a test feel free to change the message image.
          source: 'msg.png'
          size: [40, 40]
          center_x: self.parent.center_x
