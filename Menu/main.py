@@ -28,17 +28,26 @@ class ChatScreen(Screen):
       self.title_lout = MDFloatLayout()
       self.title_lout.size_hint_y=.11
       self.title_lout.pos_hint={"center_y": .95}
-      self.title_lout.md_bg_color=[ 12/255, 110/255, 90/255, 1 ]
+      self.title_lout.md_bg_color=[ 240/255, 240/255, 240/255, 1 ]
    
       # Label for Title Layout
       self.title_label=MDLabel()
-      self.title_label.text='CHAT BOT AI'
+      self.title_label.text='Your M.D.'
       self.title_label.pos_hint={"center_y": .5}
       self.title_label.halign="center"
       self.title_label.font_size="25sp"
       self.title_label.theme_text_color="Custom"
-      self.title_label.text_color=[ 1, 1, 1, 1 ]
+      self.title_label.text_color=[ 23/255, 135/255, 84/255, 1 ]
       self.title_lout.add_widget(self.title_label)
+      
+      self.back_btn=MDIconButton()
+      self.back_btn.pos_hint={"center_y": .5}
+      self.back_btn.icon='keyboard-backspace'
+      self.back_btn.halign="left"
+      self.back_btn.theme_icon_color="Custom"
+      self.back_btn.icon_color=[ 23/255, 135/255, 84/255, 1 ]
+      self.back_btn.bind(on_press=self.home_return)
+      self.title_lout.add_widget(self.back_btn)
       
       # Allows the user to scroll down through messages.
       self.view=ScrollView()
@@ -55,6 +64,7 @@ class ChatScreen(Screen):
       self.chat_lout.size=(self.full_lout.width, self.full_lout.height)
       self.chat_lout.height=300
       self.chat_lout.width=self.width
+      self.chat_lout.adaptive_width=True
       self.chat_lout.size_hint=[ None, None ]
       self.chat_lout.pos_hint={'top': 10}
       self.chat_lout.cols=1
@@ -85,7 +95,7 @@ class ChatScreen(Screen):
       self.txtinpt.multiline=False
       self.txtinpt.cursor_color=[ 12/255, 110/255, 90/255, 1 ]
       self.txtinpt.cursor_width="2sp"
-      self.txtinpt.foreground_color=[ 12/255, 110/255, 90/255, 1 ]
+      self.txtinpt.foreground_color=[ 23/255, 135/255, 84/255, 1 ]
       self.txtinpt.background_color=[ 0, 0, 0, 0 ]
       self.txtinpt.padding=15
       
@@ -116,9 +126,14 @@ class ChatScreen(Screen):
       
       return self.full_lout
    
+   # Returns to the home page.
+   def home_return(self, obj):
+      self.manager.current = 'main'
+      self.manager.transition.direction = 'right'      
+   
    # User's command
    def send(self, obj):
-      if self.txtinpt != "":
+      if self.txtinpt.text != "":
          self.value = self.txtinpt.text
          if len(self.value) < 6:
             self.fsize = .17
@@ -174,14 +189,15 @@ class ChatScreen(Screen):
          webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
       elif matchedresponse(self.value) == B_WEBSITE:
          webbrowser.open_new_tab('https://www.shannonhealth.com/')     
-          
-      self.txtinpt.text = ""  
-      self.view.do_scroll_y=True
-      self.chat_lout.height+=100
+         
 
    def on_leave(self, *args):
       self.clear_widgets()
 
+# THe perscription screen
+class PerscriptionScreen(Screen):
+   pass
+      
 
 # User's command
 class Command(MDLabel):
@@ -204,6 +220,8 @@ str = """
 ScreenManager:
    MainScreen:
    ChatScreen:
+   PerscriptionScreen:
+
 
 <Command>
    size_hint_y: None
@@ -214,7 +232,7 @@ ScreenManager:
    text_color: 0, 0, 0, 1
    canvas.before:
       Color:
-         rgb: (0, 178/255, 138/255, 1)
+         rgb: (240/255, 240/255, 240/255, 1)
       RoundedRectangle:
          size: self.size
          pos: self.pos
@@ -225,15 +243,59 @@ ScreenManager:
    height: self.texture_size[1]
    padding: 12, 10
    theme_text_color: "Custom"
-   text_color: 0, 0, 0, 1
+   text_color: 1, 1, 1, 1
    canvas.before:
       Color:
-         rgb: (12/255, 110/255, 90/255, 1)
+         rgb: (23/255, 135/255, 84/255, 1)
       RoundedRectangle:
          size: self.size
          pos: self.pos
          radius: [23, 23, 23, 0]
 
+<PerscriptionScreen>:
+   name: 'pscreen'
+   md_bg_color: .3,.3,.3,1
+   MDBoxLayout:
+      orientation: 'vertical' 
+      MDBoxLayout:
+         size_hint_y:.25
+         padding:dp(25)
+         MDBoxLayout:
+            orientation: "vertical"
+            MDLabel:
+               text: "Perscription Control"
+               font_style: "H4"
+            MDBoxLayout:
+               adaptive_size: True
+               spacing: dp(10)
+               MDLabel:
+                  text: "Home"
+                  text_size:None,None
+                  adaptive_width:True
+               MDIcon:
+                  icon:'chevron-down'        
+      MDGridLayout:
+         size_hint_y:.75
+         cols: 2
+         ElementCard:
+            image: 'Menu/6655209.png'
+            text: "Perscription Lookup"
+            subtext: "10/15/2022"
+         ElementCard:
+            image: 'Menu/image.png'
+            text: "Perscription Availability"
+            subtext: "10/15/2022"
+
+<ElementCard@MDCard>:
+   size_hint_y: None
+   padding: dp(20)
+   image:''
+   text:""
+   subtext: ''
+   height:dp(175)
+   orientation: 'vertical'
+   Image:
+      source:root.image
 
 <ChatScreen>:
    name: 'chats'
@@ -245,7 +307,9 @@ ScreenManager:
          id: 'topbar'
          pos_hint: {"top": 1}
          title: "Test"
-         md_bg_color: [ 0, .8, .4, 1 ]
+         specific_text_color: [ 23/255, 135/255, 84/255, 1 ]
+         font_style: "H4"
+         md_bg_color: [ 240/255, 240/255, 240/255, 1 ]
          elevation: 8
          left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
@@ -283,20 +347,17 @@ ScreenManager:
                      text: 'Test'
                      secondary_text: "10/13/2022"
             
-   Button:
+   MDIconButton:
       id : 'chatbot'
-      background_color: 0, 0, 0, 0
-      size_hint: [ 0.1, 0.1]
+      icon: "home"
+      theme_icon_color: "Custom"
+      icon_color: [ 0, .8, .4, 1 ]
+      font_size: dp(72)
       pos_hint: {"center_x": 0.5, "center_y": 0.1}
       on_press:
          root.manager.transition.direction = 'left'
          root.manager.current = 'chats'
-      Image:
-         # Just a test feel free to change the message image.
-         source: 'msg.png'
-         size: [40, 40]
-         center_x: self.parent.center_x
-         center_y: self.parent.center_y
+
          
    MDRectangleFlatButton:
       text: "Home"
@@ -304,10 +365,13 @@ ScreenManager:
       text_color: "black"
       pos_hint: {"center_x": 0.8, "center_y": 0.1}
    MDRectangleFlatButton:
-      text: "Data"
+      text: "Perscriptions"
       theme_text_color: "Custom"
       text_color: "black"
       pos_hint: {"center_x": 0.2, "center_y": 0.1}
+      on_press:
+         root.manager.transition.direction = 'left'
+         root.manager.current = 'pscreen'         
 
    MDNavigationDrawer:
       id: nav_drawer
