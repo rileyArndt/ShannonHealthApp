@@ -64,11 +64,12 @@ class ChatScreen(Screen):
       self.chat_lout.size=(self.full_lout.width, self.full_lout.height)
       self.chat_lout.height=300
       self.chat_lout.width=self.width
-      self.chat_lout.adaptive_width=True
+      self.chat_lout.adaptive_size=True
       self.chat_lout.size_hint=[ None, None ]
       self.chat_lout.pos_hint={'top': 10}
       self.chat_lout.cols=1
       self.chat_lout.spacing=3
+   
       
       # Tool Layout
       self.toolbar=MDFloatLayout()
@@ -224,8 +225,8 @@ ScreenManager:
 
 
 <Command>
-   size_hint_y: None
-   pos_hint: {"right": .78}
+   size_hint_y: None   
+   pos_hint: {"x": .68}
    height: self.texture_size[1]
    padding: 12, 10
    theme_text_color: "Custom"
@@ -254,7 +255,6 @@ ScreenManager:
 
 <PerscriptionScreen>:
    name: 'pscreen'
-   md_bg_color: .3,.3,.3,1
    MDBoxLayout:
       orientation: 'vertical' 
       MDBoxLayout:
@@ -272,30 +272,59 @@ ScreenManager:
                   text: "Home"
                   text_size:None,None
                   adaptive_width:True
-               MDIcon:
-                  icon:'chevron-down'        
+               MDIconButton:
+                  icon:'chevron-down'
+                  on_press:
+                     root.manager.transition.direction = 'right'
+                     root.manager.current = 'main'    
       MDGridLayout:
          size_hint_y:.75
          cols: 2
+         padding:dp(15)
+         spacing:dp(15)
          ElementCard:
-            image: 'Menu/6655209.png'
+            image: "image.png"
             text: "Perscription Lookup"
             subtext: "10/15/2022"
          ElementCard:
-            image: 'Menu/image.png'
+            image: "image.png"
             text: "Perscription Availability"
             subtext: "10/15/2022"
+            items_remaining: '1 Remaining'
+         ElementCard:
+            image: "image.png"
+            text: "Perscription Lookup"
+            subtext: "10/15/2022"
+         ElementCard:
+            image: "image.png"
+            text: "Perscription Availability"
+            subtext: "10/15/2022"
+            items_remaining: '1 Remaining'
+
 
 <ElementCard@MDCard>:
    size_hint_y: None
    padding: dp(20)
+   radius:dp(25)
    image:''
    text:""
+   text_color: 23/255, 135/255, 84/255, 1
    subtext: ''
+   items_remaining: ''
    height:dp(175)
    orientation: 'vertical'
    Image:
       source:root.image
+   MDLabel:
+      halign: "center"
+      text: root.text
+   MDLabel:
+      halign: "center"
+      text: root.subtext
+      font_style:"H6"
+   MDLabel:
+      halign: "center"
+      text: root.items_remaining
 
 <ChatScreen>:
    name: 'chats'
