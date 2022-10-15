@@ -351,30 +351,35 @@ ScreenManager:
          MDBoxLayout:
             size_hint_y: None
             height: 2000            # can increase if necessary
-            
-            MDLabel:
-               text: 'COVID-Updates'
-               pos_hint_y: {"center_y": 0.36}
+
             MDBoxLayout:
-               pos_hint_y: {"center_y": 0.35}        
-               MDList:            
-                  # e.g.
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
+               adaptive_size: True
+               spacing: dp(10)
+            MDGridLayout:
+               size_hint_y:0.99
+               cols: 2
+               padding:dp(15)
+               spacing:dp(15)
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Lookup"
+                  subtext: "10/15/2022"
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Availability"
+                  subtext: "10/15/2022"
+                  items_remaining: '1 Remaining'
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Lookup"
+                  subtext: "10/15/2022"
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Availability"
+                  subtext: "10/15/2022"
+                  items_remaining: '1 Remaining'
+
+
             
    MDIconButton:
       id : 'chatbot'
