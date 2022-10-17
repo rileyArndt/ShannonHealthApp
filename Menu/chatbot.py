@@ -1,7 +1,7 @@
 # Mitchell Martin
 # 10/11/2022
 
-from dataextractions import *
+from dataextraction import *
 # Splitting the string
 import re
 
