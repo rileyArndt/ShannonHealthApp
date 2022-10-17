@@ -1,6 +1,10 @@
 # Mitchell Martin
 # 10/11/2022
 
+from dataextractions import *
+# Splitting the string
+import re
+
 """"
 Input your responses here then add the specified 
 index to the check_messages function.
@@ -11,13 +15,17 @@ B_HOME = 'Taking you home'
 B_WEBSITE = "I'm redirecting you to the shannon webpage"
 B_MYCHARTLINK = "I'm redirecting you to the mychart page"
 B_BILL = "I'm redirecting you to the payment page"
+B_WHOAMI = get_name()
+B_WAITTIMES = get_wait_times()
+B_WLOCATION = get_women_location()
+
+possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
+                  B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
+                  B_WLOCATION]
 
 
-possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK, B_BILL, B_HOME]
 
 
-# Splitting the string
-import re
 
 # message_probability: checks the keywords for the most accurate response
 # @ user_message - The user input
@@ -69,6 +77,10 @@ def check_messages(message):
    response(possible_answers[3], ['mychart', 'chart', 'my chart'])
    response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
    response(possible_answers[5], ['back', 'home'])
+   response(possible_answers[6], ['name', 'hospital'])
+   response(possible_answers[7], ['time', 'wait', 'available', 'time', 'times'])
+   response(possible_answers[8], ['women', 'children', 'hospital', 'child', 'kid', 'baby', 'girl'])
+
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
