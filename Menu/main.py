@@ -189,7 +189,7 @@ class ChatScreen(Screen):
       elif matchedresponse(self.value) == B_BILL:
          webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
       elif matchedresponse(self.value) == B_WEBSITE:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/')     
+         webbrowser.open_new_tab('https://www.shannonhealth.com/')
          
 
    def on_leave(self, *args):
@@ -351,52 +351,64 @@ ScreenManager:
          MDBoxLayout:
             size_hint_y: None
             height: 2000            # can increase if necessary
-            
-            MDLabel:
-               text: 'COVID-Updates'
-               pos_hint_y: {"center_y": 0.36}
+
             MDBoxLayout:
-               pos_hint_y: {"center_y": 0.35}        
-               MDList:            
-                  # e.g.
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
-                  TwoLineListItem:
-                     id: covid_updates
-                     text: 'Test'
-                     secondary_text: "10/13/2022"
+               adaptive_size: True
+               spacing: dp(10)
+            MDGridLayout:
+               size_hint_y:0.99
+               cols: 2
+               padding:dp(15)
+               spacing:dp(15)
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Lookup"
+                  subtext: "10/15/2022"
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Availability"
+                  subtext: "10/15/2022"
+                  items_remaining: '1 Remaining'
+               ElementCard:
+                  image: "image.png"
+                  text: "Perscription Lookup"
+                  subtext: "10/15/2022"
+               ElementCard:
+                  image: "image.png"
+                  text: "Ask the ChatBot"
+                  subtext: "10/15/2022"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'chats'  
+
+
+
             
    MDIconButton:
       id : 'chatbot'
-      icon: "home"
+      icon: "message-badge"
       theme_icon_color: "Custom"
       icon_color: [ 0, .8, .4, 1 ]
-      font_size: dp(72)
-      pos_hint: {"center_x": 0.5, "center_y": 0.1}
+      icon_size: dp(30)
+      pos_hint: {"center_x": 0.8, "center_y": 0.1}
       on_press:
          root.manager.transition.direction = 'left'
          root.manager.current = 'chats'
 
          
-   MDRectangleFlatButton:
+   MDIconButton:
       text: "Home"
+      icon: "home"
       theme_text_color: "Custom"
-      text_color: "black"
-      pos_hint: {"center_x": 0.8, "center_y": 0.1}
-   MDRectangleFlatButton:
+      icon_color: [ 0, .8, .4, 1 ]
+      icon_size: dp(30)
+      pos_hint: {"center_x": 0.5, "center_y": 0.1}
+   MDIconButton:
       text: "Perscriptions"
+      icon: "medication"
       theme_text_color: "Custom"
-      text_color: "black"
+      icon_size: dp(30)
+      icon_color: [ 0, .8, .4, 1 ]
       pos_hint: {"center_x": 0.2, "center_y": 0.1}
       on_press:
          root.manager.transition.direction = 'left'

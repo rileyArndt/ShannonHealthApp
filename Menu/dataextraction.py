@@ -13,6 +13,7 @@ title = soup.title.text
 wait_times_html = soup.find("div", class_="c-header-wait-times")
 wait_times = wait_times_html.find("ul")
 
+# Grabbing women & children hospital location
 w_location = soup.find("div", class_="c-featured-location__text clearfix").find("p").text
 
 
