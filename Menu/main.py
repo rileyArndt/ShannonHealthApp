@@ -3,7 +3,6 @@
 
 
 # Adding all the modules
-from typing import Text
 from mods import *
 from chatbot import *
 
@@ -13,6 +12,9 @@ from chatbot import *
 # Let me know if you
 # only want to make a screen using python.
 class MainScreen(Screen):
+   pass
+
+class PerscriptionScreen(Screen):
    pass
 
 # The chatbot screen.
@@ -196,8 +198,28 @@ class ChatScreen(Screen):
       self.clear_widgets()
 
 # THe perscription screen
-class PerscriptionScreen(Screen):
-   pass
+class AllPersScreen(Screen):
+   def __init__(self, **kw):
+      super().__init__(**kw)
+      
+   def on_enter(self, *args):
+      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "perscriptions"
+      )
+      
+      c = mydb.cursor()
+      
+      c.execute("""SELECT * FROM products""")
+      records = c.fetchall()     
+      
+   def pers_screen(self, obj):
+      self.manager.current = 'pscreen'
+      self.manager.transition.direction = 'right'
+      
       
 
 # User's command
@@ -222,6 +244,30 @@ ScreenManager:
    MainScreen:
    ChatScreen:
    PerscriptionScreen:
+   AllPersScreen:
+
+
+<AllPersScreen>
+   name: 'allscr'
+   MDBoxLayout:
+      size_hint_y:.25
+      padding:dp(25)
+      MDBoxLayout:
+         orientation: 'vertical'
+         MDLabel:
+            text: 'Available Perscriptions'
+            font_style: "H4"
+         MDBoxLayout:
+            adaptive_size:True
+            spacing:dp(10)
+            MDLabel:
+               text: "Back"
+               text_size: None, None
+            MDIconButton:
+               icon: 'chevron-down'
+               on_press:
+                  root.manager.current = 'pscreen'
+                  root.manager.transition.direction = 'right'
 
 
 <Command>
@@ -285,12 +331,12 @@ ScreenManager:
          ElementCard:
             image: "image.png"
             text: "Perscription Lookup"
-            subtext: "10/15/2022"
          ElementCard:
             image: "image.png"
-            text: "Perscription Availability"
-            subtext: "10/15/2022"
-            items_remaining: '1 Remaining'
+            text: "Medication List"
+            on_press:
+               root.manager.transition.direction = 'left'
+               root.manager.current = 'allscr'                
          ElementCard:
             image: "image.png"
             text: "Perscription Lookup"
@@ -325,6 +371,7 @@ ScreenManager:
    MDLabel:
       halign: "center"
       text: root.items_remaining
+
 
 <ChatScreen>:
    name: 'chats'
@@ -362,13 +409,14 @@ ScreenManager:
                spacing:dp(15)
                ElementCard:
                   image: "image.png"
-                  text: "Perscription Lookup"
-                  subtext: "10/15/2022"
+                  text: "Telemedicene Visits"
                ElementCard:
                   image: "image.png"
                   text: "Perscription Availability"
-                  subtext: "10/15/2022"
-                  items_remaining: '1 Remaining'
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'pscreen'    
+
                ElementCard:
                   image: "image.png"
                   text: "Perscription Lookup"
