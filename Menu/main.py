@@ -17,6 +17,37 @@ class MainScreen(Screen):
 class PerscriptionScreen(Screen):
    pass
 
+class CustomOneLineIconListItem(OneLineIconListItem):
+   icon = StringProperty()
+
+class RV(RecycleView):
+   def __init__(self, **kwargs):
+      super().__init__()      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "perscriptions"
+      )
+      
+      c = mydb.cursor()
+      
+      c.execute("""SELECT * FROM products""")
+      records = c.fetchall()     
+      content = []
+      
+      for record in records:
+         content.append(record[0] + "        " + record[1] + "        " + record[2])
+      
+      for item in content:      
+         self.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": item
+         }
+      )
+
 # The chatbot screen.
 class ChatScreen(Screen):
    def __init__(self, **kw):
@@ -204,17 +235,66 @@ class AllPersScreen(Screen):
       
    def on_enter(self, *args):
       # Database Connection
-      mydb = mysql.connector.connect(
+      self.mydb = mysql.connector.connect(
          host = "localhost",
          user = "root",
          passwd = "HeBoreItAll#1",
          database = "perscriptions"
       )
       
-      c = mydb.cursor()
+      self.c = self.mydb.cursor()
       
-      c.execute("""SELECT * FROM products""")
-      records = c.fetchall()     
+      self.c.execute("""SELECT * FROM products""")
+      self.records = self.c.fetchall()     
+      
+      
+      self.blout = MDBoxLayout()
+      self.blout.orientation='vertical'
+      self.blout.spacing=dp(10)
+      self.blout.padding=dp(20)
+      
+      self.txtlout=MDBoxLayout()
+      self.txtlout.adaptive_height=True
+      self.txtlout.orientation='vertical'
+      
+      
+      self.inlout=MDBoxLayout()
+      
+      self.ibtn=MDIconButton()
+      self.ibtn.icon='magnify'
+      self.inlout.add_widget(self.ibtn)
+
+      
+      self.itxtfield=MDTextField()
+      self.itxtfield.hint_text='Search Item'      
+      self.nlabel=MDLabel()
+      self.nlabel.text='Available Medications'
+      self.nlabel.font_style="H4"
+      self.nlabel.pos_hint={"center_x": 0.53, "center_y": 0.5}
+      self.txtlout.add_widget(self.nlabel)
+
+      
+      self.rview = RV()
+      
+      self.itxtfield.bind(on_text = self.search)
+
+
+      self.inlout.add_widget(self.itxtfield)
+      self.txtlout.add_widget(self.inlout)
+      self.blout.add_widget(self.txtlout)
+      self.blout.add_widget(self.rview)
+      self.add_widget(self.blout)
+
+      
+      return self.blout
+      
+         
+      
+   def search(self, obj):
+      self.rview.data = []
+
+         
+   
       
    def pers_screen(self, obj):
       self.manager.current = 'pscreen'
@@ -246,28 +326,29 @@ ScreenManager:
    PerscriptionScreen:
    AllPersScreen:
 
+<CustomOneLineIconListItem>
+   IconLeftWidget:
+      icon: root.icon
+      theme_text_color: "Custom"
+      text_color: 23/255, 135/255, 84/255, 1 
+
+<RV>
+   name: 'rv'
+   key_viewclass: 'viewclass'
+   key_size: 'height' 
+   
+   RecycleBoxLayout:
+      default_size: None, dp(48)
+      default_size_hint: 1, None
+      padding: dp(10)
+      size_hint_y: None
+      height: self.minimum_height
+      orientation: 'vertical'
+   
 
 <AllPersScreen>
    name: 'allscr'
-   MDBoxLayout:
-      size_hint_y:.25
-      padding:dp(25)
-      MDBoxLayout:
-         orientation: 'vertical'
-         MDLabel:
-            text: 'Available Perscriptions'
-            font_style: "H4"
-         MDBoxLayout:
-            adaptive_size:True
-            spacing:dp(10)
-            MDLabel:
-               text: "Back"
-               text_size: None, None
-            MDIconButton:
-               icon: 'chevron-down'
-               on_press:
-                  root.manager.current = 'pscreen'
-                  root.manager.transition.direction = 'right'
+
 
 
 <Command>
