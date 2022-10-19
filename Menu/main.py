@@ -3,6 +3,7 @@
 
 
 # Adding all the modules
+from turtle import onclick
 from mods import *
 from chatbot import *
 
@@ -276,21 +277,53 @@ class AllPersScreen(Screen):
       self.nlabel.pos_hint={"center_x": 0.53, "center_y": 0.5}
       self.ibtn.bind(on_press=self.search)
       self.txtlout.add_widget(self.nlabel)
-
       
       
+      self.buttons_lout=RelativeLayout()
+      self.buttons_lout.orientation='horizontal'
+      self.buttons_lout.height=100
+      
+      self.backbtn=MDIconButton()
+      self.backbtn.icon='backspace'
+      self.backbtn.theme_text_color="Custom"
+      self.backbtn.icon_color=[ 0, .8, .4, 1  ]
+      self.backbtn.pos_hint={"center_x": 0.3, "center_y": 0.1}
+      self.backbtn.bind(on_press=self.back)
+      self.backbtn.icon_size=dp(30)
+      self.buttons_lout.add_widget(self.backbtn)
+      
+      self.homebtn=MDIconButton()
+      self.homebtn.icon='home'
+      self.homebtn.theme_text_color="Custom"
+      self.homebtn.icon_color=[ 0, .8, .4, 1  ]
+      self.homebtn.pos_hint={"center_x": 0.7, "center_y": 0.1}
+      self.homebtn.icon_size=dp(30)
+      self.homebtn.bind(on_press=self.home)
+      self.buttons_lout.add_widget(self.homebtn)
 
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.rview)      
+      self.blout.add_widget(self.rview)   
+      self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
+      
+
 
       
       return self.blout
-      
+   
+   def on_leave(self, *args):
+      self.clear_widgets()
+   
+   def back(self, obj):
+      self.manager.current = 'pscreen'
+      self.manager.transition.direction = 'right'
          
+   def home(self, obj):
+      self.manager.current = 'main'
+      self.manager.transition.direction = 'right'
       
    def search(self, obj):
       self.rview.data = []
@@ -341,7 +374,7 @@ ScreenManager:
    IconLeftWidget:
       icon: root.icon
       theme_text_color: "Custom"
-      text_color: 23/255, 135/255, 84/255, 1 
+      text_color: 0, .8, .4, 1 
 
 <RV>
    name: 'rv'
@@ -438,6 +471,16 @@ ScreenManager:
             text: "Perscription Availability"
             subtext: "10/15/2022"
             items_remaining: '1 Remaining'
+   MDIconButton:
+      text: "Home"
+      icon: "home"
+      theme_text_color: "Custom"
+      icon_color: [ 0, .8, .4, 1 ]
+      icon_size: dp(30)
+      pos_hint: {"center_x": 0.5, "center_y": 0.1}
+      on_press:
+         root.manager.transition.direction = 'right'
+         root.manager.current = 'main'  
 
 
 <ElementCard@MDCard>:

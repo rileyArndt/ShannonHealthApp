@@ -24,8 +24,10 @@ def get_name():
 
 def get_wait_times():
    """Prints the wait times"""
-   return str(wait_times)
-
+   wait_times = soup.find("span", class_="js-wait-north")
+   return wait_times
 def get_women_location():
    """Prints the location"""
    return w_location
+
+
