@@ -18,10 +18,11 @@ B_BILL = "I'm redirecting you to the payment page"
 B_WHOAMI = get_name()
 B_WAITTIMES = get_wait_times()
 B_WLOCATION = get_women_location()
+B_THANKS = "You're welcome!"
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
-                  B_WLOCATION]
+                  B_WLOCATION, B_THANKS]
 
 
 
@@ -74,12 +75,13 @@ def check_messages(message):
    response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
    response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone'], single_response=False)
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
-   response(possible_answers[3], ['mychart', 'chart', 'my chart'])
+   response(possible_answers[3], ['mychart', 'chart', 'my chart', 'checked'])
    response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
    response(possible_answers[5], ['back', 'home'])
    response(possible_answers[6], ['name', 'hospital'])
    response(possible_answers[7], ['time', 'wait', 'available', 'time', 'times'])
    response(possible_answers[8], ['women', 'children', 'hospital', 'child', 'kid', 'baby', 'girl'])
+   response(possible_answers[9], ['thank', 'thanks', 'appreciate'])
 
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)

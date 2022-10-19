@@ -512,11 +512,9 @@ ScreenManager:
                ElementCard:
                   image: "image.png"
                   text: "Perscription Lookup"
-                  subtext: "10/15/2022"
                ElementCard:
                   image: "image.png"
                   text: "Ask the ChatBot"
-                  subtext: "10/15/2022"
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'chats'  

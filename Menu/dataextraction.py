@@ -24,7 +24,7 @@ def get_name():
 
 def get_wait_times():
    """Prints the wait times"""
-   return wait_times
+   return str(wait_times)
 
 def get_women_location():
    """Prints the location"""
