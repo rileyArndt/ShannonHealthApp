@@ -265,24 +265,26 @@ class AllPersScreen(Screen):
       self.inlout.add_widget(self.ibtn)
 
       
+      self.rview = RV()
+
+      
       self.itxtfield=MDTextField()
       self.itxtfield.hint_text='Search Item'      
       self.nlabel=MDLabel()
       self.nlabel.text='Available Medications'
       self.nlabel.font_style="H4"
       self.nlabel.pos_hint={"center_x": 0.53, "center_y": 0.5}
+      self.ibtn.bind(on_press=self.search)
       self.txtlout.add_widget(self.nlabel)
 
       
-      self.rview = RV()
       
-      self.itxtfield.bind(on_text = self.search)
 
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.rview)
+      self.blout.add_widget(self.rview)      
       self.add_widget(self.blout)
 
       
@@ -292,7 +294,16 @@ class AllPersScreen(Screen):
       
    def search(self, obj):
       self.rview.data = []
-
+      for name in self.records:
+         if self.itxtfield.text.lower() in name[0].lower() or self.itxtfield.text.lower() in name[1].lower() or self.itxtfield.text.lower() in name[2].lower():
+            self.rview.data.append(
+               {
+                  "viewclass": "CustomOneLineIconListItem",
+                  "icon": "medical-bag",
+                  "text": name[0] + "        " + name[1] + "        " + name[2]                
+               }
+            )
+            print(name)
          
    
       
