@@ -3,7 +3,6 @@
 
 
 # Adding all the modules
-from turtle import onclick
 from mods import *
 from chatbot import *
 
@@ -16,6 +15,9 @@ class MainScreen(Screen):
    pass
 
 class PerscriptionScreen(Screen):
+   pass
+
+class PersLookScreen(Screen):
    pass
 
 class CustomOneLineIconListItem(OneLineIconListItem):
@@ -189,7 +191,7 @@ class ChatScreen(Screen):
          Clock.schedule_once(self.bot_answer, 0.1)
          self.txtinpt.text = ""  
          self.view.do_scroll_y=True
-         self.chat_lout.height+=100   
+         self.chat_lout.height+=1000   
    
    # Bot's answer
    def bot_answer(self, obj):   
@@ -224,7 +226,15 @@ class ChatScreen(Screen):
          webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
       elif matchedresponse(self.value) == B_WEBSITE:
          webbrowser.open_new_tab('https://www.shannonhealth.com/')
-         
+      elif matchedresponse(self.value) == B_PHARMACY:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/services/pharmacy/')
+      elif matchedresponse(self.value) == B_PPAGE:
+         self.pers_return()
+
+   # Returns to the perscription page.
+   def pers_return(self):
+      self.manager.current = 'pscreen'
+      self.manager.transition.direction = 'right'  
 
    def on_leave(self, *args):
       self.clear_widgets()
@@ -342,7 +352,7 @@ class AllPersScreen(Screen):
       
    def pers_screen(self, obj):
       self.manager.current = 'pscreen'
-      self.manager.transition.direction = 'right'
+      self.manager.transition.direction = 'left'
       
       
 
@@ -369,6 +379,7 @@ ScreenManager:
    ChatScreen:
    PerscriptionScreen:
    AllPersScreen:
+   PersLookScreen:
 
 <CustomOneLineIconListItem>
    IconLeftWidget:
@@ -393,8 +404,9 @@ ScreenManager:
 <AllPersScreen>
    name: 'allscr'
 
-
-
+<PersLookScreen>
+   name: 'perlscr'
+   
 <Command>
    size_hint_y: None   
    pos_hint: {"x": .68}
@@ -447,7 +459,10 @@ ScreenManager:
                   icon:'chevron-down'
                   on_press:
                      root.manager.transition.direction = 'right'
-                     root.manager.current = 'main'    
+                     root.manager.current = 'main'
+
+               
+               
       MDGridLayout:
          size_hint_y:.75
          cols: 2
@@ -455,22 +470,17 @@ ScreenManager:
          spacing:dp(15)
          ElementCard:
             image: "image.png"
-            text: "Perscription Lookup"
+            text: "Ready For Pickup"
+            on_press:
+               root.manager.transition.direction = 'left'
+               root.manager.current = 'perlscr'
          ElementCard:
             image: "image.png"
             text: "Medication List"
             on_press:
                root.manager.transition.direction = 'left'
                root.manager.current = 'allscr'                
-         ElementCard:
-            image: "image.png"
-            text: "Perscription Lookup"
-            subtext: "10/15/2022"
-         ElementCard:
-            image: "image.png"
-            text: "Perscription Availability"
-            subtext: "10/15/2022"
-            items_remaining: '1 Remaining'
+
    MDIconButton:
       text: "Home"
       icon: "home"
@@ -496,8 +506,12 @@ ScreenManager:
    orientation: 'vertical'
    Image:
       source:root.image
+      width: 250
+      size_hint_y: None
+      padding: dp(10)
    MDLabel:
       halign: "center"
+      valign: "bottom"
       text: root.text
    MDLabel:
       halign: "center"
@@ -517,12 +531,14 @@ ScreenManager:
       MDTopAppBar:
          id: 'topbar'
          pos_hint: {"top": 1}
-         title: "Test"
+         title: "Hello, User"
+         halign: "center"
          specific_text_color: [ 23/255, 135/255, 84/255, 1 ]
          font_style: "H4"
          md_bg_color: [ 240/255, 240/255, 240/255, 1 ]
          elevation: 8
          left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
 
    MDBoxLayout:
       pos_hint_y: {"top": 0.23}
@@ -556,11 +572,15 @@ ScreenManager:
                   image: "image.png"
                   text: "Perscription Lookup"
                ElementCard:
-                  image: "image.png"
+                  image: "icons8-ethernet-on-96.png"
                   text: "Ask the ChatBot"
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'chats'  
+                     
+               MDBoxLayout:
+                  size_hint_y: None
+                  height: 2000
 
 
 
