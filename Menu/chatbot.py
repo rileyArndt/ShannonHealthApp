@@ -19,10 +19,13 @@ B_WHOAMI = get_name()
 B_WAITTIMES = get_wait_times()
 B_WLOCATION = get_women_location()
 B_THANKS = "You're welcome!"
+B_PHARMACY = "I'm redirecting you to the pharmacy page..."
+B_PPAGE = "I'm redirecting you to the available perscriptions"
+B_NEWS = "Here is the latest news.\n" + return_news()
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
-                  B_WLOCATION, B_THANKS]
+                  B_WLOCATION, B_THANKS, B_PHARMACY, B_PPAGE, B_NEWS]
 
 
 
@@ -73,7 +76,7 @@ def check_messages(message):
    # @ Second Arg. - List of matched words
    # @ Third Arg. - List of required words
    response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
-   response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone'], single_response=False)
+   response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone', 'appointment'], single_response=False)
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
    response(possible_answers[3], ['mychart', 'chart', 'my chart', 'checked'])
    response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
@@ -82,7 +85,9 @@ def check_messages(message):
    response(possible_answers[7], ['time', 'wait', 'available', 'time', 'times'])
    response(possible_answers[8], ['women', 'children', 'hospital', 'child', 'kid', 'baby', 'girl'])
    response(possible_answers[9], ['thank', 'thanks', 'appreciate'])
-
+   response(possible_answers[10], ['pharmacy', 'online'])
+   response(possible_answers[11], ['perscription', 'perscriptions', 'medicene'])
+   response(possible_answers[12], ['news', 'breaking'], req_words=['news'])
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
