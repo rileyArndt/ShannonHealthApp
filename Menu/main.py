@@ -3,6 +3,7 @@
 
 
 # Adding all the modules
+from matplotlib.patches import Rectangle
 from mods import *
 from chatbot import *
 
@@ -18,10 +19,144 @@ class PerscriptionScreen(Screen):
    pass
 
 class PersLookScreen(Screen):
-   pass
+   def __init__(self, **kw):
+      super().__init__(**kw)
+   
+   def on_enter(self, *args):
+      # Database Connection
+      self.mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "readyperscriptions"
+      )
+      
+      self.c = self.mydb.cursor()
+      
+      self.c.execute("""SELECT * FROM perscrip""")
+      self.records = self.c.fetchall()     
+      
+      self.blout = MDBoxLayout()
+      self.blout.orientation='vertical'
+      self.blout.spacing=dp(10)
+      self.blout.padding=dp(20)
+      
+      self.txtlout=MDBoxLayout()
+      self.txtlout.adaptive_height=True
+      self.txtlout.orientation='vertical'
+      # self.txtlout.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+
+      
+      self.inlout=MDBoxLayout()
+      
+      self.ibtn=MDIconButton()
+      self.ibtn.icon='magnify'
+      self.inlout.add_widget(self.ibtn)
+
+      
+      self.rview = ReadyRV()
+
+      
+      self.itxtfield=MDTextField()
+      self.itxtfield.hint_text='Search Item'      
+      self.nlabel=MDLabel()
+      self.nlabel.text='Perscriptions Ready'
+      self.nlabel.color=[ 23/255, 135/255, 84/255, 1 ]
+      self.nlabel.font_style="H4"
+      self.nlabel.pos_hint={"center_x": 0.75, "center_y": 0.5}
+      self.ibtn.bind(on_press=self.search)
+      self.txtlout.add_widget(self.nlabel)
+      
+      
+      self.buttons_lout=RelativeLayout()
+      self.buttons_lout.orientation='horizontal'
+      self.buttons_lout.height=100
+      
+      self.backbtn=MDIconButton()
+      self.backbtn.icon='backspace'
+      self.backbtn.theme_text_color="Custom"
+      self.backbtn.icon_color=[ 23/255, 135/255, 84/255, 1  ]
+      self.backbtn.pos_hint={"center_x": 0.3, "center_y": 0.1}
+      self.backbtn.bind(on_press=self.go_back)
+      self.backbtn.icon_size=dp(30)
+      self.buttons_lout.add_widget(self.backbtn)
+      
+      self.homebtn=MDIconButton()
+      self.homebtn.icon='home'
+      self.homebtn.theme_text_color="Custom"
+      self.homebtn.icon_color=[ 23/255, 135/255, 84/255, 1  ]
+      self.homebtn.pos_hint={"center_x": 0.7, "center_y": 0.1}
+      self.homebtn.icon_size=dp(30)
+      self.homebtn.bind(on_press=self.go_home)
+      self.buttons_lout.add_widget(self.homebtn)
+
+
+      self.inlout.add_widget(self.itxtfield)
+      self.txtlout.add_widget(self.inlout)
+      self.blout.add_widget(self.txtlout)
+      self.blout.add_widget(self.rview)   
+      self.blout.add_widget(self.buttons_lout)
+      self.add_widget(self.blout)
+      
+
+
+      
+      return self.blout
+   
+   def go_back(self, obj):
+      self.manager.current = 'pscreen'
+      self.manager.transition.direction = 'right'
+      
+   def go_home(self, obj):
+      self.manager.current = 'main'
+      self.manager.transition.direction = 'right'  
+          
+   def on_leave(self, *args):
+      self.clear_widgets()
+      
+   def search(self, obj):
+      self.rview.data = []
+      for name in self.records:
+         if self.txtfield.text.lower() in name[0].lower() or self.txtfield.text.lower() in name[1].lower() or self.txtfield.text.lower() in name[2].lower():
+            self.rview.data.append(
+               {
+                  "viewclass": "CustomOneLineIconListItem",
+                  "icon": "medical-bag",
+                  "text": name[0] + "        " + name[1] + "        " + name[2]                
+               }
+            )
+            print(name)
 
 class CustomOneLineIconListItem(OneLineIconListItem):
    icon = StringProperty()
+   
+class ReadyRV(RecycleView):
+   def __init__(self, **kwargs):
+      super().__init__()      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "readyperscriptions"
+      )
+      
+      c = mydb.cursor()
+      
+      c.execute("""SELECT * FROM perscrip""")
+      records = c.fetchall()     
+      content = []
+      
+      for record in records:
+         content.append(record[0] + "        " + record[1] + "        " + record[2])
+      
+      for item in content:      
+         self.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": item
+         }
+      )   
 
 class RV(RecycleView):
    def __init__(self, **kwargs):
@@ -230,6 +365,8 @@ class ChatScreen(Screen):
          webbrowser.open_new_tab('https://www.shannonhealth.com/services/pharmacy/')
       elif matchedresponse(self.value) == B_PPAGE:
          self.pers_return()
+      elif matchedresponse(self.value) == B_PRICEEST:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
 
    # Returns to the perscription page.
    def pers_return(self):
@@ -267,7 +404,8 @@ class AllPersScreen(Screen):
       self.txtlout=MDBoxLayout()
       self.txtlout.adaptive_height=True
       self.txtlout.orientation='vertical'
-      
+      # self.txtlout.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+
       
       self.inlout=MDBoxLayout()
       
@@ -283,6 +421,7 @@ class AllPersScreen(Screen):
       self.itxtfield.hint_text='Search Item'      
       self.nlabel=MDLabel()
       self.nlabel.text='Available Medications'
+      self.nlabel.color=[ 23/255, 135/255, 84/255, 1 ]
       self.nlabel.font_style="H4"
       self.nlabel.pos_hint={"center_x": 0.53, "center_y": 0.5}
       self.ibtn.bind(on_press=self.search)
@@ -296,7 +435,7 @@ class AllPersScreen(Screen):
       self.backbtn=MDIconButton()
       self.backbtn.icon='backspace'
       self.backbtn.theme_text_color="Custom"
-      self.backbtn.icon_color=[ 0, .8, .4, 1  ]
+      self.backbtn.icon_color=[ 23/255, 135/255, 84/255, 1  ]
       self.backbtn.pos_hint={"center_x": 0.3, "center_y": 0.1}
       self.backbtn.bind(on_press=self.back)
       self.backbtn.icon_size=dp(30)
@@ -305,7 +444,7 @@ class AllPersScreen(Screen):
       self.homebtn=MDIconButton()
       self.homebtn.icon='home'
       self.homebtn.theme_text_color="Custom"
-      self.homebtn.icon_color=[ 0, .8, .4, 1  ]
+      self.homebtn.icon_color=[ 23/255, 135/255, 84/255, 1  ]
       self.homebtn.pos_hint={"center_x": 0.7, "center_y": 0.1}
       self.homebtn.icon_size=dp(30)
       self.homebtn.bind(on_press=self.home)
@@ -385,7 +524,7 @@ ScreenManager:
    IconLeftWidget:
       icon: root.icon
       theme_text_color: "Custom"
-      text_color: 0, .8, .4, 1 
+      text_color: 23/255, 135/255, 84/255, 1 
 
 <RV>
    name: 'rv'
@@ -399,7 +538,20 @@ ScreenManager:
       size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
+
+<ReadyRV>
+   name: 'readyrv'
+   key_viewclass: 'viewclass'
+   key_size: 'height' 
    
+   RecycleBoxLayout:
+      default_size: None, dp(48)
+      default_size_hint: 1, None
+      padding: dp(10)
+      size_hint_y: None
+      height: self.minimum_height
+      orientation: 'vertical'
+
 
 <AllPersScreen>
    name: 'allscr'
@@ -447,12 +599,14 @@ ScreenManager:
             orientation: "vertical"
             MDLabel:
                text: "Perscription Control"
+               color: 23/255, 135/255, 84/255, 1
                font_style: "H4"
             MDBoxLayout:
                adaptive_size: True
                spacing: dp(10)
                MDLabel:
                   text: "Home"
+                  color: 23/255, 135/255, 84/255, 1
                   text_size:None,None
                   adaptive_width:True
                MDIconButton:
@@ -480,12 +634,11 @@ ScreenManager:
             on_press:
                root.manager.transition.direction = 'left'
                root.manager.current = 'allscr'                
-
    MDIconButton:
       text: "Home"
       icon: "home"
       theme_text_color: "Custom"
-      icon_color: [ 0, .8, .4, 1 ]
+      icon_color: [ 23/255, 135/255, 84/255, 1 ]
       icon_size: dp(30)
       pos_hint: {"center_x": 0.5, "center_y": 0.1}
       on_press:
@@ -589,7 +742,7 @@ ScreenManager:
       id : 'chatbot'
       icon: "message-badge"
       theme_icon_color: "Custom"
-      icon_color: [ 0, .8, .4, 1 ]
+      icon_color: [ 23/255, 135/255, 84/255, 1 ]
       icon_size: dp(30)
       pos_hint: {"center_x": 0.8, "center_y": 0.1}
       on_press:
@@ -601,7 +754,7 @@ ScreenManager:
       text: "Home"
       icon: "home"
       theme_text_color: "Custom"
-      icon_color: [ 0, .8, .4, 1 ]
+      icon_color: [ 23/255, 135/255, 84/255, 1 ]
       icon_size: dp(30)
       pos_hint: {"center_x": 0.5, "center_y": 0.1}
    MDIconButton:
@@ -609,7 +762,7 @@ ScreenManager:
       icon: "medication"
       theme_text_color: "Custom"
       icon_size: dp(30)
-      icon_color: [ 0, .8, .4, 1 ]
+      icon_color: [ 23/255, 135/255, 84/255, 1 ]
       pos_hint: {"center_x": 0.2, "center_y": 0.1}
       on_press:
          root.manager.transition.direction = 'left'
