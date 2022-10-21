@@ -22,10 +22,13 @@ B_THANKS = "You're welcome!"
 B_PHARMACY = "I'm redirecting you to the pharmacy page..."
 B_PPAGE = "I'm redirecting you to the available perscriptions"
 B_NEWS = "Here is the latest news.\n" + return_news()
+B_PRICEEST = "I'm redirecting you to the price estimate page..."
+B_SLEEP = "I'm redirecting you in the sleep..."
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
-                  B_WLOCATION, B_THANKS, B_PHARMACY, B_PPAGE, B_NEWS]
+                  B_WLOCATION, B_THANKS, B_PHARMACY, B_PPAGE, B_NEWS, 
+                  B_PRICEEST, B_SLEEP]
 
 
 
@@ -75,11 +78,12 @@ def check_messages(message):
    # @ First Arg. - Robot Response
    # @ Second Arg. - List of matched words
    # @ Third Arg. - List of required words
+   response('I don\'t understand', ['bla bla bla'], single_response=True)
    response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
    response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone', 'appointment'], single_response=False)
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
    response(possible_answers[3], ['mychart', 'chart', 'my chart', 'checked'])
-   response(possible_answers[4], ['bill', 'pay', 'bills', 'order'])
+   response(possible_answers[4], ['bill', 'pay', 'bills', 'order', 'money'])
    response(possible_answers[5], ['back', 'home'])
    response(possible_answers[6], ['name', 'hospital'])
    response(possible_answers[7], ['time', 'wait', 'available', 'time', 'times'])
@@ -88,6 +92,8 @@ def check_messages(message):
    response(possible_answers[10], ['pharmacy', 'online'])
    response(possible_answers[11], ['perscription', 'perscriptions', 'medicene'])
    response(possible_answers[12], ['news', 'breaking'], req_words=['news'])
+   response(possible_answers[13], ['estimates', 'price', 'charges', 'estimate', 'cost'], req_words=['estimate'])
+   response(possible_answers[14], ['sleep', 'center', 'sleeping'], req_words=['sleep'])
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match
@@ -103,3 +109,4 @@ def matchedresponse(usr_input):
    return response
 
    
+
