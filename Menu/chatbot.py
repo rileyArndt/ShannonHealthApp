@@ -23,7 +23,7 @@ B_PHARMACY = "I'm redirecting you to the pharmacy page..."
 B_PPAGE = "I'm redirecting you to the available perscriptions"
 B_NEWS = "Here is the latest news.\n" + return_news()
 B_PRICEEST = "I'm redirecting you to the price estimate page..."
-B_SLEEP = "I'm redirecting you in the sleep..."
+B_SLEEP = "I'm redirecting you in the sleep center..."
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,

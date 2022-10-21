@@ -366,6 +366,8 @@ class ChatScreen(Screen):
       elif matchedresponse(self.value) == B_PPAGE:
          self.pers_return()
       elif matchedresponse(self.value) == B_PRICEEST:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/pricing-and-estimates/')
+      elif matchedresponse(self.value) == B_SLEEP:
          webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
 
    # Returns to the perscription page.
