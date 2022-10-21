@@ -15,7 +15,6 @@ soup2 = BeautifulSoup(page2.content, 'html.parser')
 # Extracting wait times
 wait_times_html = soup.find("div", class_="col-xs-12")
 wait_times = wait_times_html.find("ul")
-print(wait_times)
 
 # Grabbing women & children hospital location
 w_location = soup.find("div", class_="c-featured-location__text clearfix").find("p").text
@@ -25,6 +24,17 @@ get_news = soup.find("div", class_="healthNews")
 get_news = get_news.find("ul")
 
 get_news = get_news.text
+
+page3 = requests.get('https://www.shannonhealth.com/services/sleep-center/')
+soup3 = BeautifulSoup(page3.content, 'html.parser')
+
+
+
+
+
+
+
+
 
 # Methods
 def get_name():
@@ -40,9 +50,8 @@ def get_women_location():
    return w_location
 
 def return_news():
-   return get_news.strip()
-
-
+   """Returns latest news"""
+   return get_news.rstrip('\n')
 
 
 
