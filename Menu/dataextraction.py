@@ -4,6 +4,8 @@
 from multiprocessing.connection import wait
 from bs4 import BeautifulSoup
 import requests
+import calendar
+import datetime
 
 page = requests.get('https://www.shannonhealth.com/')
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -33,8 +35,11 @@ soup3 = BeautifulSoup(page3.content, 'html.parser')
 
 
 
-
-
+def get_date():
+   """Returns the current date."""
+   theday = "Today is " + str(calendar.day_name[datetime.date.today().weekday()])
+   theday += ".\n Moreover, the current date is " + str(datetime.date.today()) + "."
+   return theday
 
 # Methods
 def get_name():

@@ -63,7 +63,9 @@ class PersLookScreen(Screen):
       self.nlabel.text='Perscriptions Ready'
       self.nlabel.color=[ 23/255, 135/255, 84/255, 1 ]
       self.nlabel.font_style="H4"
-      self.nlabel.pos_hint={"center_x": 0.75, "center_y": 0.5}
+      self.nlabel.font_size="25sp"
+      self.nlabel.halign="center"
+      self.nlabel.pos_hint={"center_x": 0.5, "center_y": 0.5}
       self.ibtn.bind(on_press=self.search)
       self.txtlout.add_widget(self.nlabel)
       
@@ -117,7 +119,7 @@ class PersLookScreen(Screen):
    def search(self, obj):
       self.rview.data = []
       for name in self.records:
-         if self.txtfield.text.lower() in name[0].lower() or self.txtfield.text.lower() in name[1].lower() or self.txtfield.text.lower() in name[2].lower():
+         if self.itxtfield.text.lower() in name[0].lower() or self.itxtfield.text.lower() in name[1].lower() or self.itxtfield.text.lower() in name[2].lower():
             self.rview.data.append(
                {
                   "viewclass": "CustomOneLineIconListItem",
@@ -425,7 +427,9 @@ class AllPersScreen(Screen):
       self.nlabel.text='Available Medications'
       self.nlabel.color=[ 23/255, 135/255, 84/255, 1 ]
       self.nlabel.font_style="H4"
-      self.nlabel.pos_hint={"center_x": 0.53, "center_y": 0.5}
+      self.nlabel.font_size="25sp"
+      self.nlabel.halign="center"
+      self.nlabel.pos_hint={"center_x": 0.5, "center_y": 0.5}
       self.ibtn.bind(on_press=self.search)
       self.txtlout.add_widget(self.nlabel)
       
