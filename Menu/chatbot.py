@@ -11,7 +11,7 @@ index to the check_messages function.
 """
 
 B_TELEMED = 'Redirecting you to the telemedicene page...'
-B_HOME = 'Taking you home'
+B_HOME = 'Alright. Let\'s go to the home screen'
 B_WEBSITE = "I'm redirecting you to the shannon webpage"
 B_MYCHARTLINK = "I'm redirecting you to the mychart page"
 B_BILL = "I'm redirecting you to the payment page"
@@ -23,13 +23,17 @@ B_PHARMACY = "I'm redirecting you to the pharmacy page..."
 B_PPAGE = "I'm redirecting you to the available perscriptions"
 B_NEWS = "Here is the latest news.\n" + return_news()
 B_PRICEEST = "I'm redirecting you to the price estimate page..."
-B_SLEEP = "I'm redirecting you in the sleep center..."
+B_SLEEP = "I'm redirecting you to the sleep center..."
 B_DATE = get_date()
+B_CAREER = "I'm redirecting you to the career center..."
+B_READY = "Let's check by going to the available perscription screen."
+B_STORIES = get_stories()
+B_NUMBER = get_shannon_info()
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
                   B_WLOCATION, B_THANKS, B_PHARMACY, B_PPAGE, B_NEWS, 
-                  B_PRICEEST, B_SLEEP, B_DATE]
+                  B_PRICEEST, B_SLEEP, B_DATE, B_CAREER, B_READY, B_STORIES, B_NUMBER]
 
 
 
@@ -80,6 +84,7 @@ def check_messages(message):
    # @ Second Arg. - List of matched words
    # @ Third Arg. - List of required words
    response('I don\'t understand', ['bla bla bla'], single_response=True)
+   response('I\'m doing well! How may I help you?', ['how', 'are', 'you', 'doing', 'what\'s up', 'wassup'])
    response(possible_answers[0], ['hello', 'hey', 'heyy', 'hola'], single_response=True)
    response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'phone', 'appointment'], single_response=False)
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
@@ -96,6 +101,10 @@ def check_messages(message):
    response(possible_answers[13], ['estimates', 'price', 'charges', 'estimate', 'cost'], req_words=['estimate'])
    response(possible_answers[14], ['sleep', 'center', 'sleeping'], req_words=['sleep'])
    response(possible_answers[15], ['date', 'today', 'day'])
+   response(possible_answers[16], ['job', 'career', 'careers', 'employment', 'employees', 'employee'])
+   response(possible_answers[17], ['ready', 'perscription', 'available', 'here', 'medicene', 'meds'])
+   response(possible_answers[18], ['class', 'classes', 'group', 'groups', 'survivor', 'sisters'])
+   response(possible_answers[19], ['call', 'phone', 'number', 'contact', 'information', 'info'])
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match

@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import calendar
 import datetime
+import time
 
 page = requests.get('https://www.shannonhealth.com/')
 soup = BeautifulSoup(page.content, 'html.parser')
@@ -18,22 +19,35 @@ soup2 = BeautifulSoup(page2.content, 'html.parser')
 wait_times_html = soup.find("div", class_="col-xs-12")
 wait_times = wait_times_html.find("ul")
 
-# Grabbing women & children hospital location
+# Locating women & children hospital location.
 w_location = soup.find("div", class_="c-featured-location__text clearfix").find("p").text
 
+# Grabbing data from the health news.
 get_news = soup.find("div", class_="healthNews")
-# get_news = get_news.find("ul")
 get_news = get_news.find("ul")
-
 get_news = get_news.text
 
+# Grabbing data from the sleep center.
 page3 = requests.get('https://www.shannonhealth.com/services/sleep-center/')
 soup3 = BeautifulSoup(page3.content, 'html.parser')
 
 
+page4 = requests.get('https://www.shannonhealth.com')
+soup4 = BeautifulSoup(page4.content, 'html.parser')
+get_events = soup4.find("div", class_="classesEvents")
 
 
+def get_stories():
+   """Returns the latest stories."""
+   s = get_events.text
+   s += '\nMore information on https://www.shannonhealth.com/'
+   return s;
 
+def get_shannon_info():
+   s = "325.655.8191 | 324.481.2207 (fax)"
+   s += '\nMonday through Friday'
+   s += "\n8 a.m. to 6 p.m."
+   return s
 
 def get_date():
    """Returns the current date."""
@@ -56,7 +70,8 @@ def get_women_location():
 
 def return_news():
    """Returns latest news"""
-   return get_news.rstrip('\n')
+   s = get_news.rstrip('\n')
+   s += '\nMore information on https://www.shannonhealth.com/'
+   return s
 
-
-
+get_stories()

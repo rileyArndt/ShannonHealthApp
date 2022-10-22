@@ -7,7 +7,10 @@ from matplotlib.patches import Rectangle
 from mods import *
 from chatbot import *
 
+c_mode = "Light"
 
+def change_nightmode(c_mode=c_mode):
+   c_mode = "Dark"
 # The MainScreen class's functionality is on kivy. 
 #
 # Let me know if you
@@ -371,12 +374,20 @@ class ChatScreen(Screen):
          webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/pricing-and-estimates/')
       elif matchedresponse(self.value) == B_SLEEP:
          webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
+      elif matchedresponse(self.value) == B_CAREER:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/employment/?utm_source=loyal&utm_medium=chatbot&utm_campaign=dialog')
+      elif matchedresponse(self.value) == B_READY:
+         self.ready_return()
 
    # Returns to the perscription page.
    def pers_return(self):
       self.manager.current = 'pscreen'
-      self.manager.transition.direction = 'right'  
-
+      self.manager.transition.direction = 'left'  
+   # Returns to the ready perscription page.
+   def ready_return(self):
+      self.manager.current = 'allscr'
+      self.manager.transition.direction = 'left' 
+      
    def on_leave(self, *args):
       self.clear_widgets()
 
@@ -797,12 +808,15 @@ ScreenManager:
         
          ScrollView:
             MDList:
-               OneLineListItem:
-                  text: 'Profile'
-               OneLineListItem:
+               OneLineIconListItem:
                   text: 'Settings'
-               OneLineListItem:
+                  ImageLeftWidget:
+                     icon: 'application-settings'
+                  
+               OneLineIconListItem:
                   text: 'Logout'
+                  ImageLeftWidget:
+                     icon: 'logout'
 """
 
 # Add all your created screens
@@ -814,6 +828,9 @@ sm.add_widget(MainScreen(name='main'))
 # Builds the application.
 class MainApp(MDApp):
    def build(self):
+      
+      # Testing a dark theme
+      self.theme_cls.theme_style = c_mode
       screen = Builder.load_string(str)
       return screen  
    
