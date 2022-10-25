@@ -123,7 +123,7 @@ ScreenManager:
                   root.manager.transition.direction = 'left'
                   root.manager.current = 'perlscr'
             ElementCard:
-               image: "image.png"
+               image: "Icons\preadyicon.png"
                text: "Medication List"
                on_press:
                   root.manager.transition.direction = 'left'
@@ -131,11 +131,11 @@ ScreenManager:
 
          # MDBoxLayout:
          #    padding:dp(15)
-         #    Label:
-         #       pos_hint: {"center_x": 0.5, "center_y": 0.98}
-         #       text: "Recent Additions"
-         #       font_style: "H6"
-         #       color: 23/255, 135/255, 84/255, 1
+            Label:
+               pos_hint: {"center_x": 0.5, "center_y": 0.98}
+               text: "Recent Additions"
+               font_style: "H6"
+               color: 23/255, 135/255, 84/255, 1
 
          MDBoxLayout:
             padding:dp(15)
@@ -144,9 +144,9 @@ ScreenManager:
             GraphLayout:
                size_hint_y: None
                # adaptive_size: True
-               pos_hint: {"center_x": 0.5, "center_y": 0.54}
+               pos_hint: {"center_x": 0.5, "center_y": 0.44}
                width: 2000
-               height: 400
+               height: 500
             
                
    MDIconButton:
@@ -165,6 +165,8 @@ ScreenManager:
    size_hint_y: None
    padding: dp(20)
    radius:dp(25)
+   icon:''
+   icon_size: dp(30)
    image:''
    text:""
    text_color: 23/255, 135/255, 84/255, 1
@@ -230,7 +232,7 @@ ScreenManager:
                   image: "image.png"
                   text: "Telemedicene Visits"
                ElementCard:
-                  image: "image.png"
+                  image: "Icons\perscicon.png"
                   text: "Perscription Availability"
                   on_press:
                      root.manager.transition.direction = 'left'
@@ -240,7 +242,7 @@ ScreenManager:
                   image: "image.png"
                   text: "Perscription Lookup"
                ElementCard:
-                  image: "icons8-ethernet-on-96.png"
+                  image: "Icons\chaticon.png"
                   text: "Ask the ChatBot"
                   on_press:
                      root.manager.transition.direction = 'left'
@@ -316,3 +318,4 @@ ScreenManager:
                   ImageLeftWidget:
                      icon: 'logout'
 """
+
