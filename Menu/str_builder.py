@@ -117,13 +117,13 @@ ScreenManager:
             padding:dp(15)
             spacing:dp(15)
             ElementCard:
-               image: "image.png"
+               image: "Icons\cariconhd.png"
                text: "Ready For Pickup"
                on_press:
                   root.manager.transition.direction = 'left'
                   root.manager.current = 'perlscr'
             ElementCard:
-               image: "Icons\preadyicon.png"
+               image: "Icons\cariconhd.png"
                text: "Medication List"
                on_press:
                   root.manager.transition.direction = 'left'
@@ -229,7 +229,7 @@ ScreenManager:
                padding:dp(15)
                spacing:dp(15)
                ElementCard:
-                  image: "image.png"
+                  image: "Icons\cariconhd.png"
                   text: "Telemedicene Visits"
                ElementCard:
                   image: "Icons\perscicon.png"
@@ -239,7 +239,7 @@ ScreenManager:
                      root.manager.current = 'pscreen'    
 
                ElementCard:
-                  image: "image.png"
+                  image: "Icons\cariconhd.png"
                   text: "Perscription Lookup"
                ElementCard:
                   image: "Icons\chaticon.png"
@@ -318,4 +318,5 @@ ScreenManager:
                   ImageLeftWidget:
                      icon: 'logout'
 """
+
 
