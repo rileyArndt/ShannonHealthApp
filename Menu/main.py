@@ -586,3 +586,4 @@ class MainApp(MDApp):
 # Runs the application.
 if __name__ == '__main__':
    MainApp().run()
+
