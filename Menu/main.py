@@ -18,6 +18,50 @@ class MainScreen(Screen):
 class PerscriptionScreen(Screen):
    pass
 
+class GraphLayout(MDBoxLayout):
+   def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "readyperscriptions"
+      )
+      
+      c = mydb.cursor()
+      pharmacies = ['Walmart', 'Plado', 'Rino', 'Shannon', 'Walgreens']     
+
+      values = []
+      for pharm in pharmacies: 
+         c.execute("SELECT COUNT(*) FROM perscrip WHERE pharm = %s", (pharm,))
+         records = c.fetchall()     
+         
+         for record in records:
+            values.append(record[0])   
+      
+      plt.plot([values], [values])
+      plt.xlabel('test')
+      
+      c.execute('SELECT date FROM perscrip ORDER BY DATE DESC')
+      records = c.fetchall()
+      
+      # x = [dt.datetime.strptime(str(d[0]), '%Y-%m-%d').date() for d in records]
+      # y = [range(len(x))]
+      
+      # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%d-%m'))
+      # plt.gca().xaxis.set_major_locator(mdates.DayLocator())
+
+      plt.gcf().autofmt_xdate()
+      
+      
+      self.n_lout = MDBoxLayout()
+      self.n_lout.pos_hint={"center_x": 0.8, "center_y": 0.9}
+      self.n_lout.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+      self.add_widget(self.n_lout)      
+   
+   
+
 class PersLookScreen(Screen):
    def __init__(self, **kw):
       super().__init__(**kw)
@@ -348,7 +392,9 @@ class ChatScreen(Screen):
          self.ffsize = .45
          self.halign = "center"
       self.chat_lout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
-      
+      self.robot_redirect()
+   
+   def robot_redirect(self):
       # Key : keywords
       if matchedresponse(self.value) == B_TELEMED:
          webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
@@ -375,6 +421,8 @@ class ChatScreen(Screen):
          webbrowser.open_new_tab('https://www.shannonhealth.com/employment/?utm_source=loyal&utm_medium=chatbot&utm_campaign=dialog')
       elif matchedresponse(self.value) == B_READY:
          self.ready_return()
+      elif matchedresponse(self.value) == B_MR:
+         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/request-medical-records/')
 
    # Returns to the perscription page.
    def pers_return(self):

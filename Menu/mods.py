@@ -44,3 +44,7 @@ from kivy.core.text import LabelBase
 from kivy.clock import Clock
 import webbrowser
 import time
+from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
+from matplotlib import pyplot as plt
+import matplotlib.dates as mdates
+import datetime as dt

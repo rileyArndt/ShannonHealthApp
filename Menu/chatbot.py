@@ -29,11 +29,14 @@ B_CAREER = "I'm redirecting you to the career center..."
 B_READY = "Let's check by going to the available perscription screen."
 B_STORIES = get_stories()
 B_NUMBER = get_shannon_info()
+B_MR = "You can access your medical records by filling a Record Authorization form\nI will redirect you to the page..."
+
 
 possible_answers=['Hello', B_TELEMED, B_WEBSITE, B_MYCHARTLINK,
                   B_BILL, B_HOME, B_WHOAMI, B_WAITTIMES,
                   B_WLOCATION, B_THANKS, B_PHARMACY, B_PPAGE, B_NEWS, 
-                  B_PRICEEST, B_SLEEP, B_DATE, B_CAREER, B_READY, B_STORIES, B_NUMBER]
+                  B_PRICEEST, B_SLEEP, B_DATE, B_CAREER, B_READY, B_STORIES, B_NUMBER,
+                  B_MR]
 
 
 
@@ -104,7 +107,8 @@ def check_messages(message):
    response(possible_answers[16], ['job', 'career', 'careers', 'employment', 'employees', 'employee'])
    response(possible_answers[17], ['ready', 'perscription', 'available', 'here', 'medicene', 'meds'])
    response(possible_answers[18], ['class', 'classes', 'group', 'groups', 'survivor', 'sisters'])
-   response(possible_answers[19], ['call', 'phone', 'number', 'contact', 'information', 'info'])
+   response(possible_answers[19], ['call', 'phone', 'open', 'opening', 'number', 'contact', 'information', 'info', 'hours', 'operation'])
+   response(possible_answers[20], ['record', 'records', 'medical', 'image', 'images', 'radiology', 'form', 'authorization'])
 
    best_match = max(highest_prob_list, key=highest_prob_list.get)
    return best_match

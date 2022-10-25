@@ -102,10 +102,9 @@ ScreenManager:
                   icon:'chevron-down'
                   on_press:
                      root.manager.transition.direction = 'right'
-                     root.manager.current = 'main'
+                     root.manager.current = 'main'       
 
-               
-               
+
       MDGridLayout:
          size_hint_y:.75
          cols: 2
@@ -122,7 +121,13 @@ ScreenManager:
             text: "Medication List"
             on_press:
                root.manager.transition.direction = 'left'
-               root.manager.current = 'allscr'                
+               root.manager.current = 'allscr'
+            
+
+
+ 
+   
+               
    MDIconButton:
       text: "Home"
       icon: "home"
