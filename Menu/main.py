@@ -4,6 +4,7 @@
 
 # Adding all the modules
 from matplotlib.patches import Rectangle
+from matplotlib.ticker import MaxNLocator
 from mods import *
 from chatbot import *
 from str_builder import *
@@ -49,30 +50,9 @@ class GraphLayout(MDBoxLayout):
       
       date_time = pd.to_datetime(dates)
       data = values
-      
-      DF = pd.DataFrame()
-      DF['value'] = data
-      DF = DF.set_index(date_time)
-      plt.plot(DF)
-      plt.gcf().autofmt_xdate()
 
-
-      
-      plt.xticks(rotation=90)
-      plt.tick_params(colors='green')
-   
-      # plt.plot(dates, values)
-      
-      # c.execute('SELECT date FROM perscrip ORDER BY DATE DESC')
-      # records = c.fetchall()
-      
-      # x = [dt.datetime.strptime(str(d[0]), '%Y-%m-%d').date() for d in records]
-      # y = [range(len(x))]
-      
-      # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%d-%m'))
-      # plt.gca().xaxis.set_major_locator(mdates.DayLocator())
-
-      
+      x = date_time
+      y = data
       
       self.n_lout = MDBoxLayout()
       self.n_lout.pos_hint={"center_x": 0.8, "center_y": 0.9}
@@ -600,7 +580,6 @@ sm.add_widget(MainScreen(name='main'))
 # Builds the application.
 class MainApp(MDApp):
    def build(self):
-      
       screen = Builder.load_string(complete_app_builder)
       return screen  
    
