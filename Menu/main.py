@@ -32,19 +32,39 @@ class GraphLayout(MDBoxLayout):
       c = mydb.cursor()
       pharmacies = ['Walmart', 'Plado', 'Rino', 'Shannon', 'Walgreens']     
 
-      values = []
-      for pharm in pharmacies: 
-         c.execute("SELECT COUNT(*) FROM perscrip WHERE pharm = %s", (pharm,))
-         records = c.fetchall()     
+
+      c.execute("SELECT COUNT(*), date FROM perscrip GROUP BY pharm")
+      records = c.fetchall()     
          
-         for record in records:
-            values.append(record[0])   
+      values = []
+      dates = []
+      for record in records:
+         values.append(record[0])  
+         y = record[1].year
+         m = record[1].month
+         val= str(y) + '-' + str(m) 
+         dates.append(val)
+      print(values)
+      print(dates)
       
-      plt.plot([values], [values])
-      plt.xlabel('test')
+      date_time = pd.to_datetime(dates)
+      data = values
       
-      c.execute('SELECT date FROM perscrip ORDER BY DATE DESC')
-      records = c.fetchall()
+      DF = pd.DataFrame()
+      DF['value'] = data
+      DF = DF.set_index(date_time)
+      plt.plot(DF)
+      plt.gcf().autofmt_xdate()
+
+
+      
+      plt.xticks(rotation=90)
+      plt.tick_params(colors='green')
+   
+      # plt.plot(dates, values)
+      
+      # c.execute('SELECT date FROM perscrip ORDER BY DATE DESC')
+      # records = c.fetchall()
       
       # x = [dt.datetime.strptime(str(d[0]), '%Y-%m-%d').date() for d in records]
       # y = [range(len(x))]
@@ -52,7 +72,6 @@ class GraphLayout(MDBoxLayout):
       # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%d-%m'))
       # plt.gca().xaxis.set_major_locator(mdates.DayLocator())
 
-      plt.gcf().autofmt_xdate()
       
       
       self.n_lout = MDBoxLayout()

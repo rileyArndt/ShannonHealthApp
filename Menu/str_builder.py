@@ -79,54 +79,75 @@ ScreenManager:
 
 <PerscriptionScreen>:
    name: 'pscreen'
-   MDBoxLayout:
-      orientation: 'vertical' 
+   ScrollView:
+      do_scroll_x: False
+      do_scroll_y: True
+      
       MDBoxLayout:
-         size_hint_y:.25
-         padding:dp(25)
+         orientation: 'vertical' 
+         size_hint_y: None
+         height: 1000
          MDBoxLayout:
-            orientation: "vertical"
-            MDLabel:
-               text: "Perscription Control"
-               color: 23/255, 135/255, 84/255, 1
-               font_style: "H4"
+            size_hint_y:.25
+            padding:dp(25)
             MDBoxLayout:
-               adaptive_size: True
-               spacing: dp(10)
+               orientation: "vertical"
                MDLabel:
-                  text: "Home"
+                  text: "Perscription Control"
                   color: 23/255, 135/255, 84/255, 1
-                  text_size:None,None
-                  adaptive_width:True
-               MDIconButton:
-                  icon:'chevron-down'
-                  on_press:
-                     root.manager.transition.direction = 'right'
-                     root.manager.current = 'main'       
+                  font_style: "H4"
+               MDBoxLayout:
+                  adaptive_size: True
+                  spacing: dp(10)
+                  MDLabel:
+                     text: "Home"
+                     color: 23/255, 135/255, 84/255, 1
+                     text_size:None,None
+                     adaptive_width:True
+                  MDIconButton:
+                     icon:'chevron-down'
+                     on_press:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'main'       
 
 
-      MDGridLayout:
-         size_hint_y:.75
-         cols: 2
-         padding:dp(15)
-         spacing:dp(15)
-         ElementCard:
-            image: "image.png"
-            text: "Ready For Pickup"
-            on_press:
-               root.manager.transition.direction = 'left'
-               root.manager.current = 'perlscr'
-         ElementCard:
-            image: "image.png"
-            text: "Medication List"
-            on_press:
-               root.manager.transition.direction = 'left'
-               root.manager.current = 'allscr'
+         MDGridLayout:
+            size_hint_y:.75
+            cols: 2
+            padding:dp(15)
+            spacing:dp(15)
+            ElementCard:
+               image: "image.png"
+               text: "Ready For Pickup"
+               on_press:
+                  root.manager.transition.direction = 'left'
+                  root.manager.current = 'perlscr'
+            ElementCard:
+               image: "image.png"
+               text: "Medication List"
+               on_press:
+                  root.manager.transition.direction = 'left'
+                  root.manager.current = 'allscr'
+
+         # MDBoxLayout:
+         #    padding:dp(15)
+         #    Label:
+         #       pos_hint: {"center_x": 0.5, "center_y": 0.98}
+         #       text: "Recent Additions"
+         #       font_style: "H6"
+         #       color: 23/255, 135/255, 84/255, 1
+
+         MDBoxLayout:
+            padding:dp(15)
+            # orientation: 'vertical'
+
+            GraphLayout:
+               size_hint_y: None
+               # adaptive_size: True
+               pos_hint: {"center_x": 0.5, "center_y": 0.54}
+               width: 2000
+               height: 400
             
-
-
- 
-   
                
    MDIconButton:
       text: "Home"
