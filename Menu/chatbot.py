@@ -10,10 +10,12 @@ Input your responses here then add the specified
 index to the check_messages function.
 """
 
-B_TELEMED = 'Redirecting you to the telemedicene page...'
-B_HOME = 'Alright. Let\'s go to the home screen'
+B_TELEMED = "Shannon On Demand makes it easy for you to talk to a healthcare provider for minor medical needs, immediately, without an appointment."
+B_TELEMED += "\nI'm redirecting you to the page..."
+B_HOME = 'Let\'s go to the home screen'
 B_WEBSITE = "I'm redirecting you to the shannon webpage"
-B_MYCHARTLINK = "I'm redirecting you to the mychart page"
+B_MYCHARTLINK = 'MyChart makes it easy to access your health records and schedule appointments.'
+B_MYCHARTLINK += "\nI'm redirecting you to the page..."
 B_BILL = "I'm redirecting you to the payment page"
 B_WHOAMI = get_name()
 B_WAITTIMES = get_wait_times()
@@ -25,7 +27,7 @@ B_NEWS = "Here is the latest news.\n" + return_news()
 B_PRICEEST = "I'm redirecting you to the price estimate page..."
 B_SLEEP = "I'm redirecting you to the sleep center..."
 B_DATE = get_date()
-B_CAREER = "I'm redirecting you to the career center..."
+B_CAREER = "The employment page allows you to check for career openings.\nI will redirect you to the page..."
 B_READY = "Let's check by going to the available perscription screen."
 B_STORIES = get_stories()
 B_NUMBER = get_shannon_info()
@@ -124,4 +126,5 @@ def matchedresponse(usr_input):
    return response
 
    
+
 
