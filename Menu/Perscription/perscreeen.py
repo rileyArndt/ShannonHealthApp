@@ -10,6 +10,62 @@ from chatbot import *
 from str_builder import *
 from main import *
 
+class RV(RecycleView):
+   def __init__(self, **kwargs):
+      super().__init__()      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "perscriptions"
+      )
+      
+      c = mydb.cursor()
+      
+      c.execute("""SELECT * FROM products""")
+      records = c.fetchall()     
+      content = []
+      
+      for record in records:
+         content.append(record[0] + "        " + record[1] + "        " + record[2])
+      
+      for item in content:      
+         self.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": item
+         }
+      )   
+
+
+class ReadyRV(RecycleView):
+   def __init__(self, **kwargs):
+      super().__init__()      # Database Connection
+      mydb = mysql.connector.connect(
+         host = "localhost",
+         user = "root",
+         passwd = "HeBoreItAll#1",
+         database = "readyperscriptions"
+      )
+      
+      c = mydb.cursor()
+      
+      c.execute("""SELECT * FROM perscrip""")
+      records = c.fetchall()     
+      content = []
+      
+      for record in records:
+         content.append(record[0] + "        " + record[1] + "        " + record[2])
+      
+      for item in content:      
+         self.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": item
+         }
+      )   
 
 
 class PerscriptionScreen(Screen):
