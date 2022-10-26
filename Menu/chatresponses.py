@@ -1,7 +1,7 @@
 # Mitchell Martin
 # 10/11/2022
 
-from dataextraction import *
+from Chatbot import dataextraction
 # Splitting the string
 import re
 
@@ -17,20 +17,20 @@ B_WEBSITE = "I'm redirecting you to the shannon webpage"
 B_MYCHARTLINK = 'MyChart makes it easy to access your health records and schedule appointments.'
 B_MYCHARTLINK += "\nI'm redirecting you to the page..."
 B_BILL = "I'm redirecting you to the payment page"
-B_WHOAMI = get_name()
-B_WAITTIMES = get_wait_times()
-B_WLOCATION = get_women_location()
+B_WHOAMI = dataextraction.get_name()
+B_WAITTIMES = dataextraction.get_wait_times()
+B_WLOCATION = dataextraction.get_women_location()
 B_THANKS = "You're welcome!"
 B_PHARMACY = "I'm redirecting you to the pharmacy page..."
 B_PPAGE = "I'm redirecting you to the available perscriptions"
-B_NEWS = "Here is the latest news.\n" + return_news()
+B_NEWS = "Here is the latest news.\n" + dataextraction.return_news()
 B_PRICEEST = "I'm redirecting you to the price estimate page..."
 B_SLEEP = "I'm redirecting you to the sleep center..."
-B_DATE = get_date()
+B_DATE = dataextraction.get_date()
 B_CAREER = "The employment page allows you to check for career openings.\nI will redirect you to the page..."
 B_READY = "Let's check by going to the available perscription screen."
-B_STORIES = get_stories()
-B_NUMBER = get_shannon_info()
+B_STORIES = dataextraction.get_stories()
+B_NUMBER = dataextraction.get_shannon_info()
 B_MR = "You can access your medical records by filling a Record Authorization form\nI will redirect you to the page..."
 
 
