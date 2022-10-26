@@ -36,6 +36,9 @@ page4 = requests.get('https://www.shannonhealth.com')
 soup4 = BeautifulSoup(page4.content, 'html.parser')
 get_events = soup4.find("div", class_="classesEvents")
 
+# All the pages used for extracting
+# Shannon's data.
+pages = [ page, page2, page3, page4 ]
 
 def get_stories():
    """Returns the latest stories."""
