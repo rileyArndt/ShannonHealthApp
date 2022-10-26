@@ -6,7 +6,7 @@
 from matplotlib.patches import Rectangle
 from matplotlib.ticker import MaxNLocator
 from mods import *
-from chatresponses import *
+from Chatbot import chatresponses
 from str_builder import *
 from main import *
 

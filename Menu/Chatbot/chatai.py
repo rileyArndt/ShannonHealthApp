@@ -6,7 +6,7 @@
 from matplotlib.patches import Rectangle
 from matplotlib.ticker import MaxNLocator
 from mods import *
-from chatresponses import *
+from Chatbot import chatresponses as cr
 from str_builder import *
 from main import *
 
@@ -155,52 +155,52 @@ class ChatScreen(Screen):
    
    # Bot's answer
    def bot_answer(self, obj):   
-      if len(matchedresponse(self.value)) < 6:
+      if len(cr.matchedresponse(self.value)) < 6:
          self.ffsize = .17
          self.halign = "center"
-      elif len(matchedresponse(self.value)) < 11:
+      elif len(cr.matchedresponse(self.value)) < 11:
          self.ffsize = .22
          self.halign = "center"
-      elif len(matchedresponse(self.value)) < 16:
+      elif len(cr.matchedresponse(self.value)) < 16:
          self.ffsize = .24
          self.halign = "center"
-      elif len(matchedresponse(self.value)) < 22:
+      elif len(cr.matchedresponse(self.value)) < 22:
          self.ffsize = .32
          self.halign = "center"
       else:
          self.ffsize = .45
          self.halign = "center"
-      self.chat_lout.add_widget(Response(text=matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
+      self.chat_lout.add_widget(Response(text=cr.matchedresponse(self.value), size_hint_x=self.ffsize, halign=self.halign))
       self.robot_redirect()
    
    def robot_redirect(self):
       # Key : keywords
-      if matchedresponse(self.value) == B_TELEMED:
+      if cr.matchedresponse(self.value) == cr.B_TELEMED:
          webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
-      elif matchedresponse(self.value) == B_WEBSITE:
+      elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
          webbrowser.open_new_tab('https://www.shannonhealth.com/')
-      elif matchedresponse(self.value) == B_HOME:
+      elif cr.matchedresponse(self.value) == cr.B_HOME:
          self.manager.current = 'main'
          self.manager.transition.direction = 'right'
-      elif matchedresponse(self.value) == B_MYCHARTLINK:
+      elif cr.matchedresponse(self.value) == cr.B_MYCHARTLINK:
          webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/patient-portal-mychart/')
-      elif matchedresponse(self.value) == B_BILL:
+      elif cr.matchedresponse(self.value) == cr.B_BILL:
          webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
-      elif matchedresponse(self.value) == B_WEBSITE:
+      elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
          webbrowser.open_new_tab('https://www.shannonhealth.com/')
-      elif matchedresponse(self.value) == B_PHARMACY:
+      elif cr.matchedresponse(self.value) == cr.B_PHARMACY:
          webbrowser.open_new_tab('https://www.shannonhealth.com/services/pharmacy/')
-      elif matchedresponse(self.value) == B_PPAGE:
+      elif cr.matchedresponse(self.value) == cr.B_PPAGE:
          self.pers_return()
-      elif matchedresponse(self.value) == B_PRICEEST:
+      elif cr.matchedresponse(self.value) == cr.B_PRICEEST:
          webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/pricing-and-estimates/')
-      elif matchedresponse(self.value) == B_SLEEP:
+      elif cr.matchedresponse(self.value) == cr.B_SLEEP:
          webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
-      elif matchedresponse(self.value) == B_CAREER:
+      elif cr.matchedresponse(self.value) == cr.B_CAREER:
          webbrowser.open_new_tab('https://www.shannonhealth.com/employment/?utm_source=loyal&utm_medium=chatbot&utm_campaign=dialog')
-      elif matchedresponse(self.value) == B_READY:
+      elif cr.matchedresponse(self.value) == cr.B_READY:
          self.ready_return()
-      elif matchedresponse(self.value) == B_MR:
+      elif cr.matchedresponse(self.value) == cr.B_MR:
          webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/request-medical-records/')
 
    # Returns to the perscription page.
