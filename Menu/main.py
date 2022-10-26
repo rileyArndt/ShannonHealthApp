@@ -7,7 +7,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.ticker import MaxNLocator
 from mods import *
 from str_builder import *
-from Perscription import perscreeen
+from Perscription import perscreen
 from Chatbot import chatresponses, chatai, dataextraction
 
 # The MainScreen class's functionality is on kivy. 
