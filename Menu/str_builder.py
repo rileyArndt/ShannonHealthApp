@@ -132,7 +132,7 @@ ScreenManager:
          # MDBoxLayout:
          #    padding:dp(15)
             Label:
-               pos_hint: {"center_x": 0.5, "center_y": 0.98}
+               pos_hint: {"center_x": 0.7, "center_y": 0.98}
                text: "Recent Additions"
                font_style: "H6"
                color: 23/255, 135/255, 84/255, 1
@@ -144,9 +144,9 @@ ScreenManager:
             GraphLayout:
                size_hint_y: None
                # adaptive_size: True
-               pos_hint: {"center_x": 0.5, "center_y": 0.44}
+               pos_hint: {"center_x": 0.5, "center_y": 0.40}
                width: 2000
-               height: 500
+               height: 300
             
                
    MDIconButton:
