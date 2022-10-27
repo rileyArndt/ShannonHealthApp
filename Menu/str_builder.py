@@ -249,14 +249,15 @@ ScreenManager:
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'chats'  
-      ScrollView:
-         do_scroll_y: True
-         do_scroll_x: False        
-         MDBoxLayout:
-            size_hint_y: None
-            height: 200
-            NewsList:
-               height : 200               
+            # ScrollView:
+            #    do_scroll_y: True
+            #    do_scroll_x: False        
+            #    MDBoxLayout:
+            #       pos_hint: {"center_x": 0.5, "center_y": 0.3}
+            #       size_hint_y: None
+            #       height: 200
+            #       NewsList:
+            #          height : 200               
 
 
 

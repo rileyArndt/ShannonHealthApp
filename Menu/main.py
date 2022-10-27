@@ -18,17 +18,17 @@ from Chatbot import chatresponses, chatai, dataextraction
 class MainScreen(Screen):
    pass
 
-class NewsList(MDList):
+# class NewsList(MDList):
    
-   def __init__(self, *args, **kwargs):
-      super().__init__(**kwargs)
-      items = dataextraction.news_item()
+#    # def __init__(self, *args, **kwargs):
+#       super().__init__(**kwargs)
+#       items = dataextraction.news_item()
       
-      for item in items:
-         wig = OneLineIconListItem(text=item)
-         imagery = IconLeftWidget(icon='newspaper')
-         wig.add_widget(imagery)
-         self.add_widget(wig)
+#       for item in items:
+#          wig = OneLineIconListItem(text=item)
+#          imagery = IconLeftWidget(icon='newspaper')
+#          wig.add_widget(imagery)
+#          self.add_widget(wig)
 
 
 class CustomOneLineIconListItem(OneLineIconListItem):
