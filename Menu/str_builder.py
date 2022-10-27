@@ -94,7 +94,7 @@ ScreenManager:
             MDBoxLayout:
                orientation: "vertical"
                spacing: dp(20)
-
+               pos_hint_y: {"center_y": 0.90}
                MDLabel:
                   text: "Perscription Control"
                   color: 23/255, 135/255, 84/255, 1
@@ -213,6 +213,8 @@ ScreenManager:
    MDBoxLayout:
       pos_hint_y: {"top": 0.23}
       size_hint: [ 1.0, 0.9 ]
+      orientation: 'vertical'
+               
       ScrollView:
          do_scroll_y: True
          do_scroll_x: False  
@@ -247,10 +249,14 @@ ScreenManager:
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'chats'  
-                     
-               MDBoxLayout:
-                  size_hint_y: None
-                  height: 2000
+      ScrollView:
+         do_scroll_y: True
+         do_scroll_x: False        
+         MDBoxLayout:
+            size_hint_y: None
+            height: 200
+            NewsList:
+               height : 200               
 
 
 

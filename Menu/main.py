@@ -5,6 +5,7 @@
 # Adding all the modules
 from matplotlib.patches import Rectangle
 from matplotlib.ticker import MaxNLocator
+from numpy import full
 from mods import *
 from str_builder import *
 from Perscription import perscreen
@@ -17,6 +18,17 @@ from Chatbot import chatresponses, chatai, dataextraction
 class MainScreen(Screen):
    pass
 
+class NewsList(MDList):
+   
+   def __init__(self, *args, **kwargs):
+      super().__init__(**kwargs)
+      items = dataextraction.news_item()
+      
+      for item in items:
+         wig = OneLineIconListItem(text=item)
+         imagery = IconLeftWidget(icon='newspaper')
+         wig.add_widget(imagery)
+         self.add_widget(wig)
 
 
 class CustomOneLineIconListItem(OneLineIconListItem):

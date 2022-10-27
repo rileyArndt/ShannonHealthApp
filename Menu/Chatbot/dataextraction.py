@@ -77,4 +77,19 @@ def return_news():
    s += '\nMore information on https://www.shannonhealth.com/'
    return s
 
-get_stories()
+def news_item():
+   everything = []
+   test = ''
+   i = 1
+   pre = ''
+   for line in return_news():
+      if pre.find('\n') == -1:
+         if line == '.' or (line.isupper() and pre.islower()):
+            line += '\n'
+            everything.append(test)
+            test = ''
+         test += line
+      pre = line
+   return everything
+
+print(news_item())
