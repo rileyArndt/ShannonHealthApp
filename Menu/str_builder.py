@@ -229,7 +229,7 @@ ScreenManager:
                padding:dp(15)
                spacing:dp(15)
                ElementCard:
-                  image: "Icons\cariconhd.png"
+                  image: "Icons\phoneicon.png"
                   text: "Telemedicene Visits"
                ElementCard:
                   image: "Icons\perscicon.png"
@@ -239,10 +239,10 @@ ScreenManager:
                      root.manager.current = 'pscreen'    
 
                ElementCard:
-                  image: "Icons\cariconhd.png"
-                  text: "Perscription Lookup"
-               ElementCard:
                   image: "Icons\chaticon.png"
+                  text: "Search for Providers"
+               ElementCard:
+                  image: "Icons\laboticon.png"
                   text: "Ask the ChatBot"
                   on_press:
                      root.manager.transition.direction = 'left'
