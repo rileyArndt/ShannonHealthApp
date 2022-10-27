@@ -44,8 +44,8 @@ class ReadyRV(RecycleView):
       super().__init__()      # Database Connection
       mydb = mysql.connector.connect(
          host = "localhost",
-         user = "root",
-         passwd = "HeBoreItAll#1",
+         user = "test_user",
+         passwd = "pass",
          database = "readyperscriptions"
       )
       
@@ -79,12 +79,12 @@ class GraphLayout(MDBoxLayout):
          host = "localhost",
          user = "test_user",
          passwd = "pass",
-         database = "perscriptions"
+         database = "testing_features"
       )
       
       c = mydb.cursor()
 
-      c.execute("SELECT pharmacy, COUNT(*) FROM products GROUP BY pharmacy")
+      c.execute("SELECT branch_name, COUNT(*) FROM products INNER JOIN branch ON branch.branch_id = products.branch_id GROUP BY branch_name")
       records = c.fetchall()     
       
       values = {}
@@ -122,13 +122,13 @@ class PersLookScreen(Screen):
       self.mydb = mysql.connector.connect(
          host = "localhost",
          user = "root",
-         passwd = "HeBoreItAll#1",
-         database = "readyperscriptions"
+         passwd = "test_user",
+         database = "testing_features"
       )
       
       self.c = self.mydb.cursor()
       
-      self.c.execute("""SELECT * FROM perscrip""")
+      self.c.execute("""SELECT * FROM products""")
       self.records = self.c.fetchall()     
       
       self.blout = MDBoxLayout()
@@ -345,4 +345,3 @@ class AllPersScreen(Screen):
       self.manager.transition.direction = 'left'
       
      
-
