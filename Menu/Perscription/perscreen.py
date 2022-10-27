@@ -4,8 +4,8 @@
 
 # Adding all the modules
 from matplotlib.patches import Rectangle
+from matplotlib.pyplot import bar
 from matplotlib.ticker import MaxNLocator
-from mods import *
 from Chatbot import chatresponses
 from str_builder import *
 from main import *
@@ -79,12 +79,12 @@ class GraphLayout(MDBoxLayout):
          host = "localhost",
          user = "root",
          passwd = "HeBoreItAll#1",
-         database = "readyperscriptions"
+         database = "perscriptions"
       )
       
       c = mydb.cursor()
 
-      c.execute("SELECT pharm, COUNT(*) FROM perscrip WHERE DATE(add_date) > (NOW() - INTERVAL 7 DAY)GROUP BY pharm ORDER BY add_date")
+      c.execute("SELECT pharmacy, COUNT(*) FROM products GROUP BY pharmacy")
       records = c.fetchall()     
       
       values = {}
@@ -94,13 +94,20 @@ class GraphLayout(MDBoxLayout):
       pharmacy = list(values.keys())
       quantity = list(values.values())
       plt.style.use('ggplot')
-      plt.color = ['royalblue', 'green', 'yellow', 'red']
-      plt.bar(pharmacy, quantity, color='blue', width=0.5)
-         
+      plt.bar(pharmacy, quantity, color='green', width=0.5, )
       print(values)
       
-      self.n_lout = MDBoxLayout()
+      bar_title = MDLabel()
+      bar_title.text = 'Pharmacy Distribution'
+      bar_title.font_style='H5'
+      bar_title.pos_hint = {'center_x': 0.6, 'center_y': 0.47}
+      bar_title.color=[ 23/255, 135/255, 84/255, 1 ]
+      
+      self.n_lout = MDFloatLayout()
+      self.n_lout.orientation='vertical'
+      self.n_lout.padding='5px'
       self.n_lout.pos_hint={"center_x": 0.8, "center_y": 0.9}
+      self.n_lout.add_widget(bar_title)
       self.n_lout.add_widget(FigureCanvasKivyAgg(plt.gcf()))
       self.add_widget(self.n_lout)      
    

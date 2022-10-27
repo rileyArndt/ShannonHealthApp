@@ -47,6 +47,9 @@ import time
 from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 from matplotlib import pyplot as plt
 import matplotlib.dates as mdates
+from matplotlib import cm
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
+from matplotlib import colors as mcolors, path
 import datetime as dt
 import numpy as np
 import pandas as pd

@@ -86,16 +86,20 @@ ScreenManager:
       MDBoxLayout:
          orientation: 'vertical' 
          size_hint_y: None
+         padding:dp(25)
          height: 1000
          MDBoxLayout:
             size_hint_y:.25
             padding:dp(25)
             MDBoxLayout:
                orientation: "vertical"
+               spacing: dp(20)
+
                MDLabel:
                   text: "Perscription Control"
                   color: 23/255, 135/255, 84/255, 1
-                  font_style: "H4"
+                  font_style: "H2"
+
                MDBoxLayout:
                   adaptive_size: True
                   spacing: dp(10)
@@ -106,6 +110,8 @@ ScreenManager:
                      adaptive_width:True
                   MDIconButton:
                      icon:'chevron-down'
+                     theme_text_color: "Custom"
+                     icon_color: [ 23/255, 135/255, 84/255, 1 ]
                      on_press:
                         root.manager.transition.direction = 'right'
                         root.manager.current = 'main'       
@@ -131,22 +137,16 @@ ScreenManager:
 
          # MDBoxLayout:
          #    padding:dp(15)
-            Label:
-               pos_hint: {"center_x": 0.7, "center_y": 0.98}
-               text: "Recent Additions"
-               font_style: "H6"
-               color: 23/255, 135/255, 84/255, 1
 
          MDBoxLayout:
-            padding:dp(15)
             # orientation: 'vertical'
 
             GraphLayout:
                size_hint_y: None
                # adaptive_size: True
-               pos_hint: {"center_x": 0.5, "center_y": 0.40}
+               pos_hint: {"center_x": 0.5, "center_y": 0.70}
                width: 2000
-               height: 300
+               height: 500
             
                
    MDIconButton:
