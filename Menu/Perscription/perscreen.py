@@ -15,8 +15,8 @@ class RV(RecycleView):
       super().__init__()      # Database Connection
       mydb = mysql.connector.connect(
          host = "localhost",
-         user = "root",
-         passwd = "HeBoreItAll#1",
+         user = "test_user",
+         passwd = "pass",
          database = "perscriptions"
       )
       
@@ -77,8 +77,8 @@ class GraphLayout(MDBoxLayout):
       # Database Connection
       mydb = mysql.connector.connect(
          host = "localhost",
-         user = "root",
-         passwd = "HeBoreItAll#1",
+         user = "test_user",
+         passwd = "pass",
          database = "perscriptions"
       )
       
@@ -234,8 +234,8 @@ class AllPersScreen(Screen):
       # Database Connection
       self.mydb = mysql.connector.connect(
          host = "localhost",
-         user = "root",
-         passwd = "HeBoreItAll#1",
+         user = "test_user",
+         passwd = "pass",
          database = "perscriptions"
       )
       
@@ -345,3 +345,4 @@ class AllPersScreen(Screen):
       self.manager.transition.direction = 'left'
       
      
+
