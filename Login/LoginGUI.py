@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivy.uix.screenmanager import ScreenManager, Screen
+import os
 
 class Login (Screen):
     pass
@@ -23,6 +24,9 @@ class Forgot3 (Screen):
 class Manager(ScreenManager):
     pass
 
+dbpass= os.environ.get('dbpass')
+mailpass= os.environ.get('mailpass')
+
 
 class loginScreen(MDApp):
     def build(self):
@@ -42,7 +46,7 @@ class loginScreen(MDApp):
         
         connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
         user = "admin",
-        passwd =  "mOBSCENE")
+        passwd =  dbpass)
         print("Connection initialized")
         cursor = connection.cursor()
         cursor.execute("use shannon;")
@@ -100,7 +104,7 @@ class loginScreen(MDApp):
 
         connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
         user = "admin",
-        passwd =  "mOBSCENE")
+        passwd =  dbpass)
         print("Connection initialized")
         cursor = connection.cursor()
         cursor.execute("use shannon;")
@@ -138,7 +142,7 @@ class loginScreen(MDApp):
 
         connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
         user = "admin",
-        passwd =  "mOBSCENE")
+        passwd =  dbpass)
         print("Connection initialized")
         cursor = connection.cursor()
         cursor.execute("use shannon;")
@@ -183,7 +187,7 @@ class loginScreen(MDApp):
             smtp.starttls()
             smtp.ehlo()
 
-            smtp.login("noreply.prototypeapp@gmail.com","avvezuumzluqbqji")
+            smtp.login("noreply.prototypeapp@gmail.com",mailpass)
 
             subject = "Your vertification code"
             body = seed
@@ -206,7 +210,7 @@ class loginScreen(MDApp):
 
         connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
         user = "admin",
-        passwd =  "mOBSCENE")
+        passwd =  dbpass)
         print("Connection initialized")
         cursor = connection.cursor()
         cursor.execute("use shannon;")
