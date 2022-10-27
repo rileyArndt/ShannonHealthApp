@@ -129,8 +129,8 @@ ScreenManager:
                   root.manager.transition.direction = 'left'
                   root.manager.current = 'perlscr'
             ElementCard:
-               image: "Icons\cariconhd.png"
-               text: "Medication List"
+               image: "Icons\medicon.png"
+               text: "Search for Medications"
                on_press:
                   root.manager.transition.direction = 'left'
                   root.manager.current = 'allscr'
