@@ -83,6 +83,15 @@ ScreenManager:
       size_hint_y: .11
       pos_hint: {"center_y": .95}
       md_bg_color: 240/255, 240/255, 240/255, 1
+      MDIconButton:
+         icon: 'keyboard-backspace'
+         halign: 'left'
+         theme_icon_color: 'Custom'
+         icon_color: 23/255, 135/255, 84/255, 1
+         pos_hint: {"center_y": .5}
+         on_press:
+            root.manager.transition.direction = 'right'
+            root.manager.current = 'main'  
       MDLabel:
          text: "Perscription Control"
          color: 23/255, 135/255, 84/255, 1
