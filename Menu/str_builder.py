@@ -79,74 +79,67 @@ ScreenManager:
 
 <PerscriptionScreen>:
    name: 'pscreen'
-   ScrollView:
-      do_scroll_x: False
-      do_scroll_y: True
-      
-      MDBoxLayout:
-         orientation: 'vertical' 
-         size_hint_y: None
-         padding:dp(25)
-         height: 1000
+   MDFloatLayout:
+      size_hint_y: .11
+      pos_hint: {"center_y": .95}
+      md_bg_color: 240/255, 240/255, 240/255, 1
+      MDLabel:
+         text: "Perscription Control"
+         color: 23/255, 135/255, 84/255, 1
+         font_style: "H5"
+         pos_hint: {"center_y": .5}
+         halign: "center" 
+   MDBoxLayout:
+      ScrollView:
+         size_hint_y: .77
+         pos_hint: {"x": 0, "y": .116}
+         do_scroll_x: False
+         do_scroll_y: True
          MDBoxLayout:
-            size_hint_y:.25
-            padding:dp(25)
+            id : 'non'
+            orientation: 'vertical' 
+            size_hint_y: None
+            padding:dp(5)
+            height: 1000     
+            MDGridLayout:
+               size_hint_y:.13
+               cols: 2
+               padding:dp(15)
+               spacing:dp(15)
+               ElementCard:
+                  image: "Icons\cariconhd.png"
+                  text: "Ready For Pickup"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'perlscr'
+               ElementCard:
+                  image: "Icons\medicon.png"
+                  text: "Search for Medications"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'allscr'
             MDBoxLayout:
-               orientation: "vertical"
-               spacing: dp(20)
-               pos_hint_y: {"center_y": 0.90}
+               orientation: 'vertical'
+               spacing: dp(1)
+               # pos_hint_y: {"center_y": 0.9}
                MDLabel:
-                  text: "Perscription Control"
+                  pos_hint_y: {"center_y": 0.9}
+                  halign: "center"
+                  text: "Latest Perscription Offers"
                   color: 23/255, 135/255, 84/255, 1
-                  font_style: "H2"
-
+                  font_style: "H6"
                MDBoxLayout:
-                  adaptive_size: True
-                  spacing: dp(10)
-                  MDLabel:
-                     text: "Home"
-                     color: 23/255, 135/255, 84/255, 1
-                     text_size:None,None
-                     adaptive_width:True
-                  MDIconButton:
-                     icon:'chevron-down'
-                     theme_text_color: "Custom"
-                     icon_color: [ 23/255, 135/255, 84/255, 1 ]
-                     on_press:
-                        root.manager.transition.direction = 'right'
-                        root.manager.current = 'main'       
+                  orientation: 'vertical'
+                  pos_hint: {"center_x": 0.5, "center_y": 0.99}
+                  ScrollView:
+                     do_scroll_x: False
+                     do_scroll_y: True
+                     RecentLayout:
+                        pos_hint: {"center_x": 0.5, "center_y": 0.99}
+                        size_hint_y: None
+                        height: root.height
+                        # adaptive_size: True
 
-
-         MDGridLayout:
-            size_hint_y:.75
-            cols: 2
-            padding:dp(15)
-            spacing:dp(15)
-            ElementCard:
-               image: "Icons\cariconhd.png"
-               text: "Ready For Pickup"
-               on_press:
-                  root.manager.transition.direction = 'left'
-                  root.manager.current = 'perlscr'
-            ElementCard:
-               image: "Icons\medicon.png"
-               text: "Search for Medications"
-               on_press:
-                  root.manager.transition.direction = 'left'
-                  root.manager.current = 'allscr'
-
-         # MDBoxLayout:
-         #    padding:dp(15)
-
-         MDBoxLayout:
-            # orientation: 'vertical'
-
-            GraphLayout:
-               size_hint_y: None
-               # adaptive_size: True
-               pos_hint: {"center_x": 0.5, "center_y": 0.70}
-               width: 2000
-               height: 500
             
                
    MDIconButton:

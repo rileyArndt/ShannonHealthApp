@@ -15,7 +15,7 @@ from datetime import datetime
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy_garden.mapview import MapView
 from kivymd.uix.list import OneLineIconListItem
-from kivymd.uix.list import MDList, TwoLineListItem, TwoLineAvatarListItem, IconLeftWidget, OneLineListItem
+from kivymd.uix.list import MDList, TwoLineListItem, ThreeLineIconListItem, TwoLineAvatarListItem,ThreeLineIconListItem, IconLeftWidget, OneLineListItem
 from kivy.uix.scrollview import ScrollView
 from kivy.metrics import dp
 from kivy.uix.gridlayout import GridLayout

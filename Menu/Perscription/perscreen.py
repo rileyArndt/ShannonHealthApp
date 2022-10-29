@@ -71,10 +71,49 @@ class ReadyRV(RecycleView):
 class PerscriptionScreen(Screen):
    pass
 
-class GraphLayout(MDBoxLayout):
+# class GraphLayout(MDBoxLayout):
+#    def __init__(self, *args, **kwargs):
+#       super().__init__(*args, **kwargs)
+#       # Database Connection
+#       mydb = mysql.connector.connect(
+#          host = "localhost",
+#          user = "test_user",
+#          passwd = "pass",
+#          database = "testing_features"
+#       )
+      
+#       c = mydb.cursor()
+
+#       c.execute("SELECT branch_name, COUNT(*) FROM products INNER JOIN branch ON branch.branch_id = products.branch_id GROUP BY branch_name")
+#       records = c.fetchall()     
+      
+#       values = {}
+#       for record in records:
+#          values[record[0]] = record[1]
+         
+#       pharmacy = list(values.keys())
+#       quantity = list(values.values())
+#       plt.style.use('ggplot')
+#       plt.bar(pharmacy, quantity, color='green', width=0.5, )
+#       print(values)
+      
+#       bar_title = MDLabel()
+#       bar_title.text = 'Pharmacy Distribution'
+#       bar_title.font_style='H5'
+#       bar_title.pos_hint = {'center_x': 0.6, 'center_y': 0.47}
+#       bar_title.color=[ 23/255, 135/255, 84/255, 1 ]
+      
+#       self.n_lout = MDFloatLayout()
+#       self.n_lout.orientation='vertical'
+#       self.n_lout.padding='5px'
+#       self.n_lout.pos_hint={"center_x": 0.8, "center_y": 0.9}
+#       self.n_lout.add_widget(bar_title)
+#       self.n_lout.add_widget(FigureCanvasKivyAgg(plt.gcf()))
+#       self.add_widget(self.n_lout)      
+   
+class RecentLayout(MDBoxLayout):
    def __init__(self, *args, **kwargs):
       super().__init__(*args, **kwargs)
-      # Database Connection
       mydb = mysql.connector.connect(
          host = "localhost",
          user = "test_user",
@@ -84,34 +123,27 @@ class GraphLayout(MDBoxLayout):
       
       c = mydb.cursor()
 
-      c.execute("SELECT branch_name, COUNT(*) FROM products INNER JOIN branch ON branch.branch_id = products.branch_id GROUP BY branch_name")
+      c.execute("""SELECT product_name, branch_name, ship_date FROM products INNER JOIN
+      branch ON branch.branch_id = products.branch_id
+      WHERE shipped = 'Y' AND ship_date >= NOW()-INTERVAL 3 MONTH
+      ORDER BY ship_date DESC""")
       records = c.fetchall()     
       
-      values = {}
+      
+      self.r_list = MDList() 
+      # self.r_list.pos_hint={"center_x": 0.5, "center_y": 0.99}
+      
       for record in records:
-         values[record[0]] = record[1]
-         
-      pharmacy = list(values.keys())
-      quantity = list(values.values())
-      plt.style.use('ggplot')
-      plt.bar(pharmacy, quantity, color='green', width=0.5, )
-      print(values)
-      
-      bar_title = MDLabel()
-      bar_title.text = 'Pharmacy Distribution'
-      bar_title.font_style='H5'
-      bar_title.pos_hint = {'center_x': 0.6, 'center_y': 0.47}
-      bar_title.color=[ 23/255, 135/255, 84/255, 1 ]
-      
-      self.n_lout = MDFloatLayout()
-      self.n_lout.orientation='vertical'
-      self.n_lout.padding='5px'
-      self.n_lout.pos_hint={"center_x": 0.8, "center_y": 0.9}
-      self.n_lout.add_widget(bar_title)
-      self.n_lout.add_widget(FigureCanvasKivyAgg(plt.gcf()))
-      self.add_widget(self.n_lout)      
-   
-   
+         self.r_list.add_widget(ThreeLineIconListItem(
+            IconLeftWidget(
+               icon="medication"
+            ),
+            text=record[0],
+            secondary_text=record[1],
+            tertiary_text=str(record[2]),
+         ))
+      self.add_widget(self.r_list)
+
 
 class PersLookScreen(Screen):
    def __init__(self, **kw):
