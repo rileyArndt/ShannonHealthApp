@@ -17,7 +17,7 @@ class RV(RecycleView):
          host = "localhost",
          user = "test_user",
          passwd = "pass",
-         database = "perscriptions"
+         database = "testing_features"
       )
       
       c = mydb.cursor()
@@ -46,12 +46,12 @@ class ReadyRV(RecycleView):
          host = "localhost",
          user = "test_user",
          passwd = "pass",
-         database = "readyperscriptions"
+         database = "testing_features"
       )
       
       c = mydb.cursor()
       
-      c.execute("""SELECT * FROM perscrip""")
+      c.execute("""SELECT * FROM products""")
       records = c.fetchall()     
       content = []
       
@@ -121,8 +121,8 @@ class PersLookScreen(Screen):
       # Database Connection
       self.mydb = mysql.connector.connect(
          host = "localhost",
-         user = "root",
-         passwd = "test_user",
+         user = "test_user",
+         passwd = "pass",
          database = "testing_features"
       )
       
@@ -236,7 +236,7 @@ class AllPersScreen(Screen):
          host = "localhost",
          user = "test_user",
          passwd = "pass",
-         database = "perscriptions"
+         database = "testing_features"
       )
       
       self.c = self.mydb.cursor()
