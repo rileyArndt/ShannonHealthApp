@@ -101,7 +101,7 @@ def check_messages(message):
    response(possible_answers[8], ['women', 'children', 'hospital', 'child', 'kid', 'baby', 'girl'])
    response(possible_answers[9], ['thank', 'thanks', 'appreciate'])
    response(possible_answers[10], ['pharmacy', 'online'])
-   response(possible_answers[11], ['perscription', 'perscriptions', 'medicene'])
+   response(possible_answers[11], ['perscription', 'perscriptions', 'medicene', 'medications', 'medication'])
    response(possible_answers[12], ['news', 'breaking'], req_words=['news'])
    response(possible_answers[13], ['estimates', 'price', 'charges', 'estimate', 'cost'], req_words=['estimate'])
    response(possible_answers[14], ['sleep', 'center', 'sleeping'], req_words=['sleep'])
