@@ -108,7 +108,8 @@ ScreenManager:
             id : 'non'
             orientation: 'vertical' 
             size_hint_y: None
-            padding:dp(5)
+            padding:dp(10)
+            pos_hint_y: {"center_y": 0.4}
             height: 1000     
             MDGridLayout:
                size_hint_y:.13
@@ -127,19 +128,25 @@ ScreenManager:
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'allscr'
-            MDBoxLayout:
-               orientation: 'vertical'
-               spacing: dp(1)
-               # pos_hint_y: {"center_y": 0.9}
                MDLabel:
-                  pos_hint_y: {"center_y": 0.9}
+                  pos_hint_y: {"center_y": 0.5}
                   halign: "center"
+                  #md_bg_color: 1, 1, 84/255, 1
+                  size_hint_y: 0.1
+                  # height: 200
                   text: "Latest Perscription Offers"
                   color: 23/255, 135/255, 84/255, 1
-                  font_style: "H6"
+                  font_style: "H5"
+                     
+            MDBoxLayout:
+               orientation: 'vertical'
+               spacing: dp(10)
+               pos_hint_y: {"center_y": 0.4}
                MDBoxLayout:
                   orientation: 'vertical'
-                  pos_hint: {"center_x": 0.5, "center_y": 0.99}
+                  pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                  MDLabel:
+                     size_hint_y: 0.2
                   ScrollView:
                      do_scroll_x: False
                      do_scroll_y: True
