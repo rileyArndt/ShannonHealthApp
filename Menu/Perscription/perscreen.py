@@ -34,6 +34,8 @@ class RV(RecycleView):
          {
             "viewclass": "CustomOneLineIconListItem",
             "icon": "medical-bag",
+            "theme_icon_color": 'Custom',
+            "icon_color": [23/255, 135/255, 84/255, 1],
             "text": item
          }
       )   
@@ -63,6 +65,8 @@ class ReadyRV(RecycleView):
          {
             "viewclass": "CustomOneLineIconListItem",
             "icon": "medical-bag",
+            "theme_icon_color": 'Custom',
+            "icon_color": [23/255, 135/255, 84/255, 1],
             "text": item
          }
       )   
@@ -136,7 +140,9 @@ class RecentLayout(MDBoxLayout):
       for record in records:
          self.r_list.add_widget(ThreeLineIconListItem(
             IconLeftWidget(
-               icon="medication"
+               icon="medication",
+               theme_icon_color="Custom",
+               icon_color=[23/255, 135/255, 84/255, 1]
             ),
             text=record[0],
             secondary_text=record[1],
