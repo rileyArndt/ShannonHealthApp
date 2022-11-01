@@ -27,7 +27,7 @@ class RV(RecycleView):
       content = []
       
       for record in records:
-         content.append(record[0] + "        " + record[1] + "        " + record[2])
+         content.append(record[0] + "        " + record[1] + "        " + record[2] + "        $" + str(record[3]))
       
       for item in content:      
          self.data.append(
@@ -58,7 +58,7 @@ class ReadyRV(RecycleView):
       content = []
       
       for record in records:
-         content.append(record[0] + "        " + record[1] + "        " + record[2])
+         content.append(record[0] + "        " + record[1] + "        " + record[2] + "        $" + str(record[3]))
       
       for item in content:      
          self.data.append(
