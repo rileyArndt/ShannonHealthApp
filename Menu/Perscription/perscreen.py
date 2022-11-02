@@ -69,7 +69,9 @@ class ReadyRV(RecycleView):
             "icon_color": [23/255, 135/255, 84/255, 1],
             "text": item
          }
-      )   
+      )  
+
+      
 
 
 class PerscriptionScreen(Screen):
@@ -148,6 +150,7 @@ class RecentLayout(MDBoxLayout):
             secondary_text=record[1],
             tertiary_text=str(record[2]),
          ))
+      
       self.add_widget(self.r_list)
 
 
@@ -338,12 +341,21 @@ class AllPersScreen(Screen):
       self.homebtn.icon_size=dp(30)
       self.homebtn.bind(on_press=self.home)
       self.buttons_lout.add_widget(self.homebtn)
-
+      
+      self.registerbtn=MDRectangleFlatButton()
+      self.registerbtn.text='Insert in Cart'
+      self.registerbtn.pos_hint={"center_x": 0.5, "center_y": 0.15}
+      self.registerbtn.size_hint_x=.6
+      self.registerbtn.theme_text_color="Custom"
+      self.registerbtn.line_color=[ 0, 0, 0, 0 ]
+      self.registerbtn.text_color=[ 1, 1, 1, 1 ]
+      self.registerbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
       self.blout.add_widget(self.rview)   
+      self.add_widget(self.registerbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
       
