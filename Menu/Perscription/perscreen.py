@@ -10,6 +10,11 @@ from Chatbot import chatresponses
 from str_builder import *
 from main import *
 
+class CartRV(RecycleView):
+   def __init__(self, **kwargs):
+      super().__init__(**kwargs)
+
+
 class RV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
@@ -73,8 +78,6 @@ class ReadyRV(RecycleView):
             "text": item
          }
       )
-
-      
 
 
 class PerscriptionScreen(Screen):
@@ -298,8 +301,6 @@ class AllPersScreen(Screen):
       
       self.c = self.mydb.cursor()
       
-      self.c.execute("""SELECT * FROM products""")
-      self.records = self.c.fetchall()     
       
       
       self.blout = MDBoxLayout()
@@ -321,7 +322,16 @@ class AllPersScreen(Screen):
 
       
       self.rview = RV()
-
+      self.cview = CartRV()
+      self.cartlabel=MDLabel()
+      self.cartlabel.text='Cart'
+      self.cartlabel.color=[ 23/255, 135/255, 84/255, 1 ]
+      self.cartlabel.halign="center"
+      self.cartlabel.font_style="H4"
+      self.cartlabel.font_size="20sp"
+      self.cartlabel.pos_hint={"center_x": 0.5, "center_y": 0.7}
+      self.cartlabel.size_hint_y=None
+      self.cartlabel.height=100
       
       self.itxtfield=MDTextField()
       self.itxtfield.hint_text='Search Item'      
@@ -371,7 +381,9 @@ class AllPersScreen(Screen):
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.rview)   
+      self.blout.add_widget(self.rview)
+      self.blout.add_widget(self.cartlabel)
+      self.blout.add_widget(self.cview)   
       self.add_widget(self.registerbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
@@ -382,9 +394,29 @@ class AllPersScreen(Screen):
       return self.blout
    
    def on_click(self, obj):
-      pos = self.rview.to_local(self.rview.center_x, self.rview.height)
+      pos = self.rview.to_local(self.rview.top, self.rview.height)
       idx = self.rview.layout_manager.get_view_index_at(pos)
-      print(self.rview.data[idx])
+      idx = idx
+      self.full_id = self.rview.data[idx]['text'][:6]
+      self.update_view()
+      print(self.rview.data[idx]['text'][:6] + ' ' + str(self.rview.data[idx]['index']))
+   
+   def update_view(self):
+      query = "SELECT id, product_name, price FROM products WHERE id = '" + self.full_id + "'"
+      self.c.execute(query)
+      records = self.c.fetchall()
+      for name in records:
+         self.cview.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": name[0] + "        " + name[1] + "        " + str(name[2])                
+            }
+         )
+      
+      
+      
+   
    
    def on_leave(self, *args):
       self.clear_widgets()
