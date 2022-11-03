@@ -61,14 +61,14 @@ class ReadyRV(RecycleView):
       
       c = mydb.cursor()
       
-      c.execute("""SELECT * FROM products""")
+      c.execute("""SELECT * FROM products WHERE shipped = 'Y'""")
       records = c.fetchall()     
       content = []
       
       for record in records:
          content.append(record[0] + "        " + record[1] + "        " + record[2] + "        $" + str(record[3]))
       
-      for item in content:      
+      for item in content:
          self.data.append(
          {
             "viewclass": "CustomOneLineIconListItem",

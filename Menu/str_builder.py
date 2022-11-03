@@ -38,13 +38,10 @@ ScreenManager:
    RecycleBoxLayout:
       default_size: None, dp(48)
       default_size_hint: 1, None
-      pos_hint_y: {"center_y": 0.3}
       padding: dp(10)
-      size_hint_y: 0.3
+      size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
-      multiselect: True
-      touch_multiselect: True
 
 <CartRV>
    name: 'cartrv'
