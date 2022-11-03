@@ -261,7 +261,7 @@ ScreenManager:
                spacing:dp(15)
                ElementCard:
                   image: "Icons\phoneicon.png"
-                  text: "Telemedicene Visits"
+                  text: "Telemedicine Visits"
                ElementCard:
                   image: "Icons\perscicon.png"
                   text: "Perscription Availability"

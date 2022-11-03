@@ -91,7 +91,7 @@ def check_messages(message):
    response('I don\'t understand', ['bla bla bla'], single_response=True)
    response('I\'m doing well! How may I help you?', ['how', 'are', 'you', 'doing', 'what\'s up', 'wassup'])
    response(possible_answers[0], ['hello', 'hi', 'hii', 'hey', 'heyy', 'hola'], single_response=True)
-   response(possible_answers[1], ['telemedicene', 'help', 'emergency', 'immediate', 'immediately', 'doctor', 'phone', 'appointment'], single_response=False)
+   response(possible_answers[1], ['telemedicine', 'help', 'emergency', 'immediate', 'immediately', 'doctor', 'phone', 'appointment'], single_response=False)
    response(possible_answers[2], ['desktop', 'web', 'webpage', 'website', 'online'])
    response(possible_answers[3], ['mychart', 'chart', 'my chart', 'checked'])
    response(possible_answers[4], ['bill', 'pay', 'bills', 'order', 'money'])
