@@ -14,6 +14,7 @@ ScreenManager:
       icon: root.icon
       theme_text_color: "Custom"
       text_color: 23/255, 135/255, 84/255, 1 
+      index: None
 
 <RV>
    name: 'rv'
@@ -27,6 +28,8 @@ ScreenManager:
       size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
+      multiselect: True
+      touch_multiselect: True
 
 <ReadyRV>
    name: 'readyrv'
@@ -40,6 +43,8 @@ ScreenManager:
       size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
+      multiselect: True
+      touch_multiselect: True
 
 
 <AllPersScreen>

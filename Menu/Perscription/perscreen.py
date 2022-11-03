@@ -29,14 +29,17 @@ class RV(RecycleView):
       for record in records:
          content.append(record[0] + "        " + record[1] + "        " + record[2] + "        $" + str(record[3]))
       
-      for item in content:      
+      i = 0
+      for item in content:
+         i += 1      
          self.data.append(
          {
             "viewclass": "CustomOneLineIconListItem",
             "icon": "medical-bag",
             "theme_icon_color": 'Custom',
             "icon_color": [23/255, 135/255, 84/255, 1],
-            "text": item
+            "text": item,
+            "index": i
          }
       )   
 
@@ -69,7 +72,7 @@ class ReadyRV(RecycleView):
             "icon_color": [23/255, 135/255, 84/255, 1],
             "text": item
          }
-      )  
+      )
 
       
 
@@ -153,6 +156,9 @@ class RecentLayout(MDBoxLayout):
       
       self.add_widget(self.r_list)
 
+class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
+                                 RecycleBoxLayout):
+   """Adds selection and focus behavior to our view."""
 
 class PersLookScreen(Screen):
    def __init__(self, **kw):
@@ -189,7 +195,6 @@ class PersLookScreen(Screen):
       self.ibtn.icon='magnify'
       self.inlout.add_widget(self.ibtn)
 
-      
       self.rview = ReadyRV()
 
       
@@ -227,12 +232,23 @@ class PersLookScreen(Screen):
       self.homebtn.icon_size=dp(30)
       self.homebtn.bind(on_press=self.go_home)
       self.buttons_lout.add_widget(self.homebtn)
+      
+      self.checkedbtn=MDRectangleFlatButton()
+      self.checkedbtn.text='Mark As Checked Out'
+      self.checkedbtn.pos_hint={"center_x": 0.5, "center_y": 0.15}
+      self.checkedbtn.size_hint_x=.6
+      self.checkedbtn.theme_text_color="Custom"
+      self.checkedbtn.line_color=[ 0, 0, 0, 0 ]
+      self.checkedbtn.text_color=[ 1, 1, 1, 1 ]
+      self.checkedbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+
 
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.rview)   
+      self.blout.add_widget(self.rview)
+      self.add_widget(self.checkedbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
       
@@ -350,6 +366,7 @@ class AllPersScreen(Screen):
       self.registerbtn.line_color=[ 0, 0, 0, 0 ]
       self.registerbtn.text_color=[ 1, 1, 1, 1 ]
       self.registerbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+      self.registerbtn.bind(on_press=self.on_click)
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
@@ -363,6 +380,11 @@ class AllPersScreen(Screen):
 
       
       return self.blout
+   
+   def on_click(self, obj):
+      pos = self.rview.to_local(self.rview.center_x, self.rview.height)
+      idx = self.rview.layout_manager.get_view_index_at(pos)
+      print(self.rview.data[idx])
    
    def on_leave(self, *args):
       self.clear_widgets()
