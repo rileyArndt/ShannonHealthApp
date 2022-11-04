@@ -61,23 +61,16 @@ class ReadyRV(RecycleView):
       
       c = mydb.cursor()
       
-      c.execute("""SELECT * FROM products WHERE shipped = 'Y'""")
+      c.execute("""SELECT id, product_name, branch_name, price, ship_date FROM branch
+      INNER JOIN products ON branch.branch_id = products.branch_id
+      WHERE shipped = 'Y'
+      ORDER BY branch_name""")
       records = c.fetchall()     
-      content = []
+      self.content = []
       
       for record in records:
-         content.append(record[0] + "        " + record[1] + "        " + record[2] + "        $" + str(record[3]))
+         self.content.append((record[0], record[1], record[2], "$" + str(record[3]), str(record[4])))
       
-      for item in content:
-         self.data.append(
-         {
-            "viewclass": "CustomOneLineIconListItem",
-            "icon": "medical-bag",
-            "theme_icon_color": 'Custom',
-            "icon_color": [23/255, 135/255, 84/255, 1],
-            "text": item
-         }
-      )
 
 
 class PerscriptionScreen(Screen):
@@ -198,7 +191,7 @@ class PersLookScreen(Screen):
       self.ibtn.icon='magnify'
       self.inlout.add_widget(self.ibtn)
 
-      self.rview = ReadyRV()
+      # self.rview = ReadyRV()
 
       
       self.itxtfield=MDTextField()
@@ -245,12 +238,28 @@ class PersLookScreen(Screen):
       self.checkedbtn.text_color=[ 1, 1, 1, 1 ]
       self.checkedbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
 
+      self.rview = ReadyRV()
+      self.table = MDDataTable(
+      pos_hint={"center_x": 0.5, "center_y": 0.5},
+      size_hint={0.9, 0.6},
+      check=True,
+      rows_num=15,
+      column_data=[
+         ("ID", dp(20)),
+         ("Name", dp(20)),
+         ("Pharmacy", dp(20)),
+         ("Price", dp(20)),
+         ("Shipped Date", dp(20))
+      ],
+      row_data=self.rview.content         
+      )
+
 
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.rview)
+      self.blout.add_widget(self.table)
       self.add_widget(self.checkedbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
@@ -395,6 +404,7 @@ class AllPersScreen(Screen):
    
    def on_click(self, obj):
       pos = self.rview.to_local(self.rview.top, self.rview.height)
+      print(pos)
       idx = self.rview.layout_manager.get_view_index_at(pos)
       idx = idx
       self.full_id = self.rview.data[idx]['text'][:6]
