@@ -10,6 +10,7 @@ ScreenManager:
    PersLookScreen:
 
 <CustomOneLineIconListItem>
+   on_release: root.print_item(self)
    IconLeftWidget:
       icon: root.icon
       theme_text_color: "Custom"
@@ -36,11 +37,10 @@ ScreenManager:
    key_size: 'height' 
    
    RecycleBoxLayout:
-      default_size: None, dp(48)
-      default_size_hint: 1, None
-      padding: dp(10)
-      size_hint_y: None
-      height: self.minimum_height
+      # default_size: dp(48), dp(48)
+      # default_size_hint: 1, 1
+      # padding: dp(10)
+      # size_hint_y: None
       orientation: 'vertical'
 
 <CartRV>

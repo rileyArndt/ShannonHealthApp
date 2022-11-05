@@ -241,15 +241,17 @@ class PersLookScreen(Screen):
       self.rview = ReadyRV()
       self.table = MDDataTable(
       pos_hint={"center_x": 0.5, "center_y": 0.5},
-      size_hint={0.9, 0.6},
+      background_color_header=[ 23/255, 135/255, 84/255, 1 ],
+      background_color_selected_cell=[ 23/255, 135/255, 84/255, .5/1 ],
       check=True,
+      use_pagination=True,
       rows_num=15,
       column_data=[
-         ("ID", dp(20)),
-         ("Name", dp(20)),
-         ("Pharmacy", dp(20)),
-         ("Price", dp(20)),
-         ("Shipped Date", dp(20))
+         ("ID", dp(30)),
+         ("Name", dp(30)),
+         ("Pharmacy", dp(30)),
+         ("Price", dp(30)),
+         ("Shipped Date", dp(30))
       ],
       row_data=self.rview.content         
       )
@@ -385,7 +387,18 @@ class AllPersScreen(Screen):
       self.registerbtn.line_color=[ 0, 0, 0, 0 ]
       self.registerbtn.text_color=[ 1, 1, 1, 1 ]
       self.registerbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
-      self.registerbtn.bind(on_press=self.on_click)
+      self.registerbtn.bind(on_press=self.update_view)
+      
+      self.clearbtn=MDRectangleFlatButton()
+      self.clearbtn.text='Clear'
+      self.clearbtn.pos_hint={"center_x": 0.5, "center_y": 0.05}
+      self.registerbtn.size_hint_x=.6
+      self.registerbtn.theme_text_color="Custom"
+      self.clearbtn.line_color=[ 0, 0, 0, 0 ]
+      self.clearbtn.text_color=[ 1, 1, 1, 1 ]
+      self.clearbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+      self.clearbtn.bind(on_press=self.clear)
+
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
@@ -393,28 +406,40 @@ class AllPersScreen(Screen):
       self.blout.add_widget(self.rview)
       self.blout.add_widget(self.cartlabel)
       self.blout.add_widget(self.cview)   
+      self.add_widget(self.clearbtn)
       self.add_widget(self.registerbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
-      
 
-
-      
       return self.blout
    
-   def on_click(self, obj):
-      pos = self.rview.to_local(self.rview.top, self.rview.height)
-      print(pos)
-      idx = self.rview.layout_manager.get_view_index_at(pos)
-      idx = idx
-      self.full_id = self.rview.data[idx]['text'][:6]
-      self.update_view()
-      print(self.rview.data[idx]['text'][:6] + ' ' + str(self.rview.data[idx]['index']))
-   
-   def update_view(self):
-      query = "SELECT id, product_name, price FROM products WHERE id = '" + self.full_id + "'"
-      self.c.execute(query)
-      records = self.c.fetchall()
+   def clear(self, obj):
+      self.cartdb = mysql.connector.connect(
+         host = "localhost",
+         user = "test_user",
+         passwd = "pass",
+         database = "testing_features"
+      )
+       
+      self.c2 = self.cartdb.cursor()
+      query = "DELETE FROM cart"
+      self.c2.execute(query)
+      self.cartdb.commit()
+      
+   def update_view(self, obj):
+      self.cartdb = mysql.connector.connect(
+         host = "localhost",
+         user = "test_user",
+         passwd = "pass",
+         database = "testing_features"
+      )
+      
+      self.c2 = self.cartdb.cursor()
+      
+      query = "SELECT * FROM cart"
+      self.c2.execute(query)
+      self.cview.data = []
+      records = self.c2.fetchall()
       for name in records:
          self.cview.data.append(
          {
