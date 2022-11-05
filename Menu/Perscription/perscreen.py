@@ -237,6 +237,7 @@ class PersLookScreen(Screen):
       self.checkedbtn.line_color=[ 0, 0, 0, 0 ]
       self.checkedbtn.text_color=[ 1, 1, 1, 1 ]
       self.checkedbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+      self.checkedbtn.bind(on_press=self.remove_rows)
 
       self.rview = ReadyRV()
       self.table = MDDataTable(
@@ -270,6 +271,13 @@ class PersLookScreen(Screen):
 
       
       return self.blout
+   
+   def remove_rows(self, obj):
+      rows2remove = self.table.get_row_checks()
+      
+      for r in rows2remove:
+         self.table.remove_row(tuple(r))
+
    
    def go_back(self, obj):
       self.manager.current = 'pscreen'
@@ -389,11 +397,18 @@ class AllPersScreen(Screen):
       self.registerbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
       self.registerbtn.bind(on_press=self.update_view)
       
+      self.submitbtn=MDRectangleFlatButton()
+      self.submitbtn.text='Submit'
+      self.submitbtn.pos_hint={"center_x": 0.5, "center_y": 0.10}
+      self.submitbtn.size_hint_x=.6
+      self.submitbtn.theme_text_color="Custom"
+      self.submitbtn.line_color=[ 0, 0, 0, 0 ]
+      self.submitbtn.text_color=[ 1, 1, 1, 1 ]
+      self.submitbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
+      
       self.clearbtn=MDRectangleFlatButton()
       self.clearbtn.text='Clear'
       self.clearbtn.pos_hint={"center_x": 0.5, "center_y": 0.05}
-      self.registerbtn.size_hint_x=.6
-      self.registerbtn.theme_text_color="Custom"
       self.clearbtn.line_color=[ 0, 0, 0, 0 ]
       self.clearbtn.text_color=[ 1, 1, 1, 1 ]
       self.clearbtn.md_bg_color=[ 23/255, 135/255, 84/255, 1  ]
@@ -407,6 +422,7 @@ class AllPersScreen(Screen):
       self.blout.add_widget(self.cartlabel)
       self.blout.add_widget(self.cview)   
       self.add_widget(self.clearbtn)
+      self.add_widget(self.submitbtn)
       self.add_widget(self.registerbtn)
       self.blout.add_widget(self.buttons_lout)
       self.add_widget(self.blout)
@@ -425,6 +441,16 @@ class AllPersScreen(Screen):
       query = "DELETE FROM cart"
       self.c2.execute(query)
       self.cartdb.commit()
+      self.cview.data = []
+      records = self.c2.fetchall()
+      for name in records:
+         self.cview.data.append(
+         {
+            "viewclass": "CustomOneLineIconListItem",
+            "icon": "medical-bag",
+            "text": name[0] + "        " + name[1] + "        " + str(name[2])                
+            }
+         )
       
    def update_view(self, obj):
       self.cartdb = mysql.connector.connect(
