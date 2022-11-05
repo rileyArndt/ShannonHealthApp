@@ -277,6 +277,10 @@ class PersLookScreen(Screen):
       
       for r in rows2remove:
          self.table.remove_row(tuple(r))
+   
+   def on_leave(self, *args):
+      self.clear_widgets()
+      
 
    
    def go_back(self, obj):
