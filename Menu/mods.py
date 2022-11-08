@@ -10,7 +10,6 @@ import pyautogui
 
 # Here are some useful modules for
 # experimenting with the kivy interface.
-
 from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivymd.uix.datatables import MDDataTable

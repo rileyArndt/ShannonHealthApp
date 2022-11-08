@@ -342,7 +342,8 @@ ScreenManager:
          ScrollView:
             MDList:
                OneLineIconListItem:
-                  text: 'Settings'
+                  text: 'Dark Mode'
+                  on_release: app.switch_mode()
                   ImageLeftWidget:
                      icon: 'application-settings'
                   
@@ -350,6 +351,7 @@ ScreenManager:
                   text: 'Logout'
                   ImageLeftWidget:
                      icon: 'logout'
+
 """
 
 

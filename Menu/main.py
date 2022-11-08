@@ -64,8 +64,14 @@ class Atestcase(unittest.TestCase):
 # Builds the application.
 class MainApp(MDApp):
    def build(self):
+
       screen = Builder.load_string(complete_app_builder)
       return screen  
+   
+   def switch_mode(self):
+      self.theme_cls.theme_style = (
+         "Dark" if self.theme_cls.theme_style == "Light" else "Light"
+      )
 
    
 # Runs the application.
