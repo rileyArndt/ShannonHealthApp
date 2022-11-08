@@ -37,8 +37,8 @@ ScreenManager:
    key_size: 'height' 
    
    RecycleBoxLayout:
-      # default_size: dp(48), dp(48)
-      # default_size_hint: 1, 1
+      default_size: dp(48), dp(48)
+      default_size_hint: 1, 1
       # padding: dp(10)
       # size_hint_y: None
       orientation: 'vertical'

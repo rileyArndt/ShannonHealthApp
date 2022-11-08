@@ -245,7 +245,7 @@ class PersLookScreen(Screen):
       background_color_header=[ 23/255, 135/255, 84/255, 1 ],
       background_color_selected_cell=[ 23/255, 135/255, 84/255, .5/1 ],
       check=True,
-      use_pagination=True,
+      padding=dp(15),
       rows_num=15,
       column_data=[
          ("ID", dp(30)),
@@ -256,15 +256,21 @@ class PersLookScreen(Screen):
       ],
       row_data=self.rview.content         
       )
+      
+      
+      self.hm = RelativeLayout()
+      self.hm.add_widget(self.table)
+      self.hm.size_hint_y=.67
+      self.hm.pos_hint={"center_x": 0.5, "center_y": 0.5}
 
 
 
       self.inlout.add_widget(self.itxtfield)
       self.txtlout.add_widget(self.inlout)
       self.blout.add_widget(self.txtlout)
-      self.blout.add_widget(self.table)
       self.add_widget(self.checkedbtn)
       self.blout.add_widget(self.buttons_lout)
+      self.add_widget(self.hm)
       self.add_widget(self.blout)
       
 
@@ -295,16 +301,10 @@ class PersLookScreen(Screen):
       self.clear_widgets()
       
    def search(self, obj):
-      self.rview.data = []
-      for name in self.records:
+      self.table.row_data = ()
+      for name in self.rview.content:
          if self.itxtfield.text.lower() in name[0].lower() or self.itxtfield.text.lower() in name[1].lower() or self.itxtfield.text.lower() in name[2].lower():
-            self.rview.data.append(
-               {
-                  "viewclass": "CustomOneLineIconListItem",
-                  "icon": "medical-bag",
-                  "text": name[0] + "        " + name[1] + "        " + name[2]                
-               }
-            )
+            self.table.row_data.append(name)
             print(name)
             
 
