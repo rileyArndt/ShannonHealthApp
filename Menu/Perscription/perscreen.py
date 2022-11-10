@@ -7,6 +7,8 @@ from matplotlib.patches import Rectangle
 from matplotlib.pyplot import bar
 from matplotlib.ticker import MaxNLocator
 from Chatbot import chatresponses
+
+
 from str_builder import *
 from main import *
 
@@ -256,6 +258,8 @@ class PersLookScreen(Screen):
       ],
       row_data=self.rview.content         
       )
+      
+      assert len(self.rview.content) < 0
       
       
       self.hm = RelativeLayout()

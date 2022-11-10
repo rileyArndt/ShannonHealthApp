@@ -48,19 +48,6 @@ sm.add_widget(MainScreen(name='main'))
 
 
 
-# Attempting some automated testing
-class Atestcase(unittest.TestCase):
-   
-   def setUp(self):
-      pass
-   
-   def test_this(self):
-      # place test here
-      a = 1
-      self.assertEqual(a, 1)
-      
-      
-
 # Builds the application.
 class MainApp(MDApp):
    def build(self):

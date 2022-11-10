@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import requests
 import calendar
 import datetime
+import unittest
 import time
 
 try:
@@ -51,6 +52,7 @@ def get_stories():
       return s
    except:
       return not_connected()
+
    
    
 def get_shannon_info():
@@ -89,6 +91,7 @@ def get_wait_times():
       return wait_times.text
    except:
       return not_connected()
+
 def get_women_location():
    """Prints the location"""
    try:
@@ -124,3 +127,6 @@ def news_item():
       return not_connected()
 
 print(news_item())
+
+if __name__ == '__main__':
+   unittest.main()
