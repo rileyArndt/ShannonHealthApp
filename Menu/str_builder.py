@@ -94,24 +94,27 @@ ScreenManager:
          pos: self.pos
          radius: [23, 23, 23, 0]
 
+
+
 <PerscriptionScreen>:
    name: 'pscreen'
    MDFloatLayout:
       size_hint_y: .11
       pos_hint: {"center_y": .95}
-      md_bg_color: 240/255, 240/255, 240/255, 1
+      md_bg_color: 23/255, 135/255, 84/255, 1
       MDIconButton:
          icon: 'keyboard-backspace'
          halign: 'left'
          theme_icon_color: 'Custom'
-         icon_color: 23/255, 135/255, 84/255, 1
+         icon_color: 240/255, 240/255, 240/255, 1
          pos_hint: {"center_y": .5}
          on_press:
             root.manager.transition.direction = 'right'
             root.manager.current = 'main'  
       MDLabel:
          text: "Perscription Control"
-         color: 23/255, 135/255, 84/255, 1
+         theme_text_color: "Custom"
+         text_color: 240/255, 240/255, 240/255, 1
          font_style: "H5"
          pos_hint: {"center_y": .5}
          halign: "center" 
@@ -196,7 +199,7 @@ ScreenManager:
    icon_size: dp(30)
    image:''
    text:""
-   # md_bg_color: self.theme_cls.primary_dark
+   md_bg_color: self.theme_cls.primary_light
    # text_color: 23/255, 135/255, 84/255, 1
    subtext: ''
    items_remaining: ''
@@ -231,9 +234,9 @@ ScreenManager:
          pos_hint: {"top": 1}
          title: "Hello, User"
          halign: "center"
-         specific_text_color: [ 23/255, 135/255, 84/255, 1 ]
+         specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
          font_style: "H4"
-         md_bg_color: [ 240/255, 240/255, 240/255, 1 ]
+         md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
          elevation: 8
          left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
 
