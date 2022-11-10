@@ -354,13 +354,13 @@ ScreenManager:
                OneLineIconListItem:
                   text: 'Dark Mode'
                   on_release: app.switch_mode()
-                  ImageLeftWidget:
-                     icon: 'application-settings'
+                  icon: 'application-settings'
                   
                OneLineIconListItem:
                   text: 'Logout'
-                  ImageLeftWidget:
-                     icon: 'logout'
+                  icon: 'logout'
+                  on_release: app.get_out()
+
 
 """
 

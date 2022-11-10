@@ -73,6 +73,9 @@ class MainApp(MDApp):
          "Dark" if self.theme_cls.theme_style == "Light" else "Light"
       )
       pass
+   
+   def get_out(self):
+      exit(0)
 
    
 # Runs the application.
