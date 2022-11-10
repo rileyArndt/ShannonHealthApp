@@ -155,8 +155,10 @@ ScreenManager:
                   size_hint_y: 0.1
                   # height: 200
                   text: "Latest Perscription Offers"
-                  color: 23/255, 135/255, 84/255, 1
+                  theme_text_color: "Custom"         
+                  text_color: 23/255, 135/255, 84/255, 1
                   font_style: "H5"
+                  font_size: dp(20)
                      
             MDBoxLayout:
                orientation: 'vertical'
@@ -199,8 +201,9 @@ ScreenManager:
    icon_size: dp(30)
    image:''
    text:""
-   md_bg_color: self.theme_cls.primary_light
-   # text_color: 23/255, 135/255, 84/255, 1
+   md_bg_color: [ 196/255, 255/255, 215/255, 1 ]
+   theme_text_color: "Custom"
+   text_color: 240/255, 240/255, 240/255, 1
    subtext: ''
    items_remaining: ''
    height:dp(175)
@@ -214,6 +217,8 @@ ScreenManager:
       halign: "center"
       valign: "bottom"
       text: root.text
+      theme_text_color: "Custom"
+      text_color: 0, 0, 0, 1
    MDLabel:
       halign: "center"
       text: root.subtext
