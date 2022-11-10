@@ -69,9 +69,10 @@ class MainApp(MDApp):
       return screen  
    
    def switch_mode(self):
-      self.theme_cls.theme_style = (
-         "Dark" if self.theme_cls.theme_style == "Light" else "Light"
-      )
+      # self.theme_cls.theme_style = (
+      #    "Dark" if self.theme_cls.theme_style == "Light" else "Light"
+      # )
+      pass
 
    
 # Runs the application.
