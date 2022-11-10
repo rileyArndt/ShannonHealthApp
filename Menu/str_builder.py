@@ -245,10 +245,18 @@ ScreenManager:
          md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
          elevation: 8
          left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-         title: "Hello, User"
-         halign: "center"
-         specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
-         font_style: "H4"
+         # title: "Shannon Medical Center"
+         # anchor_title: "center"
+         # halign: "center"
+         # specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
+         # font_style: "H5"
+         MDLabel:
+            text: 'Shannon Medical Center'
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: [ 240/255, 240/255, 240/255, 1  ]
+            font_style: "H5"
+            pos_hint_y: {"center_y": 0.8}
 
    MDBoxLayout:
       pos_hint_y: {"top": 0.23}
