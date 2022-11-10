@@ -152,7 +152,9 @@ ScreenManager:
                   pos_hint_y: {"center_y": 0.5}
                   halign: "center"
                   #md_bg_color: 1, 1, 84/255, 1
-                  size_hint_y: 0.1
+                  size_hint_y: 0.3
+                  size_hint_x: 0.4
+                  width: 500
                   # height: 200
                   text: "Latest Perscription Offers"
                   theme_text_color: "Custom"         
@@ -204,6 +206,7 @@ ScreenManager:
    md_bg_color: [ 196/255, 255/255, 215/255, 1 ]
    theme_text_color: "Custom"
    text_color: 240/255, 240/255, 240/255, 1
+   ripple_behavior: True
    subtext: ''
    items_remaining: ''
    height:dp(175)
@@ -237,14 +240,15 @@ ScreenManager:
       MDTopAppBar:
          id: 'topbar'
          pos_hint: {"top": 1}
+         size_hint_y: 0.105
+         height: 300
+         md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
+         elevation: 8
+         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
          title: "Hello, User"
          halign: "center"
          specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
          font_style: "H4"
-         md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
-         elevation: 8
-         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
 
    MDBoxLayout:
       pos_hint_y: {"top": 0.23}
@@ -338,13 +342,13 @@ ScreenManager:
          
          
          MDLabel:
-            text: 'This is a test'
+            text: 'Shannon Account'
             font_style: 'Subtitle1'
             size_hint_y: None
             height: self.texture_size[1]
             
          MDLabel:
-            text: '  justatest@angelo.edu'
+            text: '  shannonacc@angelo.edu'
             font_style: 'Caption'
             size_hint_y: None
             height: self.texture_size[1]
@@ -352,13 +356,13 @@ ScreenManager:
          ScrollView:
             MDList:
                OneLineIconListItem:
+                  icon: 'application-settings'
                   text: 'Dark Mode'
                   on_release: app.switch_mode()
-                  icon: 'application-settings'
                   
                OneLineIconListItem:
-                  text: 'Logout'
                   icon: 'logout'
+                  text: 'Logout'
                   on_release: app.get_out()
 
 
