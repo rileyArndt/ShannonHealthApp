@@ -3,17 +3,17 @@
 complete_app_builder = """
 # Add your functional screens here
 ScreenManager:
+   MainScreen:
+   ChatScreen:
+   PerscriptionScreen:
+   AllPersScreen:
+   PersLookScreen:
    Login:
    Forgot:
    Forgot2:
    Forgot3:
    Create:
    Create2:
-   MainScreen:
-   ChatScreen:
-   PerscriptionScreen:
-   AllPersScreen:
-   PersLookScreen:
 
 <CustomOneLineIconListItem>
    on_release: root.print_item(self)
@@ -394,7 +394,9 @@ ScreenManager:
 <Login>:
    name: 'login'
    Screen:
-      MDBoxLayout:
+      MDCard:
+         size_hint: None, None
+         size: 300, 600
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
          elevation: 10
          padding: 25
@@ -410,51 +412,51 @@ ScreenManager:
             height: self.texture_size[1]
             padding_y: 15
 
-         MDTextField:
-            id: user
-            hint_text: "Email"
-            icon_right: "account"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
+            MDTextField:
+               id: user
+               hint_text: "Email"
+               icon_right: "account"
+               size_hint_x: None
+               width: 200
+               font_size: 18
+               pos_hint: {"center_x": 0.5}
 
 
-         MDTextField:
-            id: password
-            hint_text: "Password"
-            icon_right: "eye-off"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
-            password: True
+            MDTextField:
+               id: password
+               hint_text: "Password"
+               icon_right: "eye-off"
+               size_hint_x: None
+               width: 200
+               font_size: 18
+               pos_hint: {"center_x": 0.5}
+               password: True
 
-         MDLabel:
-            id: warning_label
-            text: " "
-            font_size: 12
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
+            MDLabel:
+               id: warning_label
+               text: " "
+               font_size: 12
+               halign:'center'
+               size_hint_y: None
+               height: self.texture_size[1]
 
-         MDRoundFlatButton:
-            text: "Log In"
-            font_size: 20
-            pos_hint: {"center_x": 0.5}
-            on_press: app.logger()
+            MDRoundFlatButton:
+               text: "Log In"
+               font_size: 20
+               pos_hint: {"center_x": 0.5}
+               on_press: app.logger()
 
-         MDFlatButton:
-            text: "Create account"
-            font_size: 12
-            pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "main"
+            MDFlatButton:
+               text: "Create account"
+               font_size: 12
+               pos_hint: {"center_x": 0.5}
+               on_release: root.manager.current = "create"
 
-         MDFlatButton:
-            text: "Forgot Password"
-            font_size: 10
-            pos_hint: {"center_x": 0.5}
-            on_press: root.manager.current = "forgot"
+            MDFlatButton:
+               text: "Forgot Password"
+               font_size: 10
+               pos_hint: {"center_x": 0.5}
+               on_press: root.manager.current = "forgot"
 
 
 
@@ -463,7 +465,9 @@ ScreenManager:
 <Forgot>:
    name: 'forgot'
    Screen:
-      MDBoxLayout:
+      MDCard:
+         size_hint: None, None
+         size: 300, 600
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
          elevation: 10
          padding: 25
@@ -518,7 +522,9 @@ ScreenManager:
 <Forgot2>:
    name: 'forgot2'
    Screen:
-      MDBoxLayout:
+      MDCard:
+         size_hint: None, None
+         size: 300, 600
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
          elevation: 10
          padding: 25
@@ -571,200 +577,206 @@ ScreenManager:
                on_release: ''
 
 <Forgot3>:
-   name: 'forgot3'
-   Screen:
-      MDBoxLayout:
-         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
-         padding: 25
-         spacing: 25
-         orientation: 'vertical'
+    name: 'forgot3'
+    Screen:
+        MDCard:
+            size_hint: None, None
+            size: 300, 600
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
 
-         MDLabel:
-            id: welcome_label
-            text: "Enter Password"
-            font_size: 28
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
+            MDLabel:
+                id: welcome_label
+                text: "Enter Password"
+                font_size: 28
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
 
-         MDTextField:
-            id: mail1
-            hint_text: "Enter New Password"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
-            password: True
+            MDTextField:
+                id: mail1
+                hint_text: "Enter New Password"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: True
 
-         MDTextField:
-            id: mail2
-            hint_text: "Confirm Password"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
-            password: True
+            MDTextField:
+                id: mail2
+                hint_text: "Confirm Password"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: True
 
 
-         MDLabel:
-            id: warning_label
-            text: " "
-            font_size: 12
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
+            MDLabel:
+                id: warning_label
+                text: " "
+                font_size: 12
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
 
-         MDRoundFlatButton:
-            id:email
-            text: "Change Password"
-            font_size: 20
-            pos_hint: {"center_x": 0.5}
-            on_press: app.forgot3()
+            MDRoundFlatButton:
+                id:email
+                text: "Change Password"
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                on_press: app.forgot3()
 
-         MDFlatButton:
-            text: "Go Back"
-            font_size: 12
-            pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "login"
+            MDFlatButton:
+                text: "Go Back"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
+                on_release: root.manager.current = "login"
 
-         MDFlatButton:
-            text: "-"
-            font_size: 10
-            pos_hint: {"center_x": 0.5}
-            on_release: ''
-             
+            MDFlatButton:
+                text: "-"
+                font_size: 10
+                pos_hint: {"center_x": 0.5}
+                on_release: ''
+                
     
 
 <Create>:
-   name: 'create'
-   Screen:
-      MDBoxLayout:
-         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
-         padding: 25
-         spacing: 25
-         orientation: 'vertical'
+    name: 'create'
+    Screen:
+        MDCard:
+            size_hint: None, None
+            size: 300, 600
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
 
-         MDLabel:
-            id: welcome_label
-            text: "Create Account"
-            font_size: 30
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
+            MDLabel:
+                id: welcome_label
+                text: "Create Account"
+                font_size: 30
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
 
-         MDTextField:
-            id: mail1
-            hint_text: "Email"
-            icon_right: "account"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
+            MDTextField:
+                id: mail1
+                hint_text: "Email"
+                icon_right: "account"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
 
 
-         MDTextField:
-            id: mail2
-            hint_text: "Re-enter Email"
-            #icon_right: "eye-off"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
+            MDTextField:
+                id: mail2
+                hint_text: "Re-enter Email"
+                #icon_right: "eye-off"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
 
-         MDLabel:
-            id: warning_label
-            text: " "
-            font_size: 12
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
+            MDLabel:
+                id: warning_label
+                text: " "
+                font_size: 12
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
 
-         MDRoundFlatButton:
-            text: "Validate Email"
-            font_size: 20
-            pos_hint: {"center_x": 0.5}
-            on_press: app.create()
+            MDRoundFlatButton:
+                text: "Validate Email"
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                on_press: app.create()
 
-         MDFlatButton:
-            text: "Go Back"
-            font_size: 12
-            pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "login"
+            MDFlatButton:
+                text: "Go Back"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
+                on_release: root.manager.current = "login"
 
-         MDFlatButton:
-            text: "-"
-            font_size: 10
-            pos_hint: {"center_x": 0.5}
-            on_release: ''
+            MDFlatButton:
+                text: "-"
+                font_size: 10
+                pos_hint: {"center_x": 0.5}
+                on_release: ''
 
 <Create2>:
-   name: 'create2'
-   Screen:
-      MDBoxLayout:
-         pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
-         padding: 25
-         spacing: 25
-         orientation: 'vertical'
-         
-         MDLabel:
-            id: welcome_label
-            text: "Enter password for account"
-            font_size: 25
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
+    name: 'create2'
+    Screen:
+        MDCard:
+            size_hint: None, None
+            size: 300, 600
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            elevation: 10
+            padding: 25
+            spacing: 25
+            orientation: 'vertical'
 
-         MDTextField:
-            id: mail1
-            hint_text: "Password"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
-            password: True
+            MDLabel:
+                id: welcome_label
+                text: "Enter password for account"
+                font_size: 25
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
+                padding_y: 15
+
+            MDTextField:
+                id: mail1
+                hint_text: "Password"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: True
 
 
-         MDTextField:
-            id: mail2
-            hint_text: "Re-enter Password"
-            #icon_right: "eye-off"
-            size_hint_x: None
-            width: 200
-            font_size: 18
-            pos_hint: {"center_x": 0.5}
-            password: True
+            MDTextField:
+                id: mail2
+                hint_text: "Re-enter Password"
+                #icon_right: "eye-off"
+                size_hint_x: None
+                width: 200
+                font_size: 18
+                pos_hint: {"center_x": 0.5}
+                password: True
 
-         MDLabel:
-            id: warning_label
-            text: " "
-            font_size: 12
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
+            MDLabel:
+                id: warning_label
+                text: " "
+                font_size: 12
+                halign:'center'
+                size_hint_y: None
+                height: self.texture_size[1]
 
-         MDRoundFlatButton:
-            text: "Create Account"
-            font_size: 20
-            pos_hint: {"center_x": 0.5}
-            on_press: app.create2()
+            MDRoundFlatButton:
+                text: "Create Account"
+                font_size: 20
+                pos_hint: {"center_x": 0.5}
+                on_press: app.create2()
 
-         MDFlatButton:
-            text: "Go Back"
-            font_size: 12
-            pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "create"
+            MDFlatButton:
+                text: "Go Back"
+                font_size: 12
+                pos_hint: {"center_x": 0.5}
+                on_release: root.manager.current = "create"
 
-         MDFlatButton:
-            text: "-"
-            font_size: 10
-            pos_hint: {"center_x": 0.5}
-            on_release: ''
+            MDFlatButton:
+                text: "-"
+                font_size: 10
+                pos_hint: {"center_x": 0.5}
+                on_release: ''
 """
 
 
