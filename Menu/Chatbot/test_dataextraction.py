@@ -1,6 +1,8 @@
 # Mitchell Martin
 # 10/11/2022
 
+# Testing the functionality of the data extractions
+
 import unittest
 from dataextraction import *
 

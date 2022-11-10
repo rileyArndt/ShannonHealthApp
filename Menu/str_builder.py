@@ -237,26 +237,38 @@ ScreenManager:
 <MainScreen>:
    name: 'main'
    FloatLayout:
-      MDTopAppBar:
+      MDBoxLayout:
          id: 'topbar'
          pos_hint: {"top": 1}
          size_hint_y: 0.105
          height: 300
          md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
-         elevation: 8
-         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+         orientation: "horizontal"
+         # elevation: 8
+         # left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
          # title: "Shannon Medical Center"
          # anchor_title: "center"
          # halign: "center"
          # specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
          # font_style: "H5"
+         MDIconButton:
+            icon: "menu"
+            halign: "left"
+            size_hint_x: 0.04
+            theme_icon_color: "Custom"
+            icon_color: 1, 1, 1, 1
+            pos_hint_y: {"center_y": 0.5}
+            on_press:
+               nav_drawer.set_state("open")
+
          MDLabel:
             text: 'Shannon Medical Center'
             halign: "center"
             theme_text_color: "Custom"
             text_color: [ 240/255, 240/255, 240/255, 1  ]
             font_style: "H5"
-            pos_hint_y: {"center_y": 0.8}
+            pos_hint_y: {"center_y": 0.5}
+
 
    MDBoxLayout:
       pos_hint_y: {"top": 0.23}

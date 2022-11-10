@@ -258,9 +258,7 @@ class PersLookScreen(Screen):
       ],
       row_data=self.rview.content         
       )
-      
-      assert len(self.rview.content) < 0
-      
+            
       
       self.hm = RelativeLayout()
       self.hm.add_widget(self.table)
@@ -290,6 +288,9 @@ class PersLookScreen(Screen):
    
    def on_leave(self, *args):
       self.clear_widgets()
+      
+   def get_records(self):
+      return self.records
       
 
    
@@ -483,9 +484,8 @@ class AllPersScreen(Screen):
             }
          )
       
-      
-      
-   
+   def get_records(self):
+      return self.cview.da
    
    def on_leave(self, *args):
       self.clear_widgets()
