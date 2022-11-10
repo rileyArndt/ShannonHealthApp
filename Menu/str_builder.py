@@ -188,6 +188,7 @@ ScreenManager:
 
 
 <ElementCard@MDCard>:
+   id: try
    size_hint_y: None
    padding: dp(20)
    radius:dp(25)
@@ -195,7 +196,8 @@ ScreenManager:
    icon_size: dp(30)
    image:''
    text:""
-   text_color: 23/255, 135/255, 84/255, 1
+   # md_bg_color: self.theme_cls.primary_dark
+   # text_color: 23/255, 135/255, 84/255, 1
    subtext: ''
    items_remaining: ''
    height:dp(175)

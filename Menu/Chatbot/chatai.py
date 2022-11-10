@@ -175,34 +175,36 @@ class ChatScreen(Screen):
    
    def robot_redirect(self):
       # Key : keywords
-      if cr.matchedresponse(self.value) == cr.B_TELEMED:
-         webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
-      elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/')
-      elif cr.matchedresponse(self.value) == cr.B_HOME:
-         self.manager.current = 'main'
-         self.manager.transition.direction = 'right'
-      elif cr.matchedresponse(self.value) == cr.B_MYCHARTLINK:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/patient-portal-mychart/')
-      elif cr.matchedresponse(self.value) == cr.B_BILL:
-         webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
-      elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/')
-      elif cr.matchedresponse(self.value) == cr.B_PHARMACY:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/services/pharmacy/')
-      elif cr.matchedresponse(self.value) == cr.B_PPAGE:
-         self.pers_return()
-      elif cr.matchedresponse(self.value) == cr.B_PRICEEST:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/pricing-and-estimates/')
-      elif cr.matchedresponse(self.value) == cr.B_SLEEP:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
-      elif cr.matchedresponse(self.value) == cr.B_CAREER:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/employment/?utm_source=loyal&utm_medium=chatbot&utm_campaign=dialog')
-      elif cr.matchedresponse(self.value) == cr.B_READY:
-         self.ready_return()
-      elif cr.matchedresponse(self.value) == cr.B_MR:
-         webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/request-medical-records/')
-
+      try:
+         if cr.matchedresponse(self.value) == cr.B_TELEMED:
+            webbrowser.open_new_tab('http://www.shannonhealth.com/services/shannon-on-demand-telemedicine/')
+         elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/')
+         elif cr.matchedresponse(self.value) == cr.B_HOME:
+            self.manager.current = 'main'
+            self.manager.transition.direction = 'right'
+         elif cr.matchedresponse(self.value) == cr.B_MYCHARTLINK:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/patient-portal-mychart/')
+         elif cr.matchedresponse(self.value) == cr.B_BILL:
+            webbrowser.open_new_tab('https://mychart.shannonhealth.org/mychart/Billing/GuestPay/PayasGuest')
+         elif cr.matchedresponse(self.value) == cr.B_WEBSITE:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/')
+         elif cr.matchedresponse(self.value) == cr.B_PHARMACY:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/services/pharmacy/')
+         elif cr.matchedresponse(self.value) == cr.B_PPAGE:
+            self.pers_return()
+         elif cr.matchedresponse(self.value) == cr.B_PRICEEST:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/pricing-and-estimates/')
+         elif cr.matchedresponse(self.value) == cr.B_SLEEP:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/services/sleep-center/')
+         elif cr.matchedresponse(self.value) == cr.B_CAREER:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/employment/?utm_source=loyal&utm_medium=chatbot&utm_campaign=dialog')
+         elif cr.matchedresponse(self.value) == cr.B_READY:
+            self.ready_return()
+         elif cr.matchedresponse(self.value) == cr.B_MR:
+            webbrowser.open_new_tab('https://www.shannonhealth.com/patients-and-visitors/request-medical-records/')
+      except:
+         print("Exception: Not conencted to the internet")
    # Returns to the perscription page.
    def pers_return(self):
       self.manager.current = 'pscreen'
