@@ -54,59 +54,67 @@ from kivy.uix.button import Button
 # Create both screens. Please note the root.manager.current: this is how
 # you can control the ScreenManager from kv. Each screen has by default a
 # property manager that gives you the instance of the ScreenManager used.
-Builder.load_string("""
-<MenuScreen>:
-    BoxLayout:
-        orientation: 'vertical'
-        Button:
-            loction1="testLocation"#grab physical location from sql later
-            loction2="testLocation2"#grab physical location from sql later
-            time1='test',time2='test'
-            border: (1,1,1,1)
-            background_normal: ''
-            background_color:(240/255, 240/255, 240/255, 1)
-            font_size:16
-            color:23/255, 135/255, 84/255, 1
-            size_hint:(1,.8)
-            text: 'Urgent Care Wait Times\\n\\n'+location1+': '+time1+'minutes\\n'+location2+': '+time2+'minutes\\n'
-            on_press:
-                root.manager.transition.direction = 'left'
-                root.manager.current = 'settings'
-        Button:
-            background_normal: ''
-            background_color:(240/255, 240/255, 240/255, 1)
-            font_size:16
-            size_hint:(1,.2)
-            color:23/255, 135/255, 84/255, 1
-            text: 'Quit'
 
-<SettingsScreen>:
-    BoxLayout:
-        Button:
-            text: 'My settings button'
-        Button:
-            text: 'Back to menu'
-            on_press:
-                root.manager.transition.direction = 'right'
-                root.manager.current = 'menu'
-""")
 
-# Declare both screens
-class MenuScreen(Screen):
-    pass
 
-class SettingsScreen(Screen):
-    pass
+
 
 class TestApp(App):
 
     def build(self):
-        # Create the screen manager
-        sm = ScreenManager()
-        sm.add_widget(MenuScreen(name='menu'))
-        sm.add_widget(SettingsScreen(name='settings'))
+        self.window = BoxLayout(orientation = 'vertical', padding = 2, spacing = 2)
 
-        return sm
+        self.button = Button(text="Call Provider",
+            size_hint=(1,.8),
+            background_normal = '',
+            font_size = 22,
+            background_color = (240/255, 240/255, 240/255, 1),
+            color = (23/255, 135/255, 84/255, 1)
+            )
+        self.button.bind(on_press=self.openMC)
+        self.window.add_widget(self.button)
+
+        self.button = Button(text="Call Shannon",
+            size_hint = (1,.8),
+            background_normal = '',
+            font_size = 22,
+            background_color = (240/255, 240/255, 240/255, 1),
+            color = (23/255, 135/255, 84/255, 1)
+            )
+        self.button.bind(on_press=self.openShannon)
+        self.window.add_widget(self.button)
+
+        self.button = Button(text="Shannon Telemed",
+            size_hint = (1,.8),
+            background_normal = '',
+            font_size = 22,
+            background_color = (240/255, 240/255, 240/255, 1),
+            color = (23/255, 135/255, 84/255, 1)
+            )
+        self.button.bind(on_press=self.openShannon)
+        self.window.add_widget(self.button)
+
+        self.button=Button(text="Back",
+            size_hint=(1,.3),
+            background_normal = '',
+            font_size = 22,
+            background_color = (240/255, 240/255, 240/255, 1),
+            color = (23/255, 135/255, 84/255, 1)
+            
+            )
+        self.window.add_widget(self.button)
+
+        return self.window
+
+    def openMC(self, instance):
+        import webbrowser
+        webbrowser.open('https://www.mychart.com/')
+
+    def openShannon(self, instance):
+        import webbrowser
+        webbrowser.open('https://www.shannonhealth.com/')
+
+        
 
 if __name__ == '__main__':
     TestApp().run()
