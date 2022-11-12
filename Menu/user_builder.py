@@ -65,7 +65,7 @@ complete_app_builder += """
             text: "Create account"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "create"
+            on_release: root.manager.current = "main"
 
          MDFlatButton:
             text: "Forgot Password"
