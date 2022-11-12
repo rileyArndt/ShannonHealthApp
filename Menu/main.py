@@ -85,7 +85,8 @@ class MainApp(MDApp):
       pass
    
    def get_out(self):
-      exit(0)
+      self.root.current = 'login'
+      self.root.direction = 'left'  
       
     
    def logger(self):

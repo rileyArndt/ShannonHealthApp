@@ -250,13 +250,6 @@ ScreenManager:
          height: 300
          md_bg_color: [ 23/255, 135/255, 84/255, 1 ]
          orientation: "horizontal"
-         # elevation: 8
-         # left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-         # title: "Shannon Medical Center"
-         # anchor_title: "center"
-         # halign: "center"
-         # specific_text_color: [ 240/255, 240/255, 240/255, 1  ]
-         # font_style: "H5"
          MDIconButton:
             icon: "menu"
             halign: "left"
@@ -396,19 +389,14 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+         
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
 
-         MDLabel:
-            id: welcome_label
-            text: "Shannon"
-            font_size: 36
-            halign:'center'
-            size_hint_y: None
-            height: self.texture_size[1]
-            padding_y: 15
 
          MDTextField:
             id: user
@@ -448,7 +436,7 @@ ScreenManager:
             text: "Create account"
             font_size: 12
             pos_hint: {"center_x": 0.5}
-            on_release: root.manager.current = "main"
+            on_release: root.manager.current = "create"
 
          MDFlatButton:
             text: "Forgot Password"
@@ -465,10 +453,13 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
 
          MDLabel:
             id: welcome_label
@@ -520,10 +511,13 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+         
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
 
          MDLabel:
             id: welcome_label
@@ -575,10 +569,14 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+         
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
+
 
          MDLabel:
             id: welcome_label
@@ -642,10 +640,14 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+         
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
+
 
          MDLabel:
             id: welcome_label
@@ -706,10 +708,14 @@ ScreenManager:
    Screen:
       MDBoxLayout:
          pos_hint: {"center_x": 0.5, "center_y": 0.5}
-         elevation: 10
          padding: 25
          spacing: 25
          orientation: 'vertical'
+         
+         Image:
+            source: 'Icons\ShannonLogo.png'
+            pos_hint: {"center_x": 0.5}
+
          
          MDLabel:
             id: welcome_label
