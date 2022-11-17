@@ -8,20 +8,29 @@ from str_builder import *
 from Perscription import perscreen
 from Chatbot import chatresponses, chatai, dataextraction
 from main import *
-      
+import mysql.connector
+from mysql.connector import Error
+import hashlib as hash
+import hashlib as hash
+from datetime import date
+import mysql.connector
+from mysql.connector import Error
+import geocoder
+import socket
+import datetime
+import hashlib as hash
+from datetime import date
+import mysql.connector
+from mysql.connector import Error
+import geocoder
+import socket
+import datetime
+
 dbpass= os.environ.get('dbpass')
 mailpass= os.environ.get('mailpass')
 
     
 def logger(self):
-   import hashlib as hash
-   from datetime import date
-   import mysql.connector
-   from mysql.connector import Error
-   import geocoder
-   import socket
-   import datetime
-
    
    connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
    user = "admin",
@@ -76,10 +85,7 @@ def logger(self):
 
 
 def create(self):
-    import hashlib as hash
-    from datetime import date
-    import mysql.connector
-    from mysql.connector import Error
+
 
     connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
     user = "admin",
@@ -111,13 +117,6 @@ def create(self):
         self.root.current = "create2"
 
 def create2(self):
-    import hashlib as hash
-    from datetime import date
-    import mysql.connector
-    from mysql.connector import Error
-    import geocoder
-    import socket
-    import datetime
 
     connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
     user = "admin",
@@ -161,11 +160,10 @@ def forgot(self):
     random.seed() 
     global seed
     seed = randint(111111,999999)
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+    try:
+        smtp = smtplib.SMTP_SSL('smtp.gmail.com', 465)
         smtp.ehlo()
         smtp.starttls()
-        smtp.ehlo()
-
         smtp.login("noreply.prototypeapp@gmail.com",mailpass)
 
         subject = "Your vertification code"
@@ -174,6 +172,8 @@ def forgot(self):
         msg = f'Subject: {subject}\n\n{body}'
 
         smtp.sendmail("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
+    except:
+        print("debug: failed to send email to " + self.root.get_screen("forgot").ids.mail1.text)
     self.root.current = "forgot2"
         
 def forgot2(self):
@@ -183,9 +183,7 @@ def forgot2(self):
         self.root.get_screen("forgot2").ids.warning_label.text = "Invalid Code"
 
 def forgot3(self):
-    import mysql.connector
-    from mysql.connector import Error
-    import hashlib as hash
+
 
     connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
     user = "admin",

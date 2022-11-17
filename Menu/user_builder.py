@@ -174,24 +174,24 @@ complete_app_builder += """
             size_hint_y: None
             height: self.texture_size[1]
 
-            MDRoundFlatButton:
-               id:email
-               text: "Confirm Code"
-               font_size: 20
-               pos_hint: {"center_x": 0.5}
-               on_press: app.forgot2()
+         MDRoundFlatButton:
+            id:email
+            text: "Confirm Code"
+            font_size: 20
+            pos_hint: {"center_x": 0.5}
+            on_press: app.forgot2()
 
-            MDFlatButton:
-               text: "Go Back"
-               font_size: 12
-               pos_hint: {"center_x": 0.5}
-               on_release: root.manager.current = "login"
+         MDFlatButton:
+            text: "Go Back"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_release: root.manager.current = "login"
 
-            MDFlatButton:
-               text: "-"
-               font_size: 10
-               pos_hint: {"center_x": 0.5}
-               on_release: ''
+         MDFlatButton:
+            text: "-"
+            font_size: 10
+            pos_hint: {"center_x": 0.5}
+            on_release: ''
 
 <Forgot3>:
    name: 'forgot3'
