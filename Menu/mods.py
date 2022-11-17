@@ -5,7 +5,6 @@
 # For testing
 import unittest
 
-import pyautogui
 
 from kivy.lang import Builder
 from kivymd.app import MDApp
