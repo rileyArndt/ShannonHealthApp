@@ -1,8 +1,5 @@
 
 # Adding all the modules
-from matplotlib.patches import Rectangle
-from matplotlib.ticker import MaxNLocator
-from numpy import full
 from mods import *
 from str_builder import *
 from Perscription import perscreen
