@@ -41,7 +41,6 @@ from kivy.uix.recycleboxlayout import *
 from kivy.uix.recycleview import RecycleView
 import mysql.connector
 import keyboard
-from numpy import minimum
 from kivy.uix.relativelayout import RelativeLayout
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.graphics import Color, Canvas, Line, RoundedRectangle
@@ -53,16 +52,9 @@ from kivy.core.text import LabelBase
 from kivy.clock import Clock
 import webbrowser
 import time
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
-from matplotlib import pyplot as plt
-import matplotlib.dates as mdates
-from matplotlib import cm
-from matplotlib.colors import ListedColormap, LinearSegmentedColormap
-from matplotlib import colors as mcolors, path
 import datetime as dt
 import numpy as np
 import pandas as pd
-import matplotlib.dates as mdates
 from kivy.uix.behaviors import FocusBehavior
 from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.properties import BooleanProperty

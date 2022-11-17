@@ -1,13 +1,12 @@
 # Mitchell Martin
 # 10/15/2022
 # Tests for extracting data from shannon.
-from multiprocessing.connection import wait
 from bs4 import BeautifulSoup
 import requests
 import calendar
 import datetime
 import unittest
-import time
+
 
 try:
    page = requests.get('https://www.shannonhealth.com/')

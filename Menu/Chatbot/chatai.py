@@ -3,8 +3,6 @@
 
 
 # Adding all the modules
-from matplotlib.patches import Rectangle
-from matplotlib.ticker import MaxNLocator
 from mods import *
 from Chatbot import chatresponses as cr
 from str_builder import *
