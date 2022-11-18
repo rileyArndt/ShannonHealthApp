@@ -46,9 +46,9 @@ class CustomOneLineIconListItem(OneLineIconListItem):
       
    def print_item(self, instance):
       self.cartdb = mysql.connector.connect(
-         host = "localhost",
-         user = "test_user",
-         passwd = "pass",
+         host = "172.87.116.95",
+         user = "shannon_user",
+         passwd = "Matthew#5:27",
          database = "testing_features"
       )
       self.c2 = self.cartdb.cursor()
