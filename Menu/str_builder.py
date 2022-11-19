@@ -20,6 +20,7 @@ ScreenManager:
    PerscriptionScreen:
    AllPersScreen:
    PersLookScreen:
+   Physical_Screen:
 
 <CustomOneLineIconListItem>
    on_release: root.print_item(self)
@@ -76,6 +77,10 @@ ScreenManager:
 
 <PersLookScreen>
    name: 'perlscr'
+   
+<Physical_Screen>
+   name: 'physc'
+   MyGridLayout:
    
 <Command>
    size_hint_y: None   
@@ -314,6 +319,13 @@ ScreenManager:
                   on_press:
                      root.manager.transition.direction = 'left'
                      root.manager.current = 'chats'  
+               ElementCard:
+                  image: "Icons\physicalicon.png"
+                  text: "Physical Therapy"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'physc'  
+                     
             # ScrollView:
             #    do_scroll_y: True
             #    do_scroll_x: False        

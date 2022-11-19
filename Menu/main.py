@@ -8,6 +8,8 @@ from str_builder import *
 from Perscription import perscreen
 from Chatbot import chatresponses, chatai, dataextraction
 from LoginInfo import *
+from Physical import PhysicalScreen
+
 
 
 
@@ -35,7 +37,8 @@ class Forgot2 (Screen):
 class Forgot3 (Screen):
     pass
 
-
+class Physical_Screen(Screen):
+   pass
 
 
 class CustomOneLineIconListItem(OneLineIconListItem):
