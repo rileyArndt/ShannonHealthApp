@@ -8,7 +8,6 @@ from str_builder import *
 from Perscription import perscreen
 from Chatbot import chatresponses, chatai, dataextraction
 from LoginInfo import *
-from Physical import PhysicalScreen
 
 
 
