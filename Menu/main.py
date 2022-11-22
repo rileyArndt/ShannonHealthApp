@@ -12,6 +12,9 @@ from kivymd.icon_definitions import md_icons
 from kivymd import icon_definitions
 import kivymd.uix.navigationdrawer
 from mysql.connector.locales.eng import client_error
+import mysql
+import kivymd.uix.datatables
+import kivymd.uix.dropdownitem
 
 dbpass= os.environ.get('dbpass')
 mailpass= os.environ.get('mailpass')
@@ -105,4 +108,5 @@ MainApp.forgot3 = forgot3
 # Runs the application.
 if __name__ == '__main__':
    MainApp().run()
+
 
