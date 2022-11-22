@@ -172,17 +172,20 @@ def forgot(self):
     #    ygm.send("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
     #except:
     #    print("debug: failed to send email to " + self.root.get_screen("forgot").ids.mail1.text)
-    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.login("noreply.prototypeapp@gmail.com",mailpass)
+    try:
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.login("noreply.prototypeapp@gmail.com",mailpass)
 
-        subject = "Your vertification code"
-        body = seed
+            subject = "Your vertification code"
+            body = seed
 
-        msg = f'Subject: {subject}\n\n{body}'
-        smtp.sendmail("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
-    self.root.current = "forgot2"
+            msg = f'Subject: {subject}\n\n{body}'
+            smtp.sendmail("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
+        self.root.current = "forgot2"
+    except:
+        print("debug: failed to send email to " + self.root.get_screen("forgot").ids.mail1.text)
         
 def forgot2(self):
     if self.root.get_screen("forgot2").ids.mail1.text == str(seed):
