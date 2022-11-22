@@ -18,9 +18,9 @@ class RV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
       mydb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
@@ -52,9 +52,9 @@ class ReadyRV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
       mydb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
@@ -119,9 +119,9 @@ class RecentLayout(MDBoxLayout):
    def __init__(self, *args, **kwargs):
       super().__init__(*args, **kwargs)
       mydb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
@@ -162,9 +162,9 @@ class PersLookScreen(Screen):
    def on_enter(self, *args):
       # Database Connection
       self.mydb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
@@ -318,9 +318,9 @@ class AllPersScreen(Screen):
    def on_enter(self, *args):
       # Database Connection
       self.mydb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
@@ -437,9 +437,9 @@ class AllPersScreen(Screen):
    
    def clear(self, obj):
       self.cartdb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
        
@@ -460,9 +460,9 @@ class AllPersScreen(Screen):
       
    def update_view(self, obj):
       self.cartdb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       
