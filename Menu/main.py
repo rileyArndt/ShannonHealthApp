@@ -9,8 +9,13 @@ from Perscription import perscreen
 from Chatbot import chatresponses, chatai, dataextraction
 from LoginInfo import *
 
+from kivymd.icon_definitions import md_icons
+from kivymd import icon_definitions
+import kivymd.uix.navigationdrawer
+from mysql.connector.locales.eng import client_error
 
-
+dbpass= os.environ.get('dbpass')
+mailpass= os.environ.get('mailpass')
 
 class Login (Screen):
     pass
@@ -48,9 +53,9 @@ class CustomOneLineIconListItem(OneLineIconListItem):
       
    def print_item(self, instance):
       self.cartdb = mysql.connector.connect(
-         host = "192.168.56.1",
-         user = "shannon_user",
-         passwd = "Matthew#5:27",
+         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+         user = "admin",
+         passwd = dbpass,
          database = "testing_features"
       )
       self.c2 = self.cartdb.cursor()
