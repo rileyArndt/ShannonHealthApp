@@ -158,31 +158,30 @@ def forgot(self):
     random.seed() 
     global seed
     seed = randint(111111,999999)
-    try:
-        ygm = yagmail.SMTP('smtp.gmail.com', 587)
-        # smtp.ehlo()
-        ygm.starttls()
-        ygm.login("noreply.prototypeapp@gmail.com",mailpass)
+    #try:
+    #    ygm = yagmail.SMTP('smtp.gmail.com', 587)
+    #    # smtp.ehlo()
+    #    ygm.starttls()
+    #    ygm.login("noreply.prototypeapp@gmail.com",mailpass)
+
+    #    subject = "Your vertification code"
+    #    body = seed
+
+    #    msg = f'Subject: {subject}\n\n{body}'
+
+    #    ygm.send("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
+    #except:
+    #    print("debug: failed to send email to " + self.root.get_screen("forgot").ids.mail1.text)
+    with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+        smtp.ehlo()
+        smtp.starttls()
+        smtp.login("noreply.prototypeapp@gmail.com",mailpass)
 
         subject = "Your vertification code"
         body = seed
 
         msg = f'Subject: {subject}\n\n{body}'
-
-        ygm.send("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
-    except:
-        print("debug: failed to send email to " + self.root.get_screen("forgot").ids.mail1.text)
-    # with smtplib.SMTP('smtp.gmail.com', 587) as stmp:
-    #     smtp.ehlo()
-    #     smtp.starttls()
-    #     smtp.login("noreply.prototypeapp@gmail.com",mailpass)
-
-    #     subject = "Your vertification code"
-    #     body = seed
-
-    #     msg = f'Subject: {subject}\n\n{body}'
-
-    #     smtp.sendmail("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
+        smtp.sendmail("noreply.prototypeapp@gmail.com", self.root.get_screen("forgot").ids.mail1.text, msg)
     self.root.current = "forgot2"
         
 def forgot2(self):
