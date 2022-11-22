@@ -9,3 +9,12 @@ feel free to check if they run on your application
 or not.
 
 V0.1 - Login, Chatbot, Perscription Screens, Dark-Mode are available. (Mainly a test file.)
+Type File: .exe
+
+Instructions:
+1. Download the .zip file
+2. Extract the .zip file
+3. Left-Click the dist folder
+4. Left-Click the main folder
+5. Double Left-Click the main.exe file.
+https://drive.google.com/drive/folders/1gqydSv0WfUDny7xx1GzgUc1aiPtjlmRd?usp=sharing
