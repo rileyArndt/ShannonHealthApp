@@ -52,7 +52,7 @@ class ReadyRV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
       mydb = mysql.connector.connect(
-         host = "172.87.116.95",
+         host = "192.168.56.1",
          user = "shannon_user",
          passwd = "Matthew#5:27",
          database = "testing_features"
@@ -514,4 +514,6 @@ class AllPersScreen(Screen):
       self.manager.current = 'pscreen'
       self.manager.transition.direction = 'left'
       
+     
+
      
