@@ -22,6 +22,7 @@ ScreenManager:
    PersLookScreen:
 
 <CustomOneLineIconListItem>
+   id: litem
    on_release: root.print_item(self)
    IconLeftWidget:
       icon: root.icon
