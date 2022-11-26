@@ -26,6 +26,7 @@ import datetime
 dbpass= os.environ.get('dbpass')
 mailpass= os.environ.get('mailpass')
 
+
     
 def logger(self):
    
@@ -72,7 +73,7 @@ def logger(self):
            realip = socket.gethostbyname(socket.gethostname())
            time = str(datetime.datetime.now())[:-7]
            insertQuery("update auth set location = '" + city + "', ip = '" + realip+"', logintime = '" + time + "' where email = '"+ username+ "';")
-           sm.current = 'menu'
+           self.root.current = 'main'
        else:
            self.root.get_screen("login").ids.warning_label.text = "Could not authenticate user, please re-enter your credentials."
            return
@@ -235,3 +236,4 @@ def forgot3(self):
         insertQuery("update auth set phash = '" + secret + "' where email = '"+ self.root.get_screen("forgot").ids.mail1.text +"';")
     else:
         self.root.get_screen("forgot3").ids.warning_label.text = "Passwords do not match"
+
