@@ -15,6 +15,11 @@ from mysql.connector.locales.eng import client_error
 import mysql
 import kivymd.uix.datatables
 import kivymd.uix.dropdownitem
+from mysql.connector import Error
+import geocoder
+import socket
+import datetime
+import hashlib as hash
 
 dbpass= os.environ.get('dbpass')
 mailpass= os.environ.get('mailpass')
@@ -78,6 +83,7 @@ sm.add_widget(MainScreen(name='main'))
 
 
 
+
 # Builds the application.
 class MainApp(MDApp):
    def build(self):
@@ -108,5 +114,6 @@ MainApp.forgot3 = forgot3
 # Runs the application.
 if __name__ == '__main__':
    MainApp().run()
+
 
 
