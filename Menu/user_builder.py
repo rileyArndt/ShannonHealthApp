@@ -1,6 +1,4 @@
 """
-User Authentification Functionality
-"""
 
 from str_builder import *
 
