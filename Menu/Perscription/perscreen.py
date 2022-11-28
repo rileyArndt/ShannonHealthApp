@@ -8,6 +8,7 @@ from Chatbot import chatresponses
 
 from str_builder import *
 from main import *
+import mods
 
 class CartRV(RecycleView):
    def __init__(self, **kwargs):
@@ -21,7 +22,7 @@ class RV(RecycleView):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
       
       c = mydb.cursor()
@@ -55,7 +56,7 @@ class ReadyRV(RecycleView):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
       
       c = mydb.cursor()
@@ -83,7 +84,7 @@ class PerscriptionScreen(Screen):
 #          host = "localhost",
 #          user = "test_user",
 #          passwd = "pass",
-#          database = "testing_features"
+#          database = "shannon"
 #       )
       
 #       c = mydb.cursor()
@@ -122,7 +123,7 @@ class RecentLayout(MDBoxLayout):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
       
       c = mydb.cursor()
@@ -165,7 +166,7 @@ class PersLookScreen(Screen):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
       
       self.c = self.mydb.cursor()
@@ -321,7 +322,7 @@ class AllPersScreen(Screen):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
       
       self.c = self.mydb.cursor()
@@ -440,35 +441,26 @@ class AllPersScreen(Screen):
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
          passwd = dbpass,
-         database = "testing_features"
+         database = "shannon"
       )
        
       self.c2 = self.cartdb.cursor()
-      query = "DELETE FROM cart"
+      query = "DELETE FROM cart WHERE usr_id = '" +  mods.username + "';"
       self.c2.execute(query)
       self.cartdb.commit()
       self.cview.data = []
-      records = self.c2.fetchall()
-      for name in records:
-         self.cview.data.append(
-         {
-            "viewclass": "CustomOneLineIconListItem",
-            "icon": "medical-bag",
-            "text": name[0] + "        " + name[1] + "        " + str(name[2])                
-            }
-         )
+
       
    def update_view(self, obj):
-      self.cartdb = mysql.connector.connect(
-         host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
-         user = "admin",
-         passwd = dbpass,
-         database = "testing_features"
-      )
+      connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+      user = "admin",
+      passwd =  dbpass)
+      self.c2 = connection.cursor()
+      self.c2.execute("use shannon;")
       
-      self.c2 = self.cartdb.cursor()
+      self.username = mods.username
       
-      query = "SELECT * FROM cart"
+      query = "SELECT * FROM cart WHERE usr_id = '" + self.username + "';"
       self.c2.execute(query)
       self.cview.data = []
       records = self.c2.fetchall()
@@ -482,7 +474,7 @@ class AllPersScreen(Screen):
          )
       
    def get_records(self):
-      return self.cview.da
+      return self.cview.data
    
    def on_leave(self, *args):
       self.clear_widgets()
