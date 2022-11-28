@@ -172,8 +172,6 @@ class CustomOneLineIconListItem(OneLineIconListItem):
       query = "INSERT INTO cart SELECT id, product_name, price, '" + mods.username + "' FROM products WHERE id = '" + instance.text[:6] + "'"
       print(query)
       self.c2.execute(query)
-      
-      self.c2.execute(query)
       self.cartdb.commit()
 
 
@@ -182,6 +180,10 @@ class CustomOneLineIconListItem(OneLineIconListItem):
 # Runs the application.
 if __name__ == '__main__':
    MainApp().run()
+
+
+
+
 
 
 
