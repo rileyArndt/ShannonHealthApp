@@ -21,7 +21,6 @@ from kivy.lang.builder import Builder
 from kivy.lang import Builder
 from datetime import datetime
 from kivy.uix.screenmanager import Screen, ScreenManager
-from kivy_garden.mapview import MapView
 from kivymd.uix.list import OneLineIconListItem
 from kivymd.uix.list import MDList, TwoLineListItem, ThreeLineIconListItem, TwoLineAvatarListItem,ThreeLineIconListItem, IconLeftWidget, OneLineListItem
 from kivy.uix.scrollview import ScrollView
@@ -39,7 +38,6 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.recycleboxlayout import *
 from kivy.uix.recycleview import RecycleView
 import mysql.connector
-import keyboard
 from kivy.uix.relativelayout import RelativeLayout
 from kivymd.uix.floatlayout import MDFloatLayout
 from kivy.graphics import Color, Canvas, Line, RoundedRectangle
@@ -56,3 +54,5 @@ from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.properties import BooleanProperty
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.widget import Widget
+
+username = None
