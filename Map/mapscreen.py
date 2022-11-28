@@ -27,7 +27,10 @@ class MapScreen(Screen):
         self.medbtn1 = Button()
         self.medbtn1.text = "Shannon Medical Center"
         self.medbtn1.size_hint = [ 2, 0.5 ]
+
         self.marker1.add_widget(self.medbtn1)
+        # Centers map on marker clicked.
+        self.marker1.bind(on_press = lambda x: self.mapview.center_on(self.marker1.lat, self.marker1.lon))
 
         # Shannon Clinic
         self.marker2 = MapMarkerPopup()
@@ -40,6 +43,8 @@ class MapScreen(Screen):
         self.medbtn2.text = "Shannon Clinic"
         self.medbtn2.size_hint = [ 2, 0.5 ]
         self.marker2.add_widget(self.medbtn2)
+        # Centers map on marker clicked.
+        self.marker2.bind(on_press = lambda x: self.mapview.center_on(self.marker2.lat, self.marker2.lon))
 
         # Shannon Urgent Care West
         self.marker3 = MapMarkerPopup()
@@ -52,6 +57,8 @@ class MapScreen(Screen):
         self.medbtn3.text = "Shannon Urgent Care West"
         self.medbtn3.size_hint = [ 2, 0.5 ]
         self.marker3.add_widget(self.medbtn3)
+        # Centers map on marker clicked.
+        self.marker3.bind(on_press = lambda x: self.mapview.center_on(self.marker3.lat, self.marker3.lon))
 
         # Shannon South Hospital
         self.marker4 = MapMarkerPopup()
@@ -161,29 +168,20 @@ class MapScreen(Screen):
         self.medbtn12.size_hint = [ 2, 0.5 ]
         self.marker12.add_widget(self.medbtn12)
 
-        # Doesn't zoom in on marker, just zooms in the map.
-        self.marker1.bind(on_press = self.change_zoom)
-        self.marker2.bind(on_press = self.change_zoom)
-        self.marker3.bind(on_press = self.change_zoom)
-
-        self.btn = MDRectangleFlatButton()
+        self.btn = MDRectangleFlatButton(_default_text_color=(23/255, 135/255, 84/255, 0))
+        #self.btn.set_text_color(23/255, 135/255, 84/255, 1)
         self.btn.text = "Click Me"
         self.btn.halign = "center"
-        self.btn.bind(on_press=self.react)
+        self.btn.bind(on_press = self.openMC)
 
         self.lout.add_widget(self.mapview)
         self.lout.add_widget(self.btn)
 
         self.add_widget(self.lout)
-    
-    def react(self, obj):
-        print("wut")
 
-    def change_zoom(self, obj):
-        self.mapview.zoom = 15
-        self.mapview.center_on
-
-
+    def openMC(self, instance):
+        import webbrowser
+        webbrowser.open('https://www.shannonhealth.com/locations.aspx')
 
 class MapViewApp(MDApp):
     def build(self):
