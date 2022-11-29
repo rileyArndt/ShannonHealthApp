@@ -17,4 +17,4 @@ Instructions:
 3. Left-Click the dist folder
 4. Left-Click the main folder
 5. Double Left-Click the main.exe file.
-https://drive.google.com/drive/folders/1gqydSv0WfUDny7xx1GzgUc1aiPtjlmRd?usp=sharing
+https://drive.google.com/drive/folders/1JsD2EzdsB7z3t8C9N-PNAjf9jOSrMbf4?usp=share_link
