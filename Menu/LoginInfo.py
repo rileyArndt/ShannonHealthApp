@@ -88,7 +88,7 @@ def create2(self):
         hashbrown = secret.hexdigest()
         ip = geocoder.ip("me")
         city = ip.city
-        realip = socket.gethostbyname(socket.gethostname())
+        realip = "null"  #socket.gethostbyname(socket.gethostname())
         time = str(datetime.datetime.now())[:-7]
         insertQuery("""insert into auth (email, phash, sal, logintime, location, ip)
         values ('""" + name1 + "', '" +hashbrown + "', '" + 
