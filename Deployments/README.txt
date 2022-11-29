@@ -9,7 +9,7 @@ feel free to check if they run on your application
 or not.
 
 V0.1 - Login, Chatbot, Perscription Screens, Dark-Mode are available. (Mainly a test file.)
-Type File: .exe
+Type File: .apk
 
 Instructions:
 1. Download the .zip file
