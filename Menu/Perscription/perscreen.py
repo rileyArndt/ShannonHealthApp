@@ -460,8 +460,11 @@ class AllPersScreen(Screen):
       
       self.username = mods.username
       
-      query = "SELECT * FROM cart WHERE usr_id = '" + self.username + "';"
-      self.c2.execute(query)
+      f_query = "DELETE FROM cart WHERE product_name IS NULL;"
+      self.c2.execute(f_query)
+      
+      s_query = "SELECT * FROM cart WHERE usr_id = '" + self.username + "';"
+      self.c2.execute(s_query)
       self.cview.data = []
       records = self.c2.fetchall()
       for name in records:
