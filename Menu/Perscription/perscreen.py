@@ -491,7 +491,15 @@ class AllPersScreen(Screen):
       self.manager.transition.direction = 'right'
       
    def search(self, obj):
+      connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
+      user = "admin",
+      passwd =  dbpass)
+      self.c2 = connection.cursor()
+      self.c2.execute("use shannon;")
+      
       self.rview.data = []
+      self.c2.execute("SELECT * FROM products")
+      self.records = self.c2.fetchall()
       for name in self.records:
          if self.itxtfield.text.lower() in name[0].lower() or self.itxtfield.text.lower() in name[1].lower() or self.itxtfield.text.lower() in name[2].lower():
             self.rview.data.append(
@@ -501,7 +509,6 @@ class AllPersScreen(Screen):
                   "text": name[0] + "        " + name[1] + "        " + name[2]                
                }
             )
-            print(name)
          
    
       
@@ -512,3 +519,4 @@ class AllPersScreen(Screen):
      
 
      
+
