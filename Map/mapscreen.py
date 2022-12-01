@@ -13,6 +13,7 @@ class MapScreen(Screen):
         # lout is the layout
         self.lout = BoxLayout()
         self.lout.orientation = "vertical"
+        # [ 23/255, 135/255, 84/255, 0 ]
 
         self.mapview = MapView(zoom = 12, lat = 31.4638, lon = -100.4370)
         self.mapview.double_tap_zoom = True
@@ -71,6 +72,8 @@ class MapScreen(Screen):
         self.medbtn4.text = "Shannon South Hospital"
         self.medbtn4.size_hint = [ 2, 0.5 ]
         self.marker4.add_widget(self.medbtn4)
+        # Centers map on marker clicked.
+        self.marker4.bind(on_press = lambda x: self.mapview.center_on(self.marker4.lat, self.marker4.lon))
 
         # Shannon Senior Health Center
         self.marker5 = MapMarkerPopup()
@@ -83,6 +86,8 @@ class MapScreen(Screen):
         self.medbtn5.text = "Shannon Senior Health-Center"
         self.medbtn5.size_hint = [ 2, 0.5 ]
         self.marker5.add_widget(self.medbtn5)
+        # Centers map on marker clicked.
+        self.marker5.bind(on_press = lambda x: self.mapview.center_on(self.marker5.lat, self.marker5.lon))
 
         # Shannon Clinic South
         self.marker6 = MapMarkerPopup()
@@ -95,6 +100,8 @@ class MapScreen(Screen):
         self.medbtn6.text = "Shannon Clinic South"
         self.medbtn6.size_hint = [ 2, 0.5 ]
         self.marker6.add_widget(self.medbtn6)
+        # Centers map on marker clicked.
+        self.marker6.bind(on_press = lambda x: self.mapview.center_on(self.marker6.lat, self.marker6.lon))
 
         # Shannon Clinic South-West
         self.marker7 = MapMarkerPopup()
@@ -107,6 +114,8 @@ class MapScreen(Screen):
         self.medbtn7.text = "Shannon Clinic South-West"
         self.medbtn7.size_hint = [ 2, 0.5 ]
         self.marker7.add_widget(self.medbtn7)
+        # Centers map on marker clicked.
+        self.marker7.bind(on_press = lambda x: self.mapview.center_on(self.marker7.lat, self.marker7.lon))
 
         # Shannon Clinic
         self.marker8 = MapMarkerPopup()
@@ -119,6 +128,8 @@ class MapScreen(Screen):
         self.medbtn8.text = "Shannon Clinic"
         self.medbtn8.size_hint = [ 2, 0.5 ]
         self.marker8.add_widget(self.medbtn8)
+        # Centers map on marker clicked.
+        self.marker8.bind(on_press = lambda x: self.mapview.center_on(self.marker8.lat, self.marker8.lon))
 
         # Shannon Urgent Care South
         self.marker9 = MapMarkerPopup()
@@ -131,6 +142,8 @@ class MapScreen(Screen):
         self.medbtn9.text = "Shannon Urgent Care South"
         self.medbtn9.size_hint = [ 2, 0.5 ]
         self.marker9.add_widget(self.medbtn9)
+        # Centers map on marker clicked.
+        self.marker9.bind(on_press = lambda x: self.mapview.center_on(self.marker9.lat, self.marker9.lon))
 
         # Shannon Health Club
         self.marker10 = MapMarkerPopup()
@@ -143,6 +156,8 @@ class MapScreen(Screen):
         self.medbtn10.text = "Shannon Health Club"
         self.medbtn10.size_hint = [ 2, 0.5 ]
         self.marker10.add_widget(self.medbtn10)
+        # Centers map on marker clicked.
+        self.marker10.bind(on_press = lambda x: self.mapview.center_on(self.marker10.lat, self.marker10.lon))
 
         # Shannon Clinic Jackson
         self.marker11 = MapMarkerPopup()
@@ -155,6 +170,8 @@ class MapScreen(Screen):
         self.medbtn11.text = "Shannon Clinic Jackson"
         self.medbtn11.size_hint = [ 2, 0.5 ]
         self.marker11.add_widget(self.medbtn11)
+        # Centers map on marker clicked.
+        self.marker11.bind(on_press = lambda x: self.mapview.center_on(self.marker11.lat, self.marker11.lon))
 
         # Shannon Business Office
         self.marker12 = MapMarkerPopup()
@@ -167,8 +184,10 @@ class MapScreen(Screen):
         self.medbtn12.text = "Shannon Business Office"
         self.medbtn12.size_hint = [ 2, 0.5 ]
         self.marker12.add_widget(self.medbtn12)
+        # Centers map on marker clicked.
+        self.marker12.bind(on_press = lambda x: self.mapview.center_on(self.marker12.lat, self.marker12.lon))
 
-        self.btn = MDRectangleFlatButton(_default_text_color=(23/255, 135/255, 84/255, 0))
+        self.btn = MDRectangleFlatButton()
         #self.btn.set_text_color(23/255, 135/255, 84/255, 1)
         self.btn.text = "Click Me"
         self.btn.halign = "center"
