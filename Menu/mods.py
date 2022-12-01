@@ -54,5 +54,8 @@ from kivy.uix.recycleview.layout import LayoutSelectionBehavior
 from kivy.properties import BooleanProperty
 from kivy.uix.recycleview.views import RecycleDataViewBehavior
 from kivy.uix.widget import Widget
+from kivy_garden.mapview import MapView
+from kivy_garden.mapview import MapMarkerPopup
+
 
 username = None

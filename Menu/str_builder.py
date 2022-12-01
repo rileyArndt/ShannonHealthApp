@@ -20,6 +20,10 @@ ScreenManager:
    PerscriptionScreen:
    AllPersScreen:
    PersLookScreen:
+   MapScreen:
+
+<MapScreen>
+   name: 'mapscr'
 
 <CustomOneLineIconListItem>
    id: litem
@@ -42,6 +46,7 @@ ScreenManager:
       size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
+
 
 
 <ReadyRV>
@@ -313,6 +318,10 @@ ScreenManager:
                ElementCard:
                   image: "Icons\chaticon.png"
                   text: "Search for Providers"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'mapscr'  
+                                       
                ElementCard:
                   image: "Icons\laboticon.png"
                   text: "Ask the ChatBot"
@@ -399,6 +408,8 @@ ScreenManager:
                   icon: 'logout'
                   text: 'Logout'
                   on_release: app.get_out()
+                  
+
 
 """
 
