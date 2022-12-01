@@ -27,15 +27,17 @@ import mods
 dbpass= os.environ.get('dbpass')
 mailpass= os.environ.get('mailpass')
 
+# The Login class's functionality is on kivy. 
 class Login (Screen):
     pass
+
 # The MainScreen class's functionality is on kivy. 
-#
-# Let me know if you
-# only want to make a screen using python.
 class MainScreen(Screen):
    pass
 
+# The Create, Create2, Forgot, Forgot2 class's functionality is on kivy. 
+# Create, Create2 - Creates an account for a user.
+# Forgot, Forgot2, Forgot3 - Helps the user find their lost account. 
 class Create (Screen):
     pass
 
@@ -57,6 +59,8 @@ class Physical_Screen(Screen):
    
 mods.username = 'default'
 
+# The user logs in to the application
+# by using the "logger" function.
 def logger(self):
    
    connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
@@ -141,7 +145,8 @@ class MainApp(MDApp):
       self.root.current = 'login'
       self.root.direction = 'left'  
     
-
+# Contains the Login Functionality
+# of the LoginInfo .py file.
 MainApp.logger = logger
 MainApp.create = create
 MainApp.create2 = create2
@@ -149,10 +154,14 @@ MainApp.forgot = forgot
 MainApp.forgot2 = forgot2
 MainApp.forgot3 = forgot3
 
+
+# Returns the username.
 def user_name():
   return sm.get_screen("login").ids.user.text
 
-
+# Connection to the user's product cart.
+# Holds all the products a customer
+# wants to buy.
 class CustomOneLineIconListItem(OneLineIconListItem):
    icon = StringProperty()
    
