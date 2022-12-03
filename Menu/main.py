@@ -7,6 +7,7 @@ from str_builder import *
 from Perscription import perscreen
 from Map import map_screen
 from Telemedicine import telemed
+from PhysicalTherapy import physical
 from Chatbot import chatresponses, chatai, dataextraction
 from LoginInfo import *
 
@@ -44,6 +45,7 @@ class MainScreen(Screen):
 # Forgot, Forgot2, Forgot3 - Helps the user find their lost account. 
 # TeleScreen - Manages the telemedicene screen. Allows users direct access to
 #              links to Telemedicine
+# Physical_Screen - Invovles identification of injuries.
 class Create (Screen):
     pass
 
@@ -58,9 +60,6 @@ class Forgot2 (Screen):
 
 class Forgot3 (Screen):
     pass
-
-class Physical_Screen(Screen):
-   pass
    
 mods.username = 'default'
 
