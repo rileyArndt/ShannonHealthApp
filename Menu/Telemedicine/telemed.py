@@ -17,7 +17,7 @@ class TeleScreen(Screen):
     
         # Label for Title Layout
         self.title_label=MDLabel()
-        self.title_label.text='Your M.D.'
+        self.title_label.text='Telemedicine'
         self.title_label.pos_hint={"center_y": .5}
         self.title_label.halign="center"
         self.title_label.font_size="25sp"
@@ -38,7 +38,7 @@ class TeleScreen(Screen):
         
         self.window = BoxLayout(orientation = 'vertical', padding = 2, spacing = 2)
 
-        self.button = Button(text="Call Provider",
+        self.button = Button(text="MyChart Links",
             size_hint=(1,.8),
             background_normal = '',
             font_size = 22,
@@ -48,7 +48,7 @@ class TeleScreen(Screen):
         self.button.bind(on_press=self.openMC)
         self.window.add_widget(self.button)
 
-        self.button = Button(text="Call Shannon",
+        self.button = Button(text="Desktop Services",
             size_hint = (1,.8),
             background_normal = '',
             font_size = 22,
@@ -58,7 +58,7 @@ class TeleScreen(Screen):
         self.button.bind(on_press=self.openShannon)
         self.window.add_widget(self.button)
 
-        self.button = Button(text="Shannon Telemed",
+        self.button = Button(text="Telemedicine Services",
             size_hint = (1,.8),
             background_normal = '',
             font_size = 22,
@@ -72,8 +72,8 @@ class TeleScreen(Screen):
             size_hint=(1,.3),
             background_normal = '',
             font_size = 22,
-            background_color = (240/255, 240/255, 240/255, 0.5),
-            color = (23/255, 135/255, 84/255, 1)
+            background_color = (23/255, 135/255, 84/255, 1),
+            color = (240/255, 240/255, 240/255, 1)
             
             )
         self.button.bind(on_press=self.go_home)
