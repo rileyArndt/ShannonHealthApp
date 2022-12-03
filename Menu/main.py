@@ -6,6 +6,7 @@ from mods import *
 from str_builder import *
 from Perscription import perscreen
 from Map import map_screen
+from Telemedicine import telemed
 from Chatbot import chatresponses, chatai, dataextraction
 from LoginInfo import *
 
@@ -22,6 +23,7 @@ import socket
 import datetime
 import hashlib as hash
 import mods
+from Telemedicine import telemed
 
 
 
@@ -40,6 +42,8 @@ class MainScreen(Screen):
 # The Create, Create2, Forgot, Forgot2 class's functionality is on kivy. 
 # Create, Create2 - Creates an account for a user.
 # Forgot, Forgot2, Forgot3 - Helps the user find their lost account. 
+# TeleScreen - Manages the telemedicene screen. Allows users direct access to
+#              links to Telemedicine
 class Create (Screen):
     pass
 
@@ -57,8 +61,6 @@ class Forgot3 (Screen):
 
 class Physical_Screen(Screen):
    pass
-
-
    
 mods.username = 'default'
 

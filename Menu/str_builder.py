@@ -21,6 +21,7 @@ ScreenManager:
    AllPersScreen:
    PersLookScreen:
    MapScreen:
+   TeleScreen:
 
 <MapScreen>
    name: 'mapscr'
@@ -46,7 +47,6 @@ ScreenManager:
       size_hint_y: None
       height: self.minimum_height
       orientation: 'vertical'
-
 
 
 <ReadyRV>
@@ -86,6 +86,10 @@ ScreenManager:
 <Physical_Screen>
    name: 'physc'
    MyGridLayout:
+   
+<TeleScreen>:
+   name: 'telscreen'
+
    
 <Command>
    size_hint_y: None   
@@ -308,6 +312,9 @@ ScreenManager:
                ElementCard:
                   image: "Icons\phoneicon.png"
                   text: "Telemedicine Visits"
+                  on_press:
+                     root.manager.transition.direction = 'left'
+                     root.manager.current = 'telscreen'  
                ElementCard:
                   image: "Icons\perscicon.png"
                   text: "Perscription Availability"

@@ -37,7 +37,6 @@ class MapScreen(Screen):
         self.back_btn.icon_color=[ 240/255, 240/255, 240/255, 1 ]
         self.back_btn.bind(on_press=self.headback)
         self.title_lout.add_widget(self.back_btn)
-        self.lout.add_widget(self.title_lout)
 
         self.mapview = MapView(zoom = 12, lat = 31.4638, lon = -100.4370)
         self.mapview.double_tap_zoom = True
@@ -229,6 +228,7 @@ class MapScreen(Screen):
         self.lout.add_widget(self.butnlout)
 
         self.add_widget(self.lout)
+        self.add_widget(self.title_lout)
 
     def openMC(self, instance):
         import webbrowser
