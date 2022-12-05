@@ -24,18 +24,18 @@ class MyGridLayout(GridLayout):
         self.leg_exercises.cols = 2
         self.leg_exercises.add_widget(Label(text = "Leg Raises", font_size =32, color=[46/255,128/255,28/255,1]))
         self.leg_exercises.add_widget(Label(text = "Leg Stretches", font_size =32, color=[46/255,128/255,28/255,1]))
-        self.leg_exercises.add_widget(Label(text = "Lying Hamstring Stretch", font_size =32, color=[46/255,128/255,28/255,1]))
+        self.leg_exercises.add_widget(Label(text = "Lying Hamstring \nStretch", font_size =32, color=[46/255,128/255,28/255,1]))
         self.leg_exercises.add_widget(Label(text = "Quadriceps Stretch", font_size =32, color=[46/255,128/255,28/255,1]))
         self.leg_exercises.add_widget(Label(text = "Calf Stretches", font_size =32, color=[46/255,128/255,28/255,1]))
         
         #arm
         self.arm_exercises = GridLayout()
         self.arm_exercises.cols = 2
-        self.arm_exercises.add_widget(Label(text = "Crossover Arm Stretch", font_size =32, color=[46/255,128/255,28/255,1]))
+        self.arm_exercises.add_widget(Label(text = "High-To-Low Rows", font_size =32, color=[46/255,128/255,28/255,1]))
         self.arm_exercises.add_widget(Label(text = "Doorway Stretch", font_size =32, color=[46/255,128/255,28/255,1]))
         self.arm_exercises.add_widget(Label(text = "Lawn Mower Pull", font_size =32, color=[46/255,128/255,28/255,1]))
         self.arm_exercises.add_widget(Label(text = "Reverse Fly", font_size =32, color=[46/255,128/255,28/255,1]))
-        self.arm_exercises.add_widget(Label(text = "Arm Exercise 5", font_size =32, color=[46/255,128/255,28/255,1]))
+        self.arm_exercises.add_widget(Label(text = "Arm Stretch", font_size =32, color=[46/255,128/255,28/255,1]))
         
         #shoulder
         self.shoulder_exercises = GridLayout()
