@@ -11,10 +11,15 @@ or not.
 V0.1 - Login, Chatbot, Perscription Screens, Dark-Mode are available. (Mainly a test file.)
 Type File: .apk
 
+V0.2 - Login Features are functional.
+Type File: .apk
+
+V0.3 - Telemedicine, Widgets are available.
+Type File: .apk
+
 Instructions:
 1. Download the .zip file
 2. Extract the .zip file
-3. Left-Click the dist folder
-4. Left-Click the main folder
-5. Double Left-Click the main.exe file.
-https://drive.google.com/drive/folders/1JsD2EzdsB7z3t8C9N-PNAjf9jOSrMbf4?usp=share_link
+3. Open the folder
+4. Read the given instructions in  the "instructions.doc" file
+https://drive.google.com/drive/u/2/folders/1JsD2EzdsB7z3t8C9N-PNAjf9jOSrMbf4
