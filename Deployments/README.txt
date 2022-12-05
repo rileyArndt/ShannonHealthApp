@@ -17,6 +17,9 @@ Type File: .apk
 V0.3 - Telemedicine, Widgets are available.
 Type File: .apk
 
+V1.0 - First Functional Release
+Type File: .apk
+
 Instructions:
 1. Download the .zip file
 2. Extract the .zip file
