@@ -28,7 +28,11 @@ mailpass= os.environ.get('mailpass')
 
 
 
-
+# This method handles the 
+# functionality for the user to create
+# an account.
+#
+# Involves a database connection.
 def create(self):
 
 
@@ -61,6 +65,8 @@ def create(self):
     else:
         self.root.current = "create2"
 
+# The create2 method works by
+# asking the user to insert their password.
 def create2(self):
 
     connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
@@ -97,7 +103,9 @@ def create2(self):
 
 
 
-
+# If the user has forgotten their account,
+# The forgot method is used to generate a code
+# that the user will receive in their email (If valid).
 def forgot(self):
     import smtplib
     import yagmail
@@ -141,6 +149,8 @@ def forgot2(self):
     else:
         self.root.get_screen("forgot2").ids.warning_label.text = "Invalid Code"
 
+# The forgot3 method sets the new password
+# for the user.
 def forgot3(self):
 
 
