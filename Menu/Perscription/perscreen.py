@@ -164,8 +164,9 @@ class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
                                  RecycleBoxLayout):
    """Adds selection and focus behavior to our view."""
 
-# Available Medication Screen:
-# Allows the user to lookup medications
+# Perscriptions Ready Screen:
+# Allows the user to see which medications
+# have been delivered.
 class PersLookScreen(Screen):
    def __init__(self, **kw):
       super().__init__(**kw)
@@ -300,6 +301,7 @@ class PersLookScreen(Screen):
       self.clear_widgets()
       
    def get_records(self):
+      """Grabs the available records"""
       return self.records
       
 
@@ -310,6 +312,7 @@ class PersLookScreen(Screen):
       self.manager.transition.direction = 'right'
       
    def go_home(self, obj):
+      """Takes the client back to the menu."""
       self.manager.current = 'main'
       self.manager.transition.direction = 'right'  
           
@@ -318,6 +321,7 @@ class PersLookScreen(Screen):
       self.clear_widgets()
       
    def search(self, obj):
+      """Filter the medications within the search"""
       self.table.row_data = ()
       for name in self.rview.content:
          if self.itxtfield.text.lower() in name[0].lower() or self.itxtfield.text.lower() in name[1].lower() or self.itxtfield.text.lower() in name[2].lower():
@@ -325,7 +329,8 @@ class PersLookScreen(Screen):
             print(name)
             
 
-# THe perscription screen
+# The Available Medications Screen:
+# Allows the user to order the medications needed.
 class AllPersScreen(Screen):
    def __init__(self, **kw):
       super().__init__(**kw)
@@ -451,6 +456,7 @@ class AllPersScreen(Screen):
       return self.blout
    
    def clear(self, obj):
+      """Clears the cart."""
       self.cartdb = mysql.connector.connect(
          host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
          user = "admin",
@@ -466,6 +472,7 @@ class AllPersScreen(Screen):
 
       
    def update_view(self, obj):
+      """Updates the view."""
       connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
       user = "admin",
       passwd =  dbpass)
@@ -491,20 +498,25 @@ class AllPersScreen(Screen):
          )
       
    def get_records(self):
+      """Returns the available records."""
       return self.cview.data
    
    def on_leave(self, *args):
+      """Clears all widgets."""
       self.clear_widgets()
    
    def back(self, obj):
+      """Takes the user back to the menu."""
       self.manager.current = 'pscreen'
       self.manager.transition.direction = 'right'
          
    def home(self, obj):
+      """Takes the user back to the Menu."""
       self.manager.current = 'main'
       self.manager.transition.direction = 'right'
       
    def search(self, obj):
+      """Filters the perscription search."""
       connection = mysql.connector.connect(host = "shannontestdatabase.cxc8luynmyvm.us-east-1.rds.amazonaws.com",
       user = "admin",
       passwd =  dbpass)
@@ -527,6 +539,7 @@ class AllPersScreen(Screen):
    
       
    def pers_screen(self, obj):
+      """Transfers to the perscription screen."""
       self.manager.current = 'pscreen'
       self.manager.transition.direction = 'left'
       
