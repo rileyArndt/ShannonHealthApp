@@ -2,19 +2,21 @@
 # 10/11/2022
 
 
-# Adding all the modules
+# Adding necessary modules for the kivy
+# buildozer to integrate the files.
 from Chatbot import chatresponses
-
-
 from str_builder import *
 from main import *
 import mods
 
+# The cart displayed on the
+# available medications screen
 class CartRV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__(**kwargs)
 
-
+# The database connection to the
+# product database.
 class RV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
@@ -48,7 +50,9 @@ class RV(RecycleView):
          }
       )   
 
-
+# The database connection to the
+# product database.
+# Selects all the products that have been shipped in.
 class ReadyRV(RecycleView):
    def __init__(self, **kwargs):
       super().__init__()      # Database Connection
@@ -72,7 +76,8 @@ class ReadyRV(RecycleView):
          self.content.append((record[0], record[1], record[2], "$" + str(record[3]), str(record[4])))
       
 
-
+# The perscription screen's functionality
+# is displayed in the str_builder.
 class PerscriptionScreen(Screen):
    pass
 
@@ -116,6 +121,8 @@ class PerscriptionScreen(Screen):
 #       self.n_lout.add_widget(FigureCanvasKivyAgg(plt.gcf()))
 #       self.add_widget(self.n_lout)      
    
+# Shows the most recent products that have been
+# shipped in according to the database.
 class RecentLayout(MDBoxLayout):
    def __init__(self, *args, **kwargs):
       super().__init__(*args, **kwargs)
@@ -152,10 +159,13 @@ class RecentLayout(MDBoxLayout):
       
       self.add_widget(self.r_list)
 
+
 class SelectableRecycleBoxLayout(FocusBehavior, LayoutSelectionBehavior,
                                  RecycleBoxLayout):
    """Adds selection and focus behavior to our view."""
 
+# Available Medication Screen:
+# Allows the user to lookup medications
 class PersLookScreen(Screen):
    def __init__(self, **kw):
       super().__init__(**kw)
@@ -279,12 +289,14 @@ class PersLookScreen(Screen):
       return self.blout
    
    def remove_rows(self, obj):
+      """Removes the unnecessary rows"""
       rows2remove = self.table.get_row_checks()
       
       for r in rows2remove:
          self.table.remove_row(tuple(r))
    
    def on_leave(self, *args):
+      """Clears the widgets"""
       self.clear_widgets()
       
    def get_records(self):
@@ -293,6 +305,7 @@ class PersLookScreen(Screen):
 
    
    def go_back(self, obj):
+      """Redirects the the Perscription Control Screen"""
       self.manager.current = 'pscreen'
       self.manager.transition.direction = 'right'
       
@@ -301,6 +314,7 @@ class PersLookScreen(Screen):
       self.manager.transition.direction = 'right'  
           
    def on_leave(self, *args):
+      """Clears the widgets"""
       self.clear_widgets()
       
    def search(self, obj):
