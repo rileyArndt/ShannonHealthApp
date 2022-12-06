@@ -45,7 +45,7 @@ class MainScreen(Screen):
 # Forgot, Forgot2, Forgot3 - Helps the user find their lost account. 
 # TeleScreen - Manages the telemedicene screen. Allows users direct access to
 #              links to Telemedicine
-# Physical_Screen - Invovles identification of injuries.
+# Physical_Screen - Involves identification of injuries.
 class Create (Screen):
     pass
 
