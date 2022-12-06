@@ -77,7 +77,8 @@ def message_probability(user_message, recognised_words, single_response=False, r
 # Used if an unknown message is sent.
 def unknown_message():
    return 'I don\'t understand'
-
+# Checks the user's filtered message and creates
+# the matched response.
 def check_messages(message):
    highest_prob_list = {}
    
