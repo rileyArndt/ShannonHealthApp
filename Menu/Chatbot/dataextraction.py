@@ -55,6 +55,7 @@ def get_stories():
    
    
 def get_shannon_info():
+   """Displays the Shannon Medical Center's Contact Information."""
    try:
       s = "325.655.8191 | 324.481.2207 (fax)"
       s += '\nMonday through Friday'
@@ -108,6 +109,7 @@ def return_news():
       return not_connected()
 
 def news_item():
+   """Returns the latest news filtered"""
    try:
       everything = []
       test = ''
