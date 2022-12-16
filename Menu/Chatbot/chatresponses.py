@@ -5,6 +5,8 @@ from Chatbot import dataextraction
 # Splitting the string
 import re
 
+# Source used: https://www.youtube.com/watch?v=Ea9jgBjQxEs&t=238s&ab_channel=Indently
+
 """"
 Input your responses here then add the specified 
 index to the check_messages function.
